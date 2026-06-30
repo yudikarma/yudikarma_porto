@@ -2419,10 +2419,26 @@ export default function App() {
                       <span className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Message Presets</span>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-3">
                         {[
-                          { label: "🤝 Hire / Interview", text: "Hi Yudi, I am interested in scheduling a technical interview with you regarding a Senior Android Engineer opportunity!" },
-                          { label: "🛡️ SDK Consultation", text: "Hi Yudi, we are looking for architectural consultation on secure mobile SDK integrations (biometrics/cryptography)." },
-                          { label: "📱 Secure App Dev", text: "Hi Yudi, we are looking to develop a secure Fintech or VOIP product on Android. Let's connect!" },
-                          { label: "☕ Say Hello", text: "Hi Yudi! Just wanted to reach out, say hello, and connect about your secure Android development work." }
+                          { 
+                            label: "🤝 Hire / Interview", 
+                            text: "Hi Yudi, I am interested in scheduling a technical interview with you regarding a Senior Android Engineer opportunity!",
+                            themeClass: "bg-blue-50/40 dark:bg-blue-950/15 border-blue-200/60 dark:border-blue-900/30 text-blue-950 dark:text-blue-100 border-l-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:border-blue-300 dark:hover:border-blue-700"
+                          },
+                          { 
+                            label: "🛡️ SDK Consultation", 
+                            text: "Hi Yudi, we are looking for architectural consultation on secure mobile SDK integrations (biometrics/cryptography).",
+                            themeClass: "bg-indigo-50/40 dark:bg-indigo-950/15 border-indigo-200/60 dark:border-indigo-900/30 text-indigo-955 dark:text-indigo-100 border-l-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 hover:border-indigo-300 dark:hover:border-indigo-700"
+                          },
+                          { 
+                            label: "📱 Secure App Dev", 
+                            text: "Hi Yudi, we are looking to develop a secure Fintech or VOIP product on Android. Let's connect!",
+                            themeClass: "bg-emerald-50/40 dark:bg-emerald-950/15 border-emerald-200/60 dark:border-emerald-900/30 text-emerald-955 dark:text-emerald-100 border-l-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 hover:border-emerald-300 dark:hover:border-emerald-700"
+                          },
+                          { 
+                            label: "☕ Say Hello", 
+                            text: "Hi Yudi! Just wanted to reach out, say hello, and connect about your secure Android development work.",
+                            themeClass: "bg-amber-50/40 dark:bg-amber-950/15 border-amber-200/60 dark:border-amber-900/30 text-amber-955 dark:text-amber-100 border-l-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30 hover:border-amber-300 dark:hover:border-amber-700"
+                          }
                         ].map((preset) => (
                           <button
                             key={preset.label}
@@ -2433,9 +2449,10 @@ export default function App() {
                                 message: preset.text
                               }));
                             }}
-                            className="text-left px-2.5 py-1.5 rounded-lg text-[10px] bg-slate-50 dark:bg-slate-900 border border-outline-variant/60 hover:bg-amber-50 dark:hover:bg-amber-950/20 hover:border-amber-400 text-on-surface transition-all cursor-pointer font-medium active:scale-95"
+                            className={`text-left px-3 py-2 rounded-lg border border-l-4 transition-all duration-300 cursor-pointer active:scale-95 flex flex-col gap-0.5 ${preset.themeClass}`}
                           >
-                            {preset.label}
+                            <span className="font-bold text-[10px] tracking-wide">{preset.label}</span>
+                            <span className="text-[9px] opacity-80 line-clamp-1 font-normal leading-tight">{preset.text}</span>
                           </button>
                         ))}
                       </div>
@@ -2541,7 +2558,7 @@ export default function App() {
                 <div className="text-center">
                   <div className="text-xs text-slate-600 leading-relaxed text-left space-y-4">
                     <p className="font-medium text-slate-800">
-                      Because you are viewing Yudi's portfolio within the secure AI Studio chat preview pane, browsers block direct printing from sandboxed frames for security reasons.
+                      Because you are viewing Yudi's portfolio within a secure chat preview pane, browsers block direct printing from sandboxed frames for security reasons.
                     </p>
                     <p className="p-3 bg-emerald-50 border border-emerald-200/50 rounded-xl text-[11px] text-emerald-800 font-medium">
                       💡 To generate and download your high-fidelity, customized PDF resume, please follow these simple steps:

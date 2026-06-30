@@ -1,20 +1,34 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Yudi Karma — Software Engineer Portfolio
 
-# Run and deploy your AI Studio app
+An elegant, high-performance personal portfolio website showcasing client-shipped production software and solo engineering applications.
 
-This contains everything you need to run your app locally.
+## 🚀 Shipped Projects & SaaS Platforms
 
-View your app in AI Studio: https://ai.studio/apps/1049334d-d8a1-4e3d-9fca-cca91ddf0e69
+- **Wedly Finance (Editorial Wedding Management Platform):** A responsive wedding management platform built with React, TypeScript, and Framer Motion, featuring a dual-role dashboard and custom CSS-based analytics.
+- **FinTrack:** A full-stack personal finance application using React 19, Node.js, Firebase, Google Gemini API for smart receipt scanning, and Google Workspace integrations.
+- **Warkop Modern POS:** A multi-tenant Laravel 12 coffee shop ordering system with encrypted table-specific QR tokens.
+- **LogamHub (formerly Irvan Gold Roger):** An offline-first native Android app in Kotlin for gold transaction monitoring, integrated with Supabase and biometric security.
+- **PT. Phintraco Technology Shipped Projects:** Key client integrations for BCA, BNI, Panin, and BJB Bank using Avaya WebRTC SDKs and OneSpan Mobile Security Suite.
 
-## Run Locally
+## 💻 Tech Stack
+- **Frontend:** React, TypeScript, Tailwind CSS, Framer Motion
+- **Backend & Database:** Laravel 12, Node.js, Firebase, Supabase, SQLite
+- **Mobile:** Android SDK (Kotlin), Jetpack Compose
+- **APIs & Tools:** Google Gemini API, Google Workspace APIs, OneSpan SDK, Avaya SDK
 
-**Prerequisites:**  Node.js
+## 🛠️ Running Locally
 
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```

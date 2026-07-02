@@ -42,20 +42,12 @@ import {
 } from 'lucide-react';
 
 import { ImageWithPlaceholder } from './components/ImageWithPlaceholder';
+import { Experience, Project } from './types';
 
-
-
-interface Experience {
-  company: string;
-  role: string;
-  type?: string;
-  period: string;
-  description: string;
-  techStack: string[];
-  highlights: string[];
-  projects: Project[];
-  partnerProducts?: { name: string; tagline: string; description: string; }[];
-}
+const ContactModal = React.lazy(() => import('./components/ContactModal'));
+const PrintModal = React.lazy(() => import('./components/PrintModal'));
+const ProjectDetailsModal = React.lazy(() => import('./components/ProjectDetailsModal'));
+const RecruiterConsole = React.lazy(() => import('./components/RecruiterConsole'));
 
 const EXPERIENCES: Experience[] = [
   {
@@ -632,24 +624,7 @@ const NON_FORMAL = [
   }
 ];
 
-// Project Interface
-interface Project {
-  name: string;
-  tech: string[];
-  desc: string;
-  collaborators: string[];
-  technicalDoc: string;
-  thumbnail?: string;
-  category?: string;
-  images?: string[];
-  projectType?: string;
-  company?: string;
-  role?: string;
-  period?: string;
-  demoUrl?: string;
-  playStoreUrl?: string;
-  client?: string;
-}
+
 
 const staggerContainerVariants = {
   hidden: { opacity: 0 },
@@ -933,9 +908,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('overview');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [activeImageIdx, setActiveImageIdx] = useState(0);
-  const [carouselDirection, setCarouselDirection] = useState(0);
-  const [carouselImagesLoaded, setCarouselImagesLoaded] = useState<Record<string, boolean>>({});
+  const [selectedProjectInitialImageIdx, setSelectedProjectInitialImageIdx] = useState(0);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
@@ -1026,33 +999,9 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navigateCarousel = (newIdx: number, customDirection?: number) => {
-    if (customDirection !== undefined) {
-      setCarouselDirection(customDirection);
-    } else {
-      setCarouselDirection(newIdx > activeImageIdx ? 1 : -1);
-    }
-    setActiveImageIdx(newIdx);
-  };
-
   const handleSelectProject = (proj: Project | null, initialImageIdx = 0) => {
     setSelectedProject(proj);
-    setActiveImageIdx(initialImageIdx);
-    setCarouselDirection(0);
-  };
-
-  const handleDetailDragEnd = (e: any, info: any) => {
-    if (!selectedProject || !selectedProject.images) return;
-    const threshold = 50;
-    if (info.offset.x < -threshold) {
-      // Swiped left -> next
-      const newIdx = (activeImageIdx + 1) % selectedProject.images.length;
-      navigateCarousel(newIdx, 1);
-    } else if (info.offset.x > threshold) {
-      // Swiped right -> prev
-      const newIdx = (activeImageIdx - 1 + selectedProject.images.length) % selectedProject.images.length;
-      navigateCarousel(newIdx, -1);
-    }
+    setSelectedProjectInitialImageIdx(initialImageIdx);
   };
 
   const handleContactSubmit = (e: React.FormEvent) => {
@@ -2379,661 +2328,59 @@ export default function App() {
       {/* Contact Form Modal */}
       <AnimatePresence>
         {isContactModalOpen && (
-          <motion.div 
-            variants={modalBackdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
-            onClick={() => setIsContactModalOpen(false)}
-          >
-            <motion.div 
-              variants={modalContentPanelVariants}
-              className="bg-white rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="sticky top-0 bg-white border-b border-outline-variant/40 px-6 py-4 flex justify-between items-center z-10">
-                <h2 className="font-display text-xl font-bold text-on-surface">Get in Touch</h2>
-                <button 
-                  onClick={() => setIsContactModalOpen(false)} 
-                  className="p-2 text-on-surface-variant hover:bg-slate-100 rounded-full transition-colors shrink-0"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              
-              <div className="p-6">
-                {submitSuccess ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Mail className="w-8 h-8" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold text-on-surface mb-2">Message Prepared!</h3>
-                    <p className="text-on-surface-variant text-sm">
-                      Redirecting you to WhatsApp to send your message...
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleContactSubmit} className="flex flex-col gap-4">
-                    <div>
-                      <span className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Message Presets</span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-3">
-                        {[
-                          { 
-                            label: "🤝 Hire / Interview", 
-                            text: "Hi Yudi, I am interested in scheduling a technical interview with you regarding a Senior Android Engineer opportunity!",
-                            themeClass: "bg-blue-50/40 dark:bg-blue-950/15 border-blue-200/60 dark:border-blue-900/30 text-blue-950 dark:text-blue-100 border-l-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:border-blue-300 dark:hover:border-blue-700"
-                          },
-                          { 
-                            label: "🛡️ SDK Consultation", 
-                            text: "Hi Yudi, we are looking for architectural consultation on secure mobile SDK integrations (biometrics/cryptography).",
-                            themeClass: "bg-indigo-50/40 dark:bg-indigo-950/15 border-indigo-200/60 dark:border-indigo-900/30 text-indigo-955 dark:text-indigo-100 border-l-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 hover:border-indigo-300 dark:hover:border-indigo-700"
-                          },
-                          { 
-                            label: "📱 Secure App Dev", 
-                            text: "Hi Yudi, we are looking to develop a secure Fintech or VOIP product on Android. Let's connect!",
-                            themeClass: "bg-emerald-50/40 dark:bg-emerald-950/15 border-emerald-200/60 dark:border-emerald-900/30 text-emerald-955 dark:text-emerald-100 border-l-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 hover:border-emerald-300 dark:hover:border-emerald-700"
-                          },
-                          { 
-                            label: "☕ Say Hello", 
-                            text: "Hi Yudi! Just wanted to reach out, say hello, and connect about your secure Android development work.",
-                            themeClass: "bg-amber-50/40 dark:bg-amber-950/15 border-amber-200/60 dark:border-amber-900/30 text-amber-955 dark:text-amber-100 border-l-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30 hover:border-amber-300 dark:hover:border-amber-700"
-                          }
-                        ].map((preset) => (
-                          <button
-                            key={preset.label}
-                            type="button"
-                            onClick={() => {
-                              setContactForm(prev => ({
-                                ...prev,
-                                message: preset.text
-                              }));
-                            }}
-                            className={`text-left px-3 py-2 rounded-lg border border-l-4 transition-all duration-300 cursor-pointer active:scale-95 flex flex-col gap-0.5 ${preset.themeClass}`}
-                          >
-                            <span className="font-bold text-[10px] tracking-wide">{preset.label}</span>
-                            <span className="text-[9px] opacity-80 line-clamp-1 font-normal leading-tight">{preset.text}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="name" className="block text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Your Name</label>
-                      <input 
-                        type="text" 
-                        id="name"
-                        required
-                        value={contactForm.name}
-                        onChange={e => setContactForm({...contactForm, name: e.target.value})}
-                        className="w-full bg-slate-50 border border-outline-variant/60 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                        placeholder="Jane Doe"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Email Address</label>
-                      <input 
-                        type="email" 
-                        id="email"
-                        required
-                        value={contactForm.email}
-                        onChange={e => setContactForm({...contactForm, email: e.target.value})}
-                        className="w-full bg-slate-50 border border-outline-variant/60 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                        placeholder="jane@example.com"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="message" className="block text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Message</label>
-                      <textarea 
-                        id="message"
-                        required
-                        rows={4}
-                        value={contactForm.message}
-                        onChange={e => setContactForm({...contactForm, message: e.target.value})}
-                        className="w-full bg-slate-50 border border-outline-variant/60 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
-                        placeholder="How can we collaborate?"
-                      />
-                    </div>
-                    
-                    <button 
-                      type="submit" 
-                      disabled={isSubmittingContact}
-                      className="mt-2 w-full bg-primary text-white py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-primary/90 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    >
-                      {isSubmittingContact ? (
-                        <>
-                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                          Processing...
-                        </>
-                      ) : (
-                        'Send via WhatsApp'
-                      )}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
+          <React.Suspense fallback={null}>
+            <ContactModal 
+              onClose={() => setIsContactModalOpen(false)}
+              contactForm={contactForm}
+              setContactForm={setContactForm}
+              isSubmittingContact={isSubmittingContact}
+              submitSuccess={submitSuccess}
+              onSubmit={handleContactSubmit}
+            />
+          </React.Suspense>
         )}
       </AnimatePresence>
 
       {/* PDF Export Support Modal */}
       <AnimatePresence>
         {isPrintModalOpen && (
-          <motion.div 
-            variants={modalBackdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm"
-            onClick={() => setIsPrintModalOpen(false)}
-          >
-            <motion.div 
-              variants={modalContentPanelVariants}
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-100"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="bg-slate-950 px-6 py-5 text-white flex justify-between items-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-xl pointer-events-none" />
-                <div className="flex items-center gap-2.5 relative z-10">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center text-emerald-400">
-                    <Printer className="w-4 h-4 animate-pulse" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider">PDF Export Helper</h3>
-                    <p className="text-[10px] text-slate-400 font-mono">IFrame Environment detected</p>
-                  </div>
-                </div>
-                <button 
-                  onClick={() => setIsPrintModalOpen(false)}
-                  className="p-1.5 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="p-6 flex flex-col gap-5">
-                <div className="text-center">
-                  <div className="text-xs text-slate-600 leading-relaxed text-left space-y-4">
-                    <p className="font-medium text-slate-800">
-                      Because you are viewing Yudi's portfolio within a secure chat preview pane, browsers block direct printing from sandboxed frames for security reasons.
-                    </p>
-                    <p className="p-3 bg-emerald-50 border border-emerald-200/50 rounded-xl text-[11px] text-emerald-800 font-medium">
-                      💡 To generate and download your high-fidelity, customized PDF resume, please follow these simple steps:
-                    </p>
-                    <ol className="list-decimal pl-5 space-y-2.5 text-slate-700 font-medium">
-                      <li>
-                        Click the <strong className="text-primary">"Open in New Tab"</strong> button in the top-right corner of this chat preview window or the green button below.
-                      </li>
-                      <li>
-                        Once the app opens in its own tab, click the <strong className="text-primary">"Export PDF Resume"</strong> (or customized print button in Hire Mode) again.
-                      </li>
-                      <li>
-                        Your browser's standard print dialogue will open perfectly, allowing you to save as a flawless, ATS-parsed PDF!
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-
-                <div className="flex gap-3 pt-2">
-                  <a 
-                    href={window.location.href} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow transition-all active:scale-[0.98] cursor-pointer"
-                  >
-                    <Globe className="w-4 h-4" />
-                    <span>Open in New Tab</span>
-                  </a>
-                  <button 
-                    onClick={() => setIsPrintModalOpen(false)}
-                    className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold transition-all cursor-pointer"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          <React.Suspense fallback={null}>
+            <PrintModal onClose={() => setIsPrintModalOpen(false)} />
+          </React.Suspense>
         )}
       </AnimatePresence>
 
       {/* Project Details Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <motion.div 
-            variants={modalBackdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
-            onClick={() => handleSelectProject(null)}
-          >
-            <motion.div 
-              variants={modalContentPanelVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="sticky top-0 bg-white border-b border-outline-variant/40 px-6 md:px-8 py-4 flex justify-between items-center z-10">
-                <h2 className="font-display text-2xl font-bold text-on-surface">{selectedProject.name}</h2>
-                <button 
-                  onClick={() => handleSelectProject(null)} 
-                  className="p-2 text-on-surface-variant hover:bg-slate-100 rounded-full transition-colors shrink-0 animate-press"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              
-              <div className="p-6 md:p-8 flex flex-col gap-8">
-                {/* Image Carousel / Horizontal Scroll */}
-                {selectedProject.images && selectedProject.images.length > 0 ? (
-                  <motion.div variants={modalElementVariants} className="flex flex-col gap-3">
-                    {/* Main Display Image */}
-                    <div className="w-full aspect-[16/10] rounded-xl overflow-hidden border border-outline-variant/40 shadow-sm bg-slate-100 relative group">
-                      <style>{`
-                        @keyframes custom-shimmer {
-                          0% {
-                            background-position: -200% 0;
-                          }
-                          100% {
-                            background-position: 200% 0;
-                          }
-                        }
-                        .animate-custom-shimmer {
-                          background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-                          background-size: 200% 100%;
-                          animation: custom-shimmer 1.8s infinite linear;
-                        }
-                      `}</style>
-
-                      {/* Premium Shimmer Skeleton Background */}
-                      {!carouselImagesLoaded[selectedProject.images[activeImageIdx]] && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center animate-custom-shimmer z-0">
-                          <div className="flex flex-col items-center gap-2.5 animate-pulse duration-1000">
-                            <div className="p-3 bg-white/60 rounded-full border border-slate-200/50 shadow-sm text-slate-400">
-                              <Camera className="w-8 h-8 text-slate-300" />
-                            </div>
-                            <span className="text-[10px] font-mono tracking-widest text-slate-400 font-bold uppercase">
-                              Loading Screenshot...
-                            </span>
-                          </div>
-                        </div>
-                      )}
-
-                      {carouselImagesLoaded[selectedProject.images[activeImageIdx]] && (
-                        <img
-                          src={selectedProject.images[activeImageIdx]}
-                          alt=""
-                          className="absolute inset-0 w-full h-full object-cover blur-xl opacity-25 select-none pointer-events-none scale-105"
-                          referrerPolicy="no-referrer"
-                        />
-                      )}
-
-                      <AnimatePresence initial={false} custom={carouselDirection}>
-                        <motion.img 
-                          key={activeImageIdx}
-                          src={selectedProject.images[activeImageIdx]} 
-                          alt={`${selectedProject.name} screenshot ${activeImageIdx + 1}`} 
-                          custom={carouselDirection}
-                          variants={carouselVariants}
-                          initial="enter"
-                          animate="center"
-                          exit="exit"
-                          transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.2 }
-                          }}
-                          drag="x"
-                          dragConstraints={{ left: 0, right: 0 }}
-                          dragElastic={0.8}
-                          onDragEnd={handleDetailDragEnd}
-                          className={`absolute inset-0 w-full h-full object-contain cursor-grab active:cursor-grabbing select-none transition-opacity duration-550 ease-out z-10 ${
-                            carouselImagesLoaded[selectedProject.images[activeImageIdx]] 
-                              ? 'opacity-100 blur-0 scale-100' 
-                              : 'opacity-0 blur-[8px] scale-[1.02]'
-                          }`}
-                          onLoad={() => setCarouselImagesLoaded(prev => ({ ...prev, [selectedProject.images![activeImageIdx]]: true }))}
-                          referrerPolicy="no-referrer"
-                        />
-                      </AnimatePresence>
-                      
-                      {/* Overlay Indicator Badge */}
-                      <div className="absolute top-3 right-3 bg-slate-900/70 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wider shadow z-10">
-                        {activeImageIdx + 1} / {selectedProject.images.length}
-                      </div>
-
-                      {/* Navigation Buttons */}
-                      {selectedProject.images.length > 1 && (
-                        <>
-                          <button
-                            onClick={() => {
-                              const newIdx = (activeImageIdx - 1 + selectedProject.images!.length) % selectedProject.images!.length;
-                              navigateCarousel(newIdx, -1);
-                            }}
-                            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white text-on-surface rounded-full shadow-md opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all focus:opacity-100 cursor-pointer border border-outline-variant/30 flex items-center justify-center hover:scale-105 active:scale-95 z-10"
-                            aria-label="Previous image"
-                          >
-                            <ChevronLeft className="w-5 h-5" />
-                          </button>
-                          <button
-                            onClick={() => {
-                              const newIdx = (activeImageIdx + 1) % selectedProject.images!.length;
-                              navigateCarousel(newIdx, 1);
-                            }}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white text-on-surface rounded-full shadow-md opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all focus:opacity-100 cursor-pointer border border-outline-variant/30 flex items-center justify-center hover:scale-105 active:scale-95 z-10"
-                            aria-label="Next image"
-                          >
-                            <ChevronRight className="w-5 h-5" />
-                          </button>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Horizontal Scroll Thumbnails Strip */}
-                    {selectedProject.images.length > 1 && (
-                      <div className="flex gap-2.5 overflow-x-auto pb-1.5 scrollbar-thin scrollbar-thumb-slate-200">
-                        {selectedProject.images.map((img, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => navigateCarousel(idx)}
-                            className={`relative aspect-[4/3] w-20 md:w-24 rounded-lg overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
-                              activeImageIdx === idx 
-                                ? 'border-primary scale-[1.02] ring-2 ring-primary/10 shadow-sm' 
-                                : 'border-transparent opacity-60 hover:opacity-100'
-                            }`}
-                          >
-                            <ImageWithPlaceholder 
-                              src={img} 
-                              alt={`Thumbnail ${idx + 1}`} 
-                              containerClassName="w-full h-full"
-                              category={selectedProject.category}
-                              isThumbnail={true}
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
-                ) : selectedProject.thumbnail ? (
-                  <motion.div variants={modalElementVariants} className="w-full aspect-[16/10] rounded-xl overflow-hidden border border-outline-variant/40 shadow-sm bg-slate-50 relative">
-                    <ImageWithPlaceholder 
-                      src={selectedProject.thumbnail} 
-                      alt={selectedProject.name} 
-                      containerClassName="w-full h-full"
-                      category={selectedProject.category}
-                    />
-                  </motion.div>
-                ) : null}
-
-                {/* Project Action Links */}
-                {(selectedProject.demoUrl || selectedProject.playStoreUrl) && (
-                  <motion.div variants={modalElementVariants} className="flex flex-wrap gap-3.5 p-4 bg-slate-50 border border-outline-variant/60 rounded-xl">
-                    {selectedProject.demoUrl && (
-                      <a
-                        href={selectedProject.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-primary text-white text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-lg hover:bg-primary/95 hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        View Live Demo
-                      </a>
-                    )}
-                    {selectedProject.playStoreUrl && (
-                      <a
-                        href={selectedProject.playStoreUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-slate-900 text-white text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-lg hover:bg-slate-800 hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
-                      >
-                        <Smartphone className="w-3.5 h-3.5" />
-                        View Google Play Store
-                      </a>
-                    )}
-                  </motion.div>
-                )}
-
-                <motion.div variants={modalElementVariants} className="flex flex-wrap gap-2">
-                  {selectedProject.tech.map((t, k) => {
-                    const IconComponent = getTechIcon(t);
-                    return (
-                      <span key={k} className="inline-flex items-center gap-1.5 font-mono text-[11px] bg-slate-50 border border-outline-variant/60 px-3 py-1.5 rounded text-on-surface font-medium shadow-sm hover:bg-slate-100 transition-colors">
-                        {IconComponent && <IconComponent className="w-3.5 h-3.5 text-slate-500" />}
-                        {t}
-                      </span>
-                    );
-                  })}
-                </motion.div>
-
-                <motion.div variants={modalElementVariants}>
-                  <h3 className="text-[11px] font-bold text-primary uppercase tracking-widest mb-3">Project Description</h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">
-                    {selectedProject.desc}
-                  </p>
-                </motion.div>
-
-                <motion.div variants={modalElementVariants}>
-                  <h3 className="text-[11px] font-bold text-primary uppercase tracking-widest mb-3">Technical Documentation</h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">
-                    {selectedProject.technicalDoc}
-                  </p>
-                </motion.div>
-
-                <motion.div variants={modalElementVariants}>
-                  <h3 className="text-[11px] font-bold text-primary uppercase tracking-widest mb-3">Key Collaborators</h3>
-                  <ul className="list-disc list-inside text-on-surface-variant text-sm space-y-2 marker:text-primary">
-                    {selectedProject.collaborators.map((collab, idx) => (
-                      <li key={idx} className="pl-2">{collab}</li>
-                    ))}
-                  </ul>
-                </motion.div>
-
-              </div>
-            </motion.div>
-          </motion.div>
+          <React.Suspense fallback={null}>
+            <ProjectDetailsModal 
+              selectedProject={selectedProject}
+              initialImageIdx={selectedProjectInitialImageIdx}
+              onClose={() => handleSelectProject(null)}
+            />
+          </React.Suspense>
         )}
       </AnimatePresence>
 
       {/* Floating Recruiter Suite Console */}
       <AnimatePresence>
         {isRecruiterMode && (
-          <motion.div 
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 50, scale: 0.95 }}
-            className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-96 z-50 bg-slate-950 border border-slate-800 shadow-2xl rounded-2xl overflow-hidden text-slate-100 flex flex-col"
-          >
-            {/* Header */}
-            <div className="bg-slate-900 border-b border-slate-800 p-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-emerald-500/15 flex items-center justify-center text-emerald-400">
-                  <Award className="w-3.5 h-3.5" />
-                </div>
-                <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-white">Recruiter Suite Active</h3>
-                  <span className="text-[9px] font-mono text-emerald-400 font-medium">Custom Resume Generator</span>
-                </div>
-              </div>
-              <button 
-                onClick={() => setIsRecruiterMode(false)}
-                className="p-1 hover:bg-slate-800 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
-                title="Deactivate Recruiter Mode"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Content Body */}
-            <div className="p-4 flex flex-col gap-4 max-h-[350px] overflow-y-auto custom-scrollbar text-xs">
-              {/* Quick Scenario Presets */}
-              <div className="space-y-2 border-b border-slate-800 pb-3">
-                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-                  0. Quick Scenario Presets
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {[
-                    {
-                      label: "🤖 Android Dev",
-                      name: "Lead Android",
-                      company: "Tech Corp",
-                      tech: ["Kotlin", "Android SDK", "MVVM", "Clean Architecture", "Camera X"]
-                    },
-                    {
-                      label: "📱 Mobile Dev",
-                      name: "Mobile Lead",
-                      company: "App Agency",
-                      tech: ["Flutter", "Dart", "Kotlin", "React Native"]
-                    },
-                    {
-                      label: "🌐 Fullstack Dev",
-                      name: "Engineering Manager",
-                      company: "Web Solutions",
-                      tech: ["React", "TypeScript", "Tailwind CSS", "WebRTC", "Web Portal"]
-                    },
-                    {
-                      label: "🔒 Fintech Security",
-                      name: "Fintech Lead",
-                      company: "Acme Bank",
-                      tech: ["Kotlin", "DexGuard", "ONE SPAN Security", "mTLS"]
-                    },
-                    {
-                      label: "📞 VOIP Telephony",
-                      name: "Platform Director",
-                      company: "Avaya Partner",
-                      tech: ["Kotlin", "Java", "Avaya SDK", "WebRTC"]
-                    },
-                    {
-                      label: "⚡ Performance Eng",
-                      name: "Principal Architect",
-                      company: "HighScale Corp",
-                      tech: ["Kotlin", "Dynatrace APM", "Tetherfi SDK", "Flutter"]
-                    }
-                  ].map((preset) => (
-                    <button
-                      key={preset.label}
-                      type="button"
-                      onClick={() => {
-                        setRecruiterName(preset.name);
-                        setRecruiterCompany(preset.company);
-                        setRecruiterHighlightTech(preset.tech);
-                      }}
-                      className="px-2 py-1 rounded-lg text-[9px] bg-slate-900 hover:bg-emerald-500/15 border border-slate-800 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-400 transition-all cursor-pointer font-medium active:scale-95"
-                    >
-                      {preset.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Dynamic greetings form */}
-              <div className="space-y-3">
-                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-                  1. Customize Profile Greetings
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-[9px] text-slate-500 font-medium mb-1">Your Name</label>
-                    <input 
-                      type="text"
-                      value={recruiterName}
-                      onChange={(e) => setRecruiterName(e.target.value)}
-                      placeholder="e.g. Sarah"
-                      className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-emerald-500 transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[9px] text-slate-500 font-medium mb-1">Target Company</label>
-                    <input 
-                      type="text"
-                      value={recruiterCompany}
-                      onChange={(e) => setRecruiterCompany(e.target.value)}
-                      placeholder="e.g. Google"
-                      className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-emerald-500 transition-colors"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Skill highlights switcher */}
-              <div className="space-y-2.5">
-                <div className="flex justify-between items-center">
-                  <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-                    2. Requirements / Skill-Matcher
-                  </div>
-                  {recruiterHighlightTech.length > 0 && (
-                    <button 
-                      onClick={() => setRecruiterHighlightTech([])}
-                      className="text-[9px] text-slate-500 hover:text-emerald-400 font-medium cursor-pointer"
-                    >
-                      Clear
-                    </button>
-                  )}
-                </div>
-                <p className="text-[10px] text-slate-500 leading-normal">
-                  Toggle key technologies. Relevant experience and matching client production apps will dynamically highlight and pulse on screen.
-                </p>
-                <div className="flex flex-wrap gap-1 pt-1">
-                  {['Kotlin', 'Java', 'Android SDK', 'Flutter', 'Dart', 'React Native', 'React', 'TypeScript', 'Tailwind CSS', 'MVVM', 'Clean Architecture', 'DexGuard', 'ONE SPAN Security', 'Avaya SDK', 'Tetherfi SDK', 'Dynatrace APM', 'WebRTC', 'mTLS', 'Camera X', 'SQLite'].map((tech) => {
-                    const isSelected = recruiterHighlightTech.includes(tech);
-                    return (
-                      <button
-                        key={tech}
-                        onClick={() => {
-                          if (isSelected) {
-                            setRecruiterHighlightTech(recruiterHighlightTech.filter(t => t !== tech));
-                          } else {
-                            setRecruiterHighlightTech([...recruiterHighlightTech, tech]);
-                          }
-                        }}
-                        className={`px-2.5 py-1 rounded text-[10px] font-mono border transition-all cursor-pointer ${
-                          isSelected 
-                            ? 'bg-emerald-500/20 border-emerald-500/60 text-emerald-300 font-semibold shadow-[0_0_8px_rgba(16,185,129,0.2)]' 
-                            : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300'
-                        }`}
-                      >
-                        {tech}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Direct print action */}
-              <div className="space-y-2 border-t border-slate-800/80 pt-3">
-                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-                  3. Executive Export
-                </div>
-                <p className="text-[10px] text-slate-500 leading-normal">
-                  Generates a crisp, double-column corporate resume tailored with your personalization headers. Built to pass ATS parsers flawlessly.
-                </p>
-                <button
-                  onClick={handlePrint}
-                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 px-3 rounded text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 shadow transition-all active:scale-[0.98] cursor-pointer"
-                >
-                  <Printer className="w-3.5 h-3.5" />
-                  <span>Print Tailored PDF Resume</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Footer status bar */}
-            <div className="bg-slate-900 border-t border-slate-800 px-4 py-2 flex justify-between items-center text-[9px] text-slate-500">
-              <span className="flex items-center gap-1.5 font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Live Matching System
-              </span>
-              <span>v1.2.0 (Executive)</span>
-            </div>
-          </motion.div>
+          <React.Suspense fallback={null}>
+            <RecruiterConsole 
+              onClose={() => setIsRecruiterMode(false)}
+              recruiterName={recruiterName}
+              setRecruiterName={setRecruiterName}
+              recruiterCompany={recruiterCompany}
+              setRecruiterCompany={setRecruiterCompany}
+              recruiterHighlightTech={recruiterHighlightTech}
+              setRecruiterHighlightTech={setRecruiterHighlightTech}
+              onPrint={handlePrint}
+            />
+          </React.Suspense>
         )}
       </AnimatePresence>
     </div>
-
     {/* Printable Resume Document - EXACT CORPORATE ATS-FRIENDLY RESUME FORMAT */}
     <div className="hidden print:block w-full bg-white text-slate-900 font-sans p-2">
       {/* Dynamic Recruiter Header Add-on for PDF */}

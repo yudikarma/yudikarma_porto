@@ -117,6 +117,7 @@ export const ImageWithPlaceholder: React.FC<ImageWithPlaceholderProps> = ({
         ref={imgRef}
         src={src}
         alt={alt}
+        loading="lazy"
         className={`w-full h-full transition-all duration-700 ease-out ${
           isThumbnail ? 'object-cover' : 'relative z-10 object-contain'
         } ${

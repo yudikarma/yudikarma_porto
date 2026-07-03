@@ -436,7 +436,7 @@ const getIssuerLogo = (logoType: string, logoUrl?: string) => {
         <img 
           src={logoUrl} 
           alt="" 
-          className="w-full h-full object-contain scale-[2.8]" 
+          className="w-full h-full object-contain scale-[2.2]" 
           referrerPolicy="no-referrer"
         />
       </div>

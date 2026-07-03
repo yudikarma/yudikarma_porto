@@ -431,10 +431,13 @@ const getTechIcon = (techName: string) => {
 
 const getIssuerLogo = (logoType: string, logoUrl?: string) => {
   if (logoUrl) {
+    const isSized = logoUrl.includes('size/');
     const isBlob = logoUrl.endsWith('blob');
-    const scaleClass = isBlob ? 'scale-[1.9]' : 'scale-[2.2]';
+    const scaleClass = isSized ? 'scale-[1.0]' : (isBlob ? 'scale-[1.9]' : 'scale-[2.2]');
+    const paddingClass = isSized ? 'p-2.5' : '';
+    
     return (
-      <div className="w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform">
+      <div className={`w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform ${paddingClass}`}>
         <img 
           src={logoUrl} 
           alt="" 
@@ -593,7 +596,7 @@ const CERTS = [
     start: "May 2025",
     expire: "May 2028",
     logoType: "google-cloud",
-    logoUrl: "https://images.credly.com/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/linkedin_thumb_image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/image.png",
     verificationUrl: "https://www.credly.com/badges/cb03f2e7-414a-40d5-bd19-06ae84a60b56"
   },
   {
@@ -602,7 +605,7 @@ const CERTS = [
     start: "Mar 2025",
     expire: "Mar 2028",
     logoType: "google-cloud",
-    logoUrl: "https://images.credly.com/images/44994cda-b5b0-44cb-9a6d-d29b57163073/linkedin_thumb_image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/44994cda-b5b0-44cb-9a6d-d29b57163073/image.png",
     verificationUrl: "https://www.credly.com/badges/43242dc2-0bfb-483a-a24e-23473a8d97c2"
   },
   {

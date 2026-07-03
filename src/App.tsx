@@ -432,11 +432,11 @@ const getTechIcon = (techName: string) => {
 const getIssuerLogo = (logoType: string, logoUrl?: string) => {
   if (logoUrl) {
     return (
-      <div className="w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform">
+      <div className="w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform p-2.5">
         <img 
           src={logoUrl} 
           alt="" 
-          className="w-full h-full object-contain scale-[2.2]" 
+          className="w-full h-full object-contain" 
           referrerPolicy="no-referrer"
         />
       </div>
@@ -591,7 +591,7 @@ const CERTS = [
     start: "May 2025",
     expire: "May 2028",
     logoType: "google-cloud",
-    logoUrl: "https://images.credly.com/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/linkedin_thumb_image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/image.png",
     verificationUrl: "https://www.credly.com/badges/cb03f2e7-414a-40d5-bd19-06ae84a60b56"
   },
   {
@@ -600,7 +600,7 @@ const CERTS = [
     start: "Mar 2025",
     expire: "Mar 2028",
     logoType: "google-cloud",
-    logoUrl: "https://images.credly.com/images/44994cda-b5b0-44cb-9a6d-d29b57163073/linkedin_thumb_image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/44994cda-b5b0-44cb-9a6d-d29b57163073/image.png",
     verificationUrl: "https://www.credly.com/badges/43242dc2-0bfb-483a-a24e-23473a8d97c2"
   },
   {
@@ -609,7 +609,7 @@ const CERTS = [
     start: "Mar 2026",
     expire: "Mar 2028",
     logoType: "dynatrace",
-    logoUrl: "https://images.credly.com/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/linkedin_thumb_blob",
+    logoUrl: "https://images.credly.com/size/128x128/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/image.png",
     verificationUrl: "https://www.credly.com/badges/8e0df7ac-f9ee-43c4-898f-8be35b06965c"
   },
   {
@@ -618,7 +618,7 @@ const CERTS = [
     start: "Sep 2025",
     expire: "Never",
     logoType: "avaya",
-    logoUrl: "https://images.credly.com/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/linkedin_thumb_blob",
+    logoUrl: "https://images.credly.com/size/128x128/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/image.png",
     verificationUrl: "https://www.credly.com/badges/7220b9c4-b6cd-4563-9aaf-17f7c3104853"
   },
   {
@@ -627,7 +627,7 @@ const CERTS = [
     start: "Mar 2026",
     expire: "Mar 2028",
     logoType: "dynatrace",
-    logoUrl: "https://images.credly.com/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/linkedin_thumb_blob",
+    logoUrl: "https://images.credly.com/size/128x128/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/image.png",
     verificationUrl: "https://www.credly.com/badges/f6c0d08a-ac58-44b3-9722-df7afeb0e233"
   }
 ];
@@ -1512,11 +1512,11 @@ export default function App() {
                     <div className="space-y-2 mb-6 bg-slate-50 border border-outline-variant/30 p-3.5 rounded-xl text-[11px] font-medium text-on-surface-variant">
                       <div className="flex justify-between items-center">
                         <span className="text-on-surface-variant/70">Issued:</span>
-                        <span className="font-mono text-on-surface font-semibold">{cert.start}</span>
+                        <span className="font-sans text-on-surface font-semibold">{cert.start}</span>
                       </div>
                       <div className="flex justify-between items-center border-t border-dashed border-outline-variant/40 pt-2">
                         <span className="text-on-surface-variant/70">Expires:</span>
-                        <span className="font-mono text-on-surface font-semibold">{cert.expire}</span>
+                        <span className="font-sans text-on-surface font-semibold">{cert.expire}</span>
                       </div>
                     </div>
                   </div>
@@ -1585,7 +1585,7 @@ export default function App() {
                     <div className="space-y-2 mb-6 bg-slate-50 border border-outline-variant/30 p-3.5 rounded-xl text-[11px] font-medium text-on-surface-variant">
                       <div className="flex justify-between items-center">
                         <span className="text-on-surface-variant/70">Period:</span>
-                        <span className="font-mono text-on-surface font-semibold">{edu.period}</span>
+                        <span className="font-sans text-on-surface font-semibold">{edu.period}</span>
                       </div>
                     </div>
                   </div>
@@ -1630,7 +1630,7 @@ export default function App() {
                     <div className="space-y-2 mb-6 bg-slate-50 border border-outline-variant/30 p-3.5 rounded-xl text-[11px] font-medium text-on-surface-variant">
                       <div className="flex justify-between items-center">
                         <span className="text-on-surface-variant/70">Year:</span>
-                        <span className="font-mono text-on-surface font-semibold">{nf.year}</span>
+                        <span className="font-sans text-on-surface font-semibold">{nf.year}</span>
                       </div>
                     </div>
                   </div>
@@ -2470,7 +2470,7 @@ export default function App() {
                 <div key={i} className="break-inside-avoid bg-slate-50 border border-slate-200/60 p-2 rounded-lg">
                   <div className="font-bold text-[8.5px] text-slate-900 leading-tight">{cert.title}</div>
                   <div className="text-[8px] text-slate-600 mt-0.5">{cert.issuer}</div>
-                  <div className="text-[7.5px] font-mono text-slate-500 mt-1 flex justify-between">
+                  <div className="text-[7.5px] font-sans text-slate-500 mt-1 flex justify-between">
                     <span>Issued: {cert.start}</span>
                     <span>Expires: {cert.expire}</span>
                   </div>
@@ -2487,7 +2487,7 @@ export default function App() {
                 <div key={i} className="break-inside-avoid">
                   <div className="font-bold text-[8.5px] text-slate-900 leading-tight">{edu.degree}</div>
                   <div className="text-[8px] text-slate-700">{edu.school}</div>
-                  <div className="text-[7.5px] text-slate-500 font-mono">{edu.period}</div>
+                  <div className="text-[7.5px] text-slate-500 font-sans">{edu.period}</div>
                   <div className="text-[8px] text-slate-500 italic mt-0.5">{edu.details}</div>
                 </div>
               ))}
@@ -2504,7 +2504,7 @@ export default function App() {
                     <div className="font-bold text-slate-900">{nf.course}</div>
                     <div className="text-[7.5px] text-slate-500">{nf.institution}</div>
                   </div>
-                  <span className="font-mono text-[7.5px] text-slate-500 shrink-0">{nf.year}</span>
+                  <span className="font-sans text-[7.5px] text-slate-500 shrink-0">{nf.year}</span>
                 </div>
               ))}
             </div>
@@ -2534,7 +2534,7 @@ export default function App() {
                       <h3 className="font-bold text-[10px] text-slate-950">{exp.role}</h3>
                       <div className="text-[9px] font-semibold text-slate-700">{exp.company} <span className="text-[8px] font-normal text-slate-500 italic">({exp.type})</span></div>
                     </div>
-                    <span className="font-mono text-[8px] text-slate-500 shrink-0">{exp.period}</span>
+                    <span className="font-sans text-[8px] text-slate-500 shrink-0">{exp.period}</span>
                   </div>
                   <p className="text-[8.5px] text-slate-600 mt-1 mb-1.5 italic">{exp.description}</p>
                   <ul className="list-disc pl-3.5 space-y-0.5 text-[8.5px] text-slate-700 leading-relaxed mb-1.5">

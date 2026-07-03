@@ -431,12 +431,14 @@ const getTechIcon = (techName: string) => {
 
 const getIssuerLogo = (logoType: string, logoUrl?: string) => {
   if (logoUrl) {
+    const isBlob = logoUrl.endsWith('blob');
+    const scaleClass = isBlob ? 'scale-[1.9]' : 'scale-[2.2]';
     return (
-      <div className="w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform p-2.5">
+      <div className="w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform">
         <img 
           src={logoUrl} 
           alt="" 
-          className="w-full h-full object-contain" 
+          className={`w-full h-full object-contain ${scaleClass}`} 
           referrerPolicy="no-referrer"
         />
       </div>
@@ -591,7 +593,7 @@ const CERTS = [
     start: "May 2025",
     expire: "May 2028",
     logoType: "google-cloud",
-    logoUrl: "https://images.credly.com/size/128x128/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/image.png",
+    logoUrl: "https://images.credly.com/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/linkedin_thumb_image.png",
     verificationUrl: "https://www.credly.com/badges/cb03f2e7-414a-40d5-bd19-06ae84a60b56"
   },
   {
@@ -600,7 +602,7 @@ const CERTS = [
     start: "Mar 2025",
     expire: "Mar 2028",
     logoType: "google-cloud",
-    logoUrl: "https://images.credly.com/size/128x128/images/44994cda-b5b0-44cb-9a6d-d29b57163073/image.png",
+    logoUrl: "https://images.credly.com/images/44994cda-b5b0-44cb-9a6d-d29b57163073/linkedin_thumb_image.png",
     verificationUrl: "https://www.credly.com/badges/43242dc2-0bfb-483a-a24e-23473a8d97c2"
   },
   {
@@ -609,7 +611,7 @@ const CERTS = [
     start: "Mar 2026",
     expire: "Mar 2028",
     logoType: "dynatrace",
-    logoUrl: "https://images.credly.com/size/128x128/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/blob",
+    logoUrl: "https://images.credly.com/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/linkedin_thumb_blob",
     verificationUrl: "https://www.credly.com/badges/8e0df7ac-f9ee-43c4-898f-8be35b06965c"
   },
   {
@@ -618,7 +620,7 @@ const CERTS = [
     start: "Sep 2025",
     expire: "Never",
     logoType: "avaya",
-    logoUrl: "https://images.credly.com/size/128x128/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/blob",
+    logoUrl: "https://images.credly.com/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/linkedin_thumb_blob",
     verificationUrl: "https://www.credly.com/badges/7220b9c4-b6cd-4563-9aaf-17f7c3104853"
   },
   {
@@ -627,7 +629,7 @@ const CERTS = [
     start: "Mar 2026",
     expire: "Mar 2028",
     logoType: "dynatrace",
-    logoUrl: "https://images.credly.com/size/128x128/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/blob",
+    logoUrl: "https://images.credly.com/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/linkedin_thumb_blob",
     verificationUrl: "https://www.credly.com/badges/f6c0d08a-ac58-44b3-9722-df7afeb0e233"
   }
 ];

@@ -432,11 +432,11 @@ const getTechIcon = (techName: string) => {
 const getIssuerLogo = (logoType: string, logoUrl?: string) => {
   if (logoUrl) {
     return (
-      <div className="w-12 h-12 rounded-xl bg-white border border-outline-variant/40 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform p-1">
+      <div className="w-16 h-16 rounded-xl bg-white border border-outline-variant/30 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform">
         <img 
           src={logoUrl} 
           alt="" 
-          className="w-full h-full object-contain" 
+          className="w-full h-full object-contain scale-[1.15]" 
           referrerPolicy="no-referrer"
         />
       </div>

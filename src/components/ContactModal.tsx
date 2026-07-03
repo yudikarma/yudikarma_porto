@@ -50,6 +50,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           <button 
             onClick={onClose} 
             className="p-2 text-on-surface-variant hover:bg-slate-100 rounded-full transition-colors shrink-0"
+            aria-label="Close Contact Modal"
           >
             <X className="w-5 h-5" />
           </button>

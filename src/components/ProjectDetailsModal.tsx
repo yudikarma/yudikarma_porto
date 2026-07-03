@@ -149,6 +149,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
           <button 
             onClick={onClose} 
             className="p-2 text-on-surface-variant hover:bg-slate-100 rounded-full transition-colors shrink-0"
+            aria-label="Close Details Modal"
           >
             <X className="w-5 h-5" />
           </button>

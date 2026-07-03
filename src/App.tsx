@@ -1081,6 +1081,7 @@ export default function App() {
               onClick={toggleTheme} 
               className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
               title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+              aria-label="Switch Theme Mode"
             >
               {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-400" />}
             </button>
@@ -1088,6 +1089,7 @@ export default function App() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
               className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 z-50 relative"
               title="Toggle Menu"
+              aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -1181,16 +1183,16 @@ export default function App() {
         
         <div className="mt-auto mb-12 pt-8 border-t border-outline-variant/40 max-w-md mx-auto w-full">
           <div className="flex justify-center gap-6">
-            <a href="https://github.com/yudikarma" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm" title="GitHub Profile">
+            <a href="https://github.com/yudikarma" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm" title="GitHub Profile" aria-label="GitHub Profile">
               <Github className="w-5 h-5" />
             </a>
-            <a href="https://linkedin.com/in/yudikarma" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm">
+            <a href="https://linkedin.com/in/yudikarma" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm" aria-label="LinkedIn Profile">
               <Linkedin className="w-5 h-5" />
             </a>
-            <a href="https://yudikarma.page.link/6RQi" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm">
+            <a href="https://yudikarma.page.link/6RQi" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm" aria-label="Personal Portfolio Website">
               <Globe className="w-5 h-5" />
             </a>
-            <button onClick={() => setIsContactModalOpen(true)} className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm cursor-pointer">
+            <button onClick={() => setIsContactModalOpen(true)} className="p-3 rounded-full bg-slate-50 text-on-surface hover:text-primary hover:bg-slate-100 transition-all shadow-sm cursor-pointer" aria-label="Open Contact Form">
               <Mail className="w-5 h-5" />
             </button>
           </div>

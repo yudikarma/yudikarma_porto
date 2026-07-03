@@ -45,6 +45,7 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
           onClick={onClose}
           className="p-1 hover:bg-slate-800 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
           title="Deactivate Recruiter Mode"
+          aria-label="Close Recruiter Console"
         >
           <X className="w-4 h-4" />
         </button>

@@ -47,6 +47,7 @@ export const PrintModal: React.FC<PrintModalProps> = ({ onClose }) => {
           <button 
             onClick={onClose}
             className="p-1.5 hover:bg-slate-800 rounded-full text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0"
+            aria-label="Close PDF Helper Modal"
           >
             <X className="w-4 h-4" />
           </button>

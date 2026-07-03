@@ -609,7 +609,7 @@ const CERTS = [
     start: "Mar 2026",
     expire: "Mar 2028",
     logoType: "dynatrace",
-    logoUrl: "https://images.credly.com/size/128x128/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/blob",
     verificationUrl: "https://www.credly.com/badges/8e0df7ac-f9ee-43c4-898f-8be35b06965c"
   },
   {
@@ -618,7 +618,7 @@ const CERTS = [
     start: "Sep 2025",
     expire: "Never",
     logoType: "avaya",
-    logoUrl: "https://images.credly.com/size/128x128/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/blob",
     verificationUrl: "https://www.credly.com/badges/7220b9c4-b6cd-4563-9aaf-17f7c3104853"
   },
   {
@@ -627,7 +627,7 @@ const CERTS = [
     start: "Mar 2026",
     expire: "Mar 2028",
     logoType: "dynatrace",
-    logoUrl: "https://images.credly.com/size/128x128/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/image.png",
+    logoUrl: "https://images.credly.com/size/128x128/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/blob",
     verificationUrl: "https://www.credly.com/badges/f6c0d08a-ac58-44b3-9722-df7afeb0e233"
   }
 ];

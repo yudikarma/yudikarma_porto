@@ -56,13 +56,13 @@ const EXPERIENCES: Experience[] = [
     type: "Enterprise Consultant",
     period: "Jun 2021 — Present",
     description: "Android Developer consultant for major financial institutions, specializing in banking applications, secure SDK integrations, APM tooling, and providing technical support for complex enterprise environments.",
-    techStack: ["Kotlin", "Java", "DexGuard", "ONE SPAN Security", "Avaya SDK", "Tetherfi SDK", "Dynatrace APM", "WebRTC", "mTLS", "Symmetric Cryptography"],
+    techStack: ["Kotlin", "Java", "Jetpack Compose", "DexGuard", "ONE SPAN Security", "Avaya SDK", "Tetherfi SDK", "Dynatrace APM", "WebRTC", "mTLS", "Symmetric Cryptography"],
     highlights: [
       "Engineered and maintained secure soft token application with cryptographic authentication algorithms for over 10M+ active banking users.",
-      "Designed and delivered customized sample apps and integration middleware for Avaya Elite WebRTC & Oceana SDK, resolving high-priority support tickets.",
-      "Consulted leading national banks (BCA, Panin, BJB) on ONE SPAN Mobile Security Suite, securing biometric and device fingerprinting flows.",
+      "Designed and delivered customized reference sample apps in Kotlin using Jetpack Compose UI alongside integration middleware for Avaya Elite WebRTC & Oceana SDK, showing clients how to adapt features to their business needs.",
+      "Consulted leading national banks (BCA, Panin, BJB) on ONE SPAN Mobile Security Suite, providing production-ready Kotlin and Jetpack Compose sample applications to guide their custom security implementations.",
       "Integrated Dynatrace APM to set up Real User Monitoring (RUM), performance telemetry dashboards, and live crash-reporting alerts for core banking apps.",
-      "Integrated and customized Tetherfi SDK to enable secure digital customer experience, live chat interactions, and real-time support channels for banking clients.",
+      "Integrated and customized Tetherfi SDK, delivering secure Jetpack Compose UI sample apps to enable banks to build tailor-made digital customer engagement channels.",
       "Enforced enterprise-level application hardening utilizing DexGuard, dynamic obfuscation, root-detection, and secure mTLS connections."
     ],
     partnerProducts: [
@@ -106,10 +106,10 @@ const EXPERIENCES: Experience[] = [
       },
       {
         name: "Halo BCA & Wondr BNI - Avaya SDK",
-        tech: ["Avaya VOIP SDK", "WebRTC", "Oceana"],
-        desc: "Technical consultant for Avaya Elite WebRTC & Oceana SDK integrations. Built sample apps, managed support tickets, and resolved integration issues.",
+        tech: ["Kotlin", "Jetpack Compose", "Avaya VOIP SDK", "WebRTC", "Oceana"],
+        desc: "Technical consultant for Avaya Elite WebRTC & Oceana SDK integrations. Built reference sample apps in Kotlin and Jetpack Compose UI showing clients how to adapt features to their business needs.",
         collaborators: ["Avaya Global Support", "BNI Dev Team", "BCA Mobile Team"],
-        technicalDoc: "Engineered customized sample applications showcasing Avaya WebRTC capabilities within native Android contexts. Handled SIP/VoIP signaling, WebRTC audio/video streams, and provided exhaustive integration guides and troubleshooting playbooks.",
+        technicalDoc: "Engineered customized sample applications in Kotlin using Jetpack Compose UI showcasing Avaya WebRTC capabilities and custom business workflows. Handled SIP/VoIP signaling, WebRTC audio/video streams, and provided exhaustive integration guides and troubleshooting playbooks.",
         thumbnail: "/assets/compressed/avaya/wondr1.webp",
         category: "VoIP & Social",
         images: [
@@ -122,10 +122,10 @@ const EXPERIENCES: Experience[] = [
       },
       {
         name: "Panin & BJB Bank - ONE SPAN Security",
-        tech: ["ONE SPAN SDK", "Mobile Security Suite"],
-        desc: "Consulted development teams on integrating the ONE SPAN SDK, providing customized sample applications and troubleshooting integration challenges.",
+        tech: ["Kotlin", "Jetpack Compose", "ONE SPAN SDK", "Mobile Security Suite"],
+        desc: "Consulted development teams on integrating the ONE SPAN SDK, providing custom-built Kotlin and Jetpack Compose UI sample applications showing how to adapt secure authentication flows to their business requirements.",
         collaborators: ["ONE SPAN Engineers", "Panin Dev Team", "BJB Security Team"],
-        technicalDoc: "Led the implementation of ONE SPAN Mobile Security Suite. CONFIGUREd multi-factor authentication flows, biometric binding, and device fingerprinting to comply with stringent financial regulatory requirements.",
+        technicalDoc: "Led the implementation of ONE SPAN Mobile Security Suite. Created full-featured sample apps in Kotlin and Jetpack Compose UI to guide banking clients on integrating multi-factor authentication, biometric binding, and device fingerprinting to comply with stringent financial regulatory requirements.",
         thumbnail: "/assets/compressed/onespan/authentication-suite.webp",
         category: "Fintech & Security",
         images: [
@@ -138,10 +138,10 @@ const EXPERIENCES: Experience[] = [
 
       {
         name: "Enterprise Chat - Tetherfi Integration",
-        tech: ["Tetherfi SDK", "WebRTC", "Customer Engagement"],
-        desc: "Integrated Tetherfi customer engagement SDKs within secure mobile banking apps, enabling smooth customer-to-agent session handoffs.",
+        tech: ["Kotlin", "Jetpack Compose", "Tetherfi SDK", "WebRTC", "Customer Engagement"],
+        desc: "Integrated Tetherfi customer engagement SDKs within secure mobile banking apps, delivering Kotlin and Jetpack Compose UI sample apps to enable banks to build custom engagement channels.",
         collaborators: ["Phintraco Solutions Team", "Tetherfi Technical Support", "QA Engineers"],
-        technicalDoc: "Configured secure websocket session handoffs, interactive real-time messaging, custom notification queues, and customized UI styles to match banking brand guidelines.",
+        technicalDoc: "Configured secure websocket session handoffs, interactive real-time messaging, custom notification queues, and customized Jetpack Compose UI styles to match banking brand guidelines.",
         thumbnail: "/assets/compressed/tetherfi/WhatsApp Image 2026-06-30 at 10.41.41.webp",
         category: "VoIP & Social",
         images: [

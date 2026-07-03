@@ -429,7 +429,19 @@ const getTechIcon = (techName: string) => {
   return Code2; // Fallback
 };
 
-const getIssuerLogo = (logoType: string) => {
+const getIssuerLogo = (logoType: string, logoUrl?: string) => {
+  if (logoUrl) {
+    return (
+      <div className="w-12 h-12 rounded-xl bg-white border border-outline-variant/40 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform p-1">
+        <img 
+          src={logoUrl} 
+          alt="" 
+          className="w-full h-full object-contain" 
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    );
+  }
   if (logoType === 'google-cloud') {
     return (
       <div className="w-12 h-12 rounded-xl bg-slate-50 border border-outline-variant/40 flex items-center justify-center shrink-0 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform">
@@ -576,29 +588,47 @@ const CERTS = [
   {
     title: "Associate Cloud Engineer",
     issuer: "Google Cloud",
-    start: "Oct 2022",
-    expire: "Oct 2025",
+    start: "May 2025",
+    expire: "May 2028",
     logoType: "google-cloud",
-    credentialId: "GCP-ACE-8921",
-    verificationUrl: "https://www.credential.net/profile/yudikarma"
+    logoUrl: "https://images.credly.com/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/linkedin_thumb_image.png",
+    verificationUrl: "https://www.credly.com/badges/cb03f2e7-414a-40d5-bd19-06ae84a60b56"
   },
   {
     title: "Cloud Digital Leader",
     issuer: "Google Cloud",
-    start: "Nov 2021",
-    expire: "Nov 2024",
+    start: "Mar 2025",
+    expire: "Mar 2028",
     logoType: "google-cloud",
-    credentialId: "GCP-CDL-4732",
-    verificationUrl: "https://www.credential.net/profile/yudikarma"
+    logoUrl: "https://images.credly.com/images/44994cda-b5b0-44cb-9a6d-d29b57163073/linkedin_thumb_image.png",
+    verificationUrl: "https://www.credly.com/badges/43242dc2-0bfb-483a-a24e-23473a8d97c2"
   },
   {
     title: "Dynatrace Associate",
     issuer: "Dynatrace",
-    start: "Jun 2021",
-    expire: "Jun 2025",
+    start: "Mar 2026",
+    expire: "Mar 2028",
     logoType: "dynatrace",
-    credentialId: "DT-ASSOC-3049",
-    verificationUrl: "https://www.credly.com/users/yudi-karma"
+    logoUrl: "https://images.credly.com/images/18125c52-ecb0-4971-bdc8-05af6c797fd8/linkedin_thumb_blob",
+    verificationUrl: "https://www.credly.com/badges/8e0df7ac-f9ee-43c4-898f-8be35b06965c"
+  },
+  {
+    title: "Avaya Infinity™ Design and Workflows",
+    issuer: "Avaya",
+    start: "Sep 2025",
+    expire: "Never",
+    logoType: "avaya",
+    logoUrl: "https://images.credly.com/images/7fc45c91-dcb3-4611-bf0f-b2a560875811/linkedin_thumb_blob",
+    verificationUrl: "https://www.credly.com/badges/7220b9c4-b6cd-4563-9aaf-17f7c3104853"
+  },
+  {
+    title: "Dynatrace Essentials",
+    issuer: "Dynatrace",
+    start: "Mar 2026",
+    expire: "Mar 2028",
+    logoType: "dynatrace",
+    logoUrl: "https://images.credly.com/images/6260bd98-5ea5-4e42-96bf-0bcea7f1a7df/linkedin_thumb_blob",
+    verificationUrl: "https://www.credly.com/badges/f6c0d08a-ac58-44b3-9722-df7afeb0e233"
   }
 ];
 
@@ -1468,7 +1498,7 @@ export default function App() {
                   
                   <div>
                     <div className="flex items-start justify-between mb-4">
-                      {getIssuerLogo(cert.logoType)}
+                      {getIssuerLogo(cert.logoType, cert.logoUrl)}
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-slate-100 border border-outline-variant/40 text-on-surface-variant">
                         {cert.issuer}
                       </span>
@@ -1491,10 +1521,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-3 border-t border-outline-variant/40">
-                    <span className="font-mono text-[9px] text-on-surface-variant/75">
-                      ID: {cert.credentialId}
-                    </span>
+                  <div className="flex items-center justify-end pt-3 border-t border-outline-variant/40">
                     {cert.verificationUrl && (
                       <a 
                         href={cert.verificationUrl} 
@@ -2407,7 +2434,7 @@ export default function App() {
           <p>github.com/yudikarma</p>
           <p>linkedin.com/in/yudikarma</p>
           <p>yudikarma.page.link/6RQi</p>
-          <p>Bali, Indonesia</p>
+          <p>Jakarta Selatan, Indonesia</p>
         </div>
       </div>
 
@@ -2447,7 +2474,6 @@ export default function App() {
                     <span>Issued: {cert.start}</span>
                     <span>Expires: {cert.expire}</span>
                   </div>
-                  <div className="text-[7.5px] font-mono text-slate-400 mt-0.5">ID: {cert.credentialId}</div>
                 </div>
               ))}
             </div>

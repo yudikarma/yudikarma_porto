@@ -120,9 +120,11 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[9px] text-slate-500 font-medium mb-1">Your Name</label>
+              <label htmlFor="recruiter-name" className="block text-[9px] text-slate-500 font-medium mb-1">Your Name</label>
               <input 
                 type="text"
+                id="recruiter-name"
+                name="recruiter-name"
                 value={recruiterName}
                 onChange={(e) => setRecruiterName(e.target.value)}
                 placeholder="e.g. Sarah"
@@ -130,9 +132,11 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
               />
             </div>
             <div>
-              <label className="block text-[9px] text-slate-500 font-medium mb-1">Target Company</label>
+              <label htmlFor="recruiter-company" className="block text-[9px] text-slate-500 font-medium mb-1">Target Company</label>
               <input 
                 type="text"
+                id="recruiter-company"
+                name="recruiter-company"
                 value={recruiterCompany}
                 onChange={(e) => setRecruiterCompany(e.target.value)}
                 placeholder="e.g. Google"

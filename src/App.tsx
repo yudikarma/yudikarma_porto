@@ -225,10 +225,10 @@ const EXPERIENCES: Experience[] = [
     type: "Full-Time Mobile Developer",
     period: "Nov 2018 — Nov 2019",
     description: "Responsible for building specialized native applications, ranging from social networking to niche industrial utilities.",
-    techStack: ["Android SDK", "CameraX API", "EXIF Data", "Nested RecyclerView", "JSON REST APIs", "FCM Push Notifications"],
+    techStack: ["Android SDK", "Camera 1 API", "Camera 2 API", "EXIF Data", "Nested RecyclerView", "JSON REST APIs", "FCM Push Notifications"],
     highlights: [
       "Delivered Zonapets pet-lovers social network, optimizing media upload pipelines and implementing nested RecyclerView feed caching.",
-      "Developed Snow Remove Camera application for field operators in Japan, leveraging CameraX APIs and custom EXIF GPS data injection to restrict upload fraud.",
+      "Developed a specialized camera application for industrial snow removal workers in Japan directly with low-level Camera 1 and Camera 2 APIs, reverse-engineering code to handle device-specific kernel crashes.",
       "Integrated robust real-time notifications, local image compression algorithms, and multi-threaded background synchronization."
     ],
     projects: [
@@ -250,10 +250,10 @@ const EXPERIENCES: Experience[] = [
       },
       {
         name: "Snow Remove - Camera",
-        tech: ["Camera X", "Location Tagging"],
-        desc: "Built a specialized camera app for snow removal workers in Japan with pinch-to-zoom, location tagging, and restricted photo uploads.",
+        tech: ["Camera 1 API", "Camera 2 API", "Location Tagging"],
+        desc: "Built a specialized camera application for industrial snow removal workers in Japan. Developed directly with low-level Camera 1 and Camera 2 APIs without modern AI assistance, meticulously reverse-engineering raw open-source code on GitHub and analyzing documentation to overcome unpredictable, device-specific kernel crashes and proprietary manufacturer hardware variances.",
         collaborators: ["Japanese Operations Team", "Hardware Engineers"],
-        technicalDoc: "Utilized Android CameraX API for robust, device-agnostic camera interactions. Engineered custom exif data manipulation for precise location tagging. Implemented security measures to restrict uploads to photos captured exclusively within the app to prevent fraud.",
+        technicalDoc: "Developed directly with low-level Camera 1 and Camera 2 APIs without modern AI assistance, meticulously reverse-engineering raw open-source code on GitHub and analyzing documentation to overcome unpredictable, device-specific kernel crashes and proprietary manufacturer hardware variances. Engineered custom EXIF metadata injection to prevent upload fraud.",
         thumbnail: "https://picsum.photos/seed/snow-camera/800/600",
         category: "Operations & Utilities",
         images: [
@@ -568,24 +568,24 @@ const ENDORSEMENTS = [
 
 const SKILLS = [
   {
-    category: "Mobile Native",
+    category: "Languages & Frameworks",
     icon: <Smartphone className="w-6 h-6 text-primary" />,
-    items: ["Kotlin", "Java", "Android SDK"]
+    items: ["Kotlin", "Java", "Dart", "Flutter", "Android SDK"]
   },
   {
-    category: "Cross-Platform",
-    icon: <Code2 className="w-6 h-6 text-primary" />,
-    items: ["Flutter", "Dart"]
-  },
-  {
-    category: "Architecture & Patterns",
+    category: "Architecture & Injection",
     icon: <Cpu className="w-6 h-6 text-primary" />,
-    items: ["MVVM", "MVP", "Clean Architecture", "Jetpack Components"]
+    items: ["Clean Architecture", "MVVM", "MVP", "Jetpack Components", "Dagger"]
   },
   {
-    category: "Libraries & Tools",
+    category: "Enterprise & Security Platforms",
     icon: <ShieldCheck className="w-6 h-6 text-primary" />,
-    items: ["Retrofit", "Dagger", "Camera X", "Dexguard"]
+    items: ["OneSpan Mobile Security Suite", "Avaya Elite WebRTC & Oceana SDK", "Tetherfi Omnichannel", "DexGuard (mTLS, RASP)"]
+  },
+  {
+    category: "Observability & Tools",
+    icon: <LineChart className="w-6 h-6 text-primary" />,
+    items: ["Dynatrace APM (RUM & Telemetry)", "Retrofit", "SQLite"]
   }
 ];
 
@@ -1091,18 +1091,19 @@ export default function App() {
         {/* Top Navigation */}
       <header className={`fixed top-0 inset-x-0 h-16 lg:h-20 z-40 flex items-center justify-center transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm' 
-          : 'bg-white/50 backdrop-blur-sm border-b border-slate-100'
+          ? 'bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm' 
+          : 'bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800/30'
       }`}>
-        <div className="w-full max-w-5xl px-6 md:px-12 flex items-center justify-between">
+        <div className="w-full max-w-5xl px-6 md:px-12 flex items-center justify-between gap-4">
           {/* Logo & Name */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-primary font-display font-bold shadow-sm flex items-center justify-center hover:scale-105 hover:border-primary/50 hover:shadow-md transition-all duration-300">
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-primary font-display font-bold shadow-sm flex items-center justify-center hover:scale-105 hover:border-primary/50 hover:shadow-md transition-all duration-300">
               YK
             </div>
             <div>
-              <div className="font-display text-base font-extrabold text-slate-900 tracking-tight leading-none">
+              <div className="font-display text-base font-extrabold text-slate-900 dark:text-white tracking-tight leading-none flex items-center gap-1.5">
                 Yudi Karma
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Available for opportunities" />
               </div>
               <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-primary mt-1.5 leading-none">
                 SOFTWARE ENGINEER
@@ -1110,11 +1111,56 @@ export default function App() {
             </div>
           </div>
 
-          {/* Clean Controls (Theme + Hamburger Menu) */}
-          <div className="flex items-center gap-2">
+          {/* Desktop Nav */}
+          <nav className={`hidden lg:flex items-center gap-0.5 border border-outline-variant/30 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-full p-1 transition-all duration-300`}>
+            {[
+              { id: 'overview', label: 'Overview' },
+              { id: 'credentials', label: 'Certifications' },
+              { id: 'stack', label: 'Tech Stack' },
+              { id: 'experience', label: 'Experience' },
+              { id: 'gallery', label: 'Projects' },
+              { id: 'endorsements', label: 'References' },
+              { id: 'education', label: 'Education' }
+            ].map((item) => (
+              <button 
+                key={item.id}
+                onClick={() => scrollToSection(item.id)} 
+                className={`px-3 py-1.5 rounded-full text-[10px] uppercase tracking-wider font-bold transition-all duration-200 cursor-pointer ${
+                  activeSection === item.id 
+                    ? 'bg-primary text-on-primary shadow-sm' 
+                    : 'text-on-surface-variant hover:text-primary dark:text-slate-400 dark:hover:text-primary'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Controls (Theme + Hamburger Menu) */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button 
+              onClick={() => setIsRecruiterMode(!isRecruiterMode)}
+              className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95 ${
+                isRecruiterMode 
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100/80 shadow-emerald-100/50 dark:bg-emerald-950/20 dark:border-emerald-800 dark:text-emerald-400' 
+                  : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+              title="Toggle Recruiter Mode"
+            >
+              <Award className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-emerald-600 dark:text-emerald-400 animate-pulse' : 'text-primary'}`} />
+              <span>Recruiter Mode</span>
+            </button>
+            <button 
+              onClick={handlePrint} 
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-700 shadow-sm transition-all cursor-pointer active:scale-95 group dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800"
+              title="Export PDF Resume"
+            >
+              <Printer className="w-3.5 h-3.5 text-primary group-hover:scale-110 transition-transform" />
+              <span>Export PDF</span>
+            </button>
             <button 
               onClick={toggleTheme} 
-              className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
               title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               aria-label="Switch Theme Mode"
             >
@@ -1122,7 +1168,7 @@ export default function App() {
             </button>
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 z-50 relative"
+              className="lg:hidden w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 z-50 relative"
               title="Toggle Menu"
               aria-label="Toggle Navigation Menu"
             >
@@ -1299,9 +1345,12 @@ export default function App() {
 
             <div className="relative z-10 flex flex-col">
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <div className="inline-flex items-center gap-2 bg-slate-50 border border-outline-variant/50 px-3 py-1.5 rounded-full shadow-sm w-fit">
-                  <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">AVAILABLE FOR OPPORTUNITIES</span>
+                <div className="inline-flex items-center gap-2.5 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-800/30 px-3.5 py-1.5 rounded-full shadow-sm w-fit text-emerald-800 dark:text-emerald-400">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="font-sans text-[10px] font-extrabold uppercase tracking-wider">AVAILABLE FOR OPPORTUNITIES</span>
                 </div>
                 {isRecruiterMode && (recruiterName || recruiterCompany) && (
                   <motion.div 
@@ -1532,7 +1581,7 @@ export default function App() {
                         href={cert.verificationUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:text-primary-dark transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-primary/20 hover:border-primary/80 bg-white hover:bg-primary text-[11px] font-bold text-primary hover:text-white dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-primary dark:hover:text-slate-950 rounded-lg shadow-sm transition-all duration-200"
                       >
                         Verify <ExternalLink className="w-3.5 h-3.5" />
                       </a>
@@ -1677,7 +1726,7 @@ export default function App() {
                     {skillGroup.items.map((skill, i) => (
                       <span 
                         key={i} 
-                        className="bg-slate-50 border border-outline-variant/60 text-on-surface-variant font-mono text-xs px-2.5 py-1 rounded-md shadow-sm hover:shadow-[0_0_12px_rgba(0,91,191,0.15)] hover:border-primary/40 hover:-translate-y-0.5 hover:bg-white hover:text-primary transition-all duration-200 cursor-default select-none inline-block"
+                        className="bg-primary/5 dark:bg-primary/10 border border-primary/15 hover:border-primary/45 hover:bg-primary hover:text-on-primary text-primary rounded-full text-xs font-semibold px-3.5 py-1.5 transition-all duration-200 cursor-default select-none inline-block shadow-sm hover:shadow-[0_0_12px_rgba(0,91,191,0.15)] dark:hover:text-white"
                       >
                         {skill}
                       </span>
@@ -1940,7 +1989,7 @@ export default function App() {
                                     </span>
                                   ))}
                                 </div>
-                                <span className="text-[10px] font-bold text-primary bg-white group-hover:bg-primary group-hover:text-white border border-primary/20 px-2.5 py-1 rounded-md transition-all shadow-sm shrink-0">
+                                <span className="text-[10px] font-bold text-primary bg-white group-hover:bg-primary group-hover:text-white dark:bg-slate-900 dark:group-hover:bg-primary dark:group-hover:text-slate-950 border border-primary/20 dark:border-slate-800 px-3 py-1.5 rounded-lg transition-all shadow-sm shrink-0">
                                   Specs →
                                 </span>
                               </div>
@@ -2076,57 +2125,115 @@ export default function App() {
             </div>
 
             {/* Gallery Grid */}
-            {ALL_PROJECTS.filter(p => {
-              const matchesScope = galleryScope === 'All' || p.projectType === galleryScope;
-              const matchesCategory = galleryFilter === 'All' || p.category === galleryFilter;
-              return matchesScope && matchesCategory;
-            }).length > 0 ? (
-              <motion.div 
-                key={`${galleryScope}-${galleryFilter}`}
-                variants={staggerContainerVariants}
-                initial="hidden"
-                animate="show"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
-                {ALL_PROJECTS.filter(p => {
-                  const matchesScope = galleryScope === 'All' || p.projectType === galleryScope;
-                  const matchesCategory = galleryFilter === 'All' || p.category === galleryFilter;
-                  return matchesScope && matchesCategory;
-                }).map((proj) => {
-                  const isProjectMatch = isRecruiterMode && recruiterHighlightTech.length > 0 && proj.tech.some(tech => 
-                    recruiterHighlightTech.some(highlight => 
-                      tech.toLowerCase().includes(highlight.toLowerCase()) || 
-                      highlight.toLowerCase().includes(tech.toLowerCase())
-                    )
-                  );
+            {(() => {
+              const filteredProjects = ALL_PROJECTS.filter(p => {
+                const matchesScope = galleryScope === 'All' || p.projectType === galleryScope;
+                const matchesCategory = galleryFilter === 'All' || p.category === galleryFilter;
+                return matchesScope && matchesCategory;
+              });
+              
+              const indieProjectNames = [
+                'Warkop Modern POS', 
+                'Wedly Finance (Editorial Wedding Management Platform)', 
+                'FinTrack'
+              ];
+              const enterpriseProjects = filteredProjects.filter(p => !indieProjectNames.includes(p.name));
+              const independentProjects = filteredProjects.filter(p => indieProjectNames.includes(p.name));
 
-                  return (
-                    <ProjectCard
-                      key={proj.name}
-                      proj={proj}
-                      isProjectMatch={isProjectMatch}
-                      onSelect={(p, idx) => handleSelectProject(p, idx)}
-                      isRecruiterMode={isRecruiterMode}
-                      recruiterHighlightTech={recruiterHighlightTech}
-                    />
-                  );
-                })}
-              </motion.div>
-            ) : (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="bg-slate-50 border border-dashed border-outline-variant/80 rounded-2xl p-12 text-center max-w-xl mx-auto"
-              >
-                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-4 border border-outline-variant/40">
-                  <Grid className="w-5 h-5 text-on-surface-variant" />
-                </div>
-                <h3 className="font-display text-lg font-bold text-on-surface mb-1">No Projects Found</h3>
-                <p className="text-on-surface-variant text-sm">
-                  There are no {galleryScope !== 'All' ? `${galleryScope} ` : ''}projects classified under "{galleryFilter}" at the moment. Try adjusting your filter parameters above.
-                </p>
-              </motion.div>
-            )}
+              if (filteredProjects.length > 0) {
+                return (
+                  <div className="space-y-12">
+                    {/* Enterprise Projects */}
+                    {enterpriseProjects.length > 0 && (
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 border-b border-outline-variant/30 pb-2">
+                          <span className="w-2 h-2 rounded-full bg-primary" />
+                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Enterprise & Core Systems</h4>
+                        </div>
+                        <motion.div 
+                          key={`enterprise-${galleryScope}-${galleryFilter}`}
+                          variants={staggerContainerVariants}
+                          initial="hidden"
+                          animate="show"
+                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        >
+                          {enterpriseProjects.map((proj) => {
+                            const isProjectMatch = isRecruiterMode && recruiterHighlightTech.length > 0 && proj.tech.some(tech => 
+                              recruiterHighlightTech.some(highlight => 
+                                tech.toLowerCase().includes(highlight.toLowerCase()) || 
+                                highlight.toLowerCase().includes(tech.toLowerCase())
+                              )
+                            );
+                            return (
+                              <ProjectCard
+                                key={proj.name}
+                                proj={proj}
+                                isProjectMatch={isProjectMatch}
+                                onSelect={(p, idx) => handleSelectProject(p, idx)}
+                                isRecruiterMode={isRecruiterMode}
+                                recruiterHighlightTech={recruiterHighlightTech}
+                              />
+                            );
+                          })}
+                        </motion.div>
+                      </div>
+                    )}
+
+                    {/* Independent Projects */}
+                    {independentProjects.length > 0 && (
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 border-b border-outline-variant/30 pb-2">
+                          <span className="w-2 h-2 rounded-full bg-slate-400" />
+                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Independent Projects</h4>
+                        </div>
+                        <motion.div 
+                          key={`independent-${galleryScope}-${galleryFilter}`}
+                          variants={staggerContainerVariants}
+                          initial="hidden"
+                          animate="show"
+                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        >
+                          {independentProjects.map((proj) => {
+                            const isProjectMatch = isRecruiterMode && recruiterHighlightTech.length > 0 && proj.tech.some(tech => 
+                              recruiterHighlightTech.some(highlight => 
+                                tech.toLowerCase().includes(highlight.toLowerCase()) || 
+                                highlight.toLowerCase().includes(tech.toLowerCase())
+                              )
+                            );
+                            return (
+                              <ProjectCard
+                                key={proj.name}
+                                proj={proj}
+                                isProjectMatch={isProjectMatch}
+                                onSelect={(p, idx) => handleSelectProject(p, idx)}
+                                isRecruiterMode={isRecruiterMode}
+                                recruiterHighlightTech={recruiterHighlightTech}
+                              />
+                            );
+                          })}
+                        </motion.div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="bg-slate-50 border border-dashed border-outline-variant/80 rounded-2xl p-12 text-center max-w-xl mx-auto"
+                >
+                  <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-4 border border-outline-variant/40">
+                    <Grid className="w-5 h-5 text-on-surface-variant" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-on-surface mb-1">No Projects Found</h3>
+                  <p className="text-on-surface-variant text-sm">
+                    There are no {galleryScope !== 'All' ? `${galleryScope} ` : ''}projects classified under "{galleryFilter}" at the moment. Try adjusting your filter parameters above.
+                  </p>
+                </motion.div>
+              );
+            })()}
           </motion.section>
 
           {/* Endorsements & Client Reviews */}

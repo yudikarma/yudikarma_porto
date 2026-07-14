@@ -1091,8 +1091,8 @@ export default function App() {
         {/* Top Navigation */}
       <header className={`fixed top-0 inset-x-0 h-16 lg:h-20 z-40 flex items-center justify-center transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm' 
-          : 'bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-b border-slate-100 dark:border-slate-800/30'
+          ? 'bg-white/85 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm shadow-slate-100/40 dark:shadow-none' 
+          : 'bg-white/45 dark:bg-slate-900/35 backdrop-blur-md border-b border-slate-100/60 dark:border-slate-900/20'
       }`}>
         <div className="w-full max-w-5xl px-6 md:px-12 flex items-center justify-between gap-4">
           {/* Logo & Name */}
@@ -1112,7 +1112,7 @@ export default function App() {
           </div>
 
           {/* Desktop Nav */}
-          <nav className={`hidden lg:flex items-center gap-0.5 border border-outline-variant/30 dark:border-slate-800/80 bg-slate-50/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-full p-1 transition-all duration-300`}>
+          <nav className="hidden lg:flex items-center gap-1 border border-slate-200/60 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-900/50 backdrop-blur-md rounded-full p-1 transition-all duration-300">
             {[
               { id: 'overview', label: 'Overview' },
               { id: 'credentials', label: 'Certifications' },
@@ -1125,10 +1125,10 @@ export default function App() {
               <button 
                 key={item.id}
                 onClick={() => scrollToSection(item.id)} 
-                className={`px-3 py-1.5 rounded-full text-[10px] uppercase tracking-wider font-bold transition-all duration-200 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-[9px] uppercase tracking-wider font-bold transition-all duration-200 cursor-pointer ${
                   activeSection === item.id 
-                    ? 'bg-primary text-on-primary shadow-sm' 
-                    : 'text-on-surface-variant hover:text-primary dark:text-slate-400 dark:hover:text-primary'
+                    ? 'bg-primary text-on-primary shadow-sm shadow-primary/20 scale-[1.02]' 
+                    : 'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary hover:bg-white/50 dark:hover:bg-slate-800/40'
                 }`}
               >
                 {item.label}
@@ -1581,7 +1581,7 @@ export default function App() {
                         href={cert.verificationUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-primary/20 hover:border-primary/80 bg-white hover:bg-primary text-[11px] font-bold text-primary hover:text-white dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-primary dark:hover:text-slate-950 rounded-lg shadow-sm transition-all duration-200"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-primary/25 dark:border-primary/30 hover:border-primary bg-white dark:bg-slate-900/60 hover:bg-primary dark:hover:bg-primary text-[11px] font-bold text-primary hover:text-on-primary dark:hover:text-slate-950 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                       >
                         Verify <ExternalLink className="w-3.5 h-3.5" />
                       </a>
@@ -1989,7 +1989,7 @@ export default function App() {
                                     </span>
                                   ))}
                                 </div>
-                                <span className="text-[10px] font-bold text-primary bg-white group-hover:bg-primary group-hover:text-white dark:bg-slate-900 dark:group-hover:bg-primary dark:group-hover:text-slate-950 border border-primary/20 dark:border-slate-800 px-3 py-1.5 rounded-lg transition-all shadow-sm shrink-0">
+                                <span className="text-[10px] font-bold text-primary bg-white dark:bg-slate-900/60 group-hover:bg-primary dark:group-hover:bg-primary group-hover:text-on-primary dark:group-hover:text-slate-950 border border-primary/25 dark:border-primary/30 group-hover:border-primary px-3 py-1.5 rounded-lg shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5 transition-all duration-200 shrink-0">
                                   Specs →
                                 </span>
                               </div>
@@ -2311,102 +2311,100 @@ export default function App() {
         </div>
 
         {/* Dynamic Hiring Campaign & Interactive Contact Form */}
-        <section id="hire-me" className="w-full bg-slate-900 text-slate-100 border-t border-slate-800 py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
+        <section id="hire-me" className="w-full bg-gradient-to-b from-white via-slate-50/50 to-slate-100/40 dark:from-slate-950 dark:to-slate-950 text-slate-900 dark:text-slate-100 border-t border-slate-200/80 dark:border-slate-900 py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
           {/* Subtle background abstract decorative elements to match corporate minimalism */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
-
+ 
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             {/* Left Column: Bold Campaign Copywriting */}
             <div className="lg:col-span-7 flex flex-col gap-6">
-              <span className="text-xs font-bold tracking-[0.25em] text-emerald-400 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-bold tracking-[0.25em] text-emerald-600 dark:text-emerald-400 uppercase flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 Now Open to Q3/Q4 Engagements
               </span>
               
-              <h2 className="font-display text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
+              <h2 className="font-display text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Secure your core <br className="hidden md:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light via-emerald-400 to-primary">mobile infrastructure.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-600 to-emerald-500 dark:from-primary-light dark:via-emerald-400 dark:to-primary">mobile infrastructure.</span>
               </h2>
-
-              <p className="text-slate-300 text-base md:text-lg leading-relaxed font-light">
-                You aren’t just looking for an Android developer. You are looking for an engineering partner to protect your transactions and power your digital customer relationships.
+ 
+              <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+                You aren't just looking for an Android developer. You are looking for an engineering partner to protect your transactions and power your digital customer relationships.
               </p>
-
-
             </div>
-
+ 
             {/* Right Column: High-converting interactive proposal form */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-950/80 border border-slate-800 p-6 md:p-8 rounded-2xl shadow-2xl backdrop-blur-md relative">
+              <div className="bg-white dark:bg-slate-900/60 border border-slate-200/85 dark:border-slate-800 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-none backdrop-blur-md relative">
                 {campaignSuccess ? (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-12 flex flex-col items-center justify-center gap-4"
                   >
-                    <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center border border-emerald-500/30">
+                    <div className="w-16 h-16 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center border border-emerald-500/20">
                       <Mail className="w-8 h-8" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-white">Engagement Initiated!</h3>
-                    <p className="text-slate-400 text-sm max-w-xs mx-auto leading-relaxed">
+                    <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Engagement Initiated!</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xs mx-auto leading-relaxed">
                       Your proposal has been compiled. You are being redirected to WhatsApp to send this brief directly to Yudi...
                     </p>
-                    <span className="text-[10px] text-slate-500 font-mono mt-2">Opening secure messenger link...</span>
+                    <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-2">Opening secure messenger link...</span>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleCampaignSubmit} className="flex flex-col gap-4">
                     <div className="mb-2">
-                      <h3 className="font-display text-xl font-bold text-white">Initiate Consultation</h3>
-                      <p className="text-slate-400 text-xs mt-1">Submit your details to receive an executive briefing & schedule a call.</p>
+                      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">Initiate Consultation</h3>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">Submit your details to receive an executive briefing & schedule a call.</p>
                     </div>
-
+ 
                     <div>
-                      <label htmlFor="camp-name" className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Your Name</label>
+                      <label htmlFor="camp-name" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Your Name</label>
                       <input 
                         type="text" 
                         id="camp-name"
                         required
                         value={campaignForm.name}
                         onChange={e => setCampaignForm({...campaignForm, name: e.target.value})}
-                        className="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
                         placeholder="Jane Doe"
                       />
                     </div>
-
+ 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="camp-email" className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Work Email</label>
+                        <label htmlFor="camp-email" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Work Email</label>
                         <input 
                           type="email" 
                           id="camp-email"
                           required
                           value={campaignForm.email}
                           onChange={e => setCampaignForm({...campaignForm, email: e.target.value})}
-                          className="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
                           placeholder="jane@company.com"
                         />
                       </div>
                       <div>
-                        <label htmlFor="camp-company" className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Company</label>
+                        <label htmlFor="camp-company" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Company</label>
                         <input 
                           type="text" 
                           id="camp-company"
                           value={campaignForm.company}
                           onChange={e => setCampaignForm({...campaignForm, company: e.target.value})}
-                          className="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-955/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
                           placeholder="PT. Financial Corp"
                         />
                       </div>
                     </div>
-
+ 
                     <div>
-                      <label htmlFor="camp-role" className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Collaboration Intent</label>
+                      <label htmlFor="camp-role" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Collaboration Intent</label>
                       <select 
                         id="camp-role"
                         value={campaignForm.role}
                         onChange={e => setCampaignForm({...campaignForm, role: e.target.value})}
-                        className="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all cursor-pointer"
+                        className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all cursor-pointer"
                       >
                         <option value="Senior Solutions Architect (Full-Time)">Senior Solutions Architect (Full-Time)</option>
                         <option value="Enterprise Consulting Contract (Part-Time)">Enterprise Consulting Contract (Part-Time)</option>
@@ -2415,24 +2413,24 @@ export default function App() {
                         <option value="VoIP WebRTC & Chat Implementation">VoIP WebRTC & Chat Implementation</option>
                       </select>
                     </div>
-
+ 
                     <div>
-                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Brief Project Scope</label>
+                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Brief Project Scope</label>
                       <textarea 
                         id="camp-msg"
                         required
                         rows={3}
                         value={campaignForm.message}
                         onChange={e => setCampaignForm({...campaignForm, message: e.target.value})}
-                        className="w-full bg-slate-900/60 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
+                        className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all resize-none"
                         placeholder="Detail your requirements or technical challenges here..."
                       />
                     </div>
-
+ 
                     <button 
                       type="submit" 
                       disabled={isSubmittingCampaign}
-                      className="mt-2 w-full bg-primary text-white py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-primary/95 transition-all shadow-md active:scale-[0.99] disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary-light/10"
+                      className="mt-2 w-full bg-primary dark:bg-primary hover:bg-primary-dark dark:hover:bg-primary-light text-on-primary dark:text-slate-955 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-white/5"
                     >
                       {isSubmittingCampaign ? (
                         <>

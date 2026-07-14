@@ -2,6 +2,8 @@
 
 :root {
   --primary: #005bbf;
+  --primary-dark: #004699;
+  --primary-light: #3b82f6;
   --on-primary: #ffffff;
   --surface: #faf9fd;
   --on-surface: #1a1b1e;
@@ -16,6 +18,8 @@
 
 .dark {
   --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
   --on-primary: #ffffff;
   --surface: #0f172a;
   --on-surface: #f8fafc;
@@ -53,6 +57,8 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
   --color-on-primary: var(--on-primary);
   --color-surface: var(--surface);
   --color-on-surface: var(--on-surface);

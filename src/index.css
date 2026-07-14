@@ -19,38 +19,38 @@
 }
 
 .dark {
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --primary-light: #60a5fa;
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --primary-light: #38bdf8;
   --on-primary: #ffffff;
-  --surface: #0f172a;
+  --surface: #030712;
   --on-surface: #f8fafc;
-  --on-surface-variant: #94a3b8;
-  --surface-container-low: #1e293b;
-  --surface-container-highest: #334155;
-  --surface-container-lowest: #0b1329;
-  --outline: #475569;
-  --outline-variant: #334155;
-  --slate-100-val: #1e293b;
-
+  --on-surface-variant: #cbd5e1;
+  --surface-container-low: #0a1120;
+  --surface-container-highest: #1e293b;
+  --surface-container-lowest: #02040a;
+  --outline: #334155;
+  --outline-variant: #1e293b;
+  --slate-100-val: #0d1527;
+ 
   /* Redefining standard Tailwind utility variables for `.dark` scope */
-  --color-white: #0f172a !important;
-  --color-slate-50: #020617 !important;
-  --color-slate-100: #1e293b !important;
-  --color-slate-200: #334155 !important;
-  --color-slate-300: #475569 !important;
-  --color-slate-400: #94a3b8 !important;
-  --color-slate-500: #cbd5e1 !important;
-  --color-slate-600: #e2e8f0 !important;
-  --color-slate-700: #f1f5f9 !important;
+  --color-white: #0a1120 !important;
+  --color-slate-50: #030712 !important;
+  --color-slate-100: #0d1527 !important;
+  --color-slate-200: #1e293b !important;
+  --color-slate-300: #334155 !important;
+  --color-slate-400: #475569 !important;
+  --color-slate-500: #64748b !important;
+  --color-slate-600: #cbd5e1 !important;
+  --color-slate-700: #e2e8f0 !important;
   --color-slate-800: #f8fafc !important;
   --color-slate-900: #ffffff !important;
   --color-slate-950: #ffffff !important;
-
+ 
   /* Overriding default shadows */
-  --shadow-slate-200\/50: rgba(0, 0, 0, 0.5) !important;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4) !important;
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4) !important;
+  --shadow-slate-200\/50: rgba(0, 0, 0, 0.6) !important;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5) !important;
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5) !important;
 }
 
 @theme {

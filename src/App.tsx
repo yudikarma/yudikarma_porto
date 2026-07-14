@@ -1281,7 +1281,11 @@ export default function App() {
       </div>
 
       {/* Main Content Canvas */}
-      <main className="flex-1 flex flex-col pt-16 lg:pt-20">
+      <main className="flex-1 flex flex-col pt-16 lg:pt-20 relative overflow-hidden">
+        {/* Deep background ambient glowing orbs */}
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 dark:bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-teal-500/5 dark:bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-indigo-500/5 dark:bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
         {isRecruiterMode && (
           <div className="mx-auto w-full max-w-5xl px-6 md:px-12 mt-6">
             <div className="bg-gradient-to-r from-emerald-500/10 to-primary/10 border border-emerald-500/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm relative overflow-hidden">
@@ -2313,14 +2317,14 @@ export default function App() {
         {/* Dynamic Hiring Campaign & Interactive Contact Form */}
         <section id="hire-me" className="w-full bg-gradient-to-b from-white via-slate-50/50 to-slate-100/40 dark:from-slate-50 dark:via-slate-50/80 dark:to-slate-100 text-slate-900 border-t border-slate-200/80 dark:border-slate-200/40 py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
           {/* Subtle background abstract decorative elements to match corporate minimalism */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
  
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             {/* Left Column: Bold Campaign Copywriting */}
             <div className="lg:col-span-7 flex flex-col gap-6">
-              <span className="text-xs font-bold tracking-[0.25em] text-emerald-600 dark:text-emerald-400 uppercase flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-bold tracking-[0.25em] text-emerald-600 dark:text-cyan-400 uppercase flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-cyan-400 animate-pulse" />
                 Now Open to Q3/Q4 Engagements
               </span>
               
@@ -2336,14 +2340,14 @@ export default function App() {
  
             {/* Right Column: High-converting interactive proposal form */}
             <div className="lg:col-span-5">
-              <div className="bg-white dark:bg-slate-100/60 border border-slate-200/85 dark:border-slate-200/60 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-none backdrop-blur-md relative">
+              <div className="bg-white dark:bg-slate-100/40 border border-slate-200/85 dark:border-cyan-500/30 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-[0_0_50px_rgba(6,182,212,0.05)] dark:hover:shadow-[0_0_50px_rgba(6,182,212,0.12)] hover:border-slate-350 dark:hover:border-cyan-500/50 backdrop-blur-md relative transition-all duration-300">
                 {campaignSuccess ? (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-12 flex flex-col items-center justify-center gap-4"
                   >
-                    <div className="w-16 h-16 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center border border-emerald-500/20">
+                    <div className="w-16 h-16 bg-emerald-500/10 text-emerald-600 dark:text-cyan-400 rounded-full flex items-center justify-center border border-emerald-500/20">
                       <Mail className="w-8 h-8" />
                     </div>
                     <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Engagement Initiated!</h3>
@@ -2367,7 +2371,7 @@ export default function App() {
                         required
                         value={campaignForm.name}
                         onChange={e => setCampaignForm({...campaignForm, name: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all"
                         placeholder="Jane Doe"
                       />
                     </div>
@@ -2381,7 +2385,7 @@ export default function App() {
                           required
                           value={campaignForm.email}
                           onChange={e => setCampaignForm({...campaignForm, email: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all"
                           placeholder="jane@company.com"
                         />
                       </div>
@@ -2392,7 +2396,7 @@ export default function App() {
                           id="camp-company"
                           value={campaignForm.company}
                           onChange={e => setCampaignForm({...campaignForm, company: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all"
                           placeholder="PT. Financial Corp"
                         />
                       </div>
@@ -2404,7 +2408,7 @@ export default function App() {
                         id="camp-role"
                         value={campaignForm.role}
                         onChange={e => setCampaignForm({...campaignForm, role: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all cursor-pointer"
+                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all cursor-pointer"
                       >
                         <option value="Senior Solutions Architect (Full-Time)">Senior Solutions Architect (Full-Time)</option>
                         <option value="Enterprise Consulting Contract (Part-Time)">Enterprise Consulting Contract (Part-Time)</option>
@@ -2422,7 +2426,7 @@ export default function App() {
                         rows={3}
                         value={campaignForm.message}
                         onChange={e => setCampaignForm({...campaignForm, message: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all resize-none"
+                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all resize-none"
                         placeholder="Detail your requirements or technical challenges here..."
                       />
                     </div>
@@ -2430,7 +2434,7 @@ export default function App() {
                     <button 
                       type="submit" 
                       disabled={isSubmittingCampaign}
-                      className="mt-2 w-full bg-primary dark:bg-primary hover:bg-primary-dark dark:hover:bg-primary-light text-on-primary dark:text-slate-50 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-white/5"
+                      className="mt-2 w-full bg-primary dark:bg-cyan-500 hover:bg-primary-dark dark:hover:bg-cyan-400 text-on-primary dark:text-slate-50 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg dark:hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-cyan-400/20"
                     >
                       {isSubmittingCampaign ? (
                         <>

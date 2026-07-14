@@ -2311,7 +2311,7 @@ export default function App() {
         </div>
 
         {/* Dynamic Hiring Campaign & Interactive Contact Form */}
-        <section id="hire-me" className="w-full bg-gradient-to-b from-white via-slate-50/50 to-slate-100/40 dark:from-slate-950 dark:to-slate-950 text-slate-900 dark:text-slate-100 border-t border-slate-200/80 dark:border-slate-900 py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
+        <section id="hire-me" className="w-full bg-gradient-to-b from-white via-slate-50/50 to-slate-100/40 dark:from-slate-50 dark:via-slate-50/80 dark:to-slate-100 text-slate-900 border-t border-slate-200/80 dark:border-slate-200/40 py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
           {/* Subtle background abstract decorative elements to match corporate minimalism */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
@@ -2329,14 +2329,14 @@ export default function App() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-600 to-emerald-500 dark:from-primary-light dark:via-emerald-400 dark:to-primary">mobile infrastructure.</span>
               </h2>
  
-              <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed font-light">
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light">
                 You aren't just looking for an Android developer. You are looking for an engineering partner to protect your transactions and power your digital customer relationships.
               </p>
             </div>
  
             {/* Right Column: High-converting interactive proposal form */}
             <div className="lg:col-span-5">
-              <div className="bg-white dark:bg-slate-900/60 border border-slate-200/85 dark:border-slate-800 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-none backdrop-blur-md relative">
+              <div className="bg-white dark:bg-slate-100/60 border border-slate-200/85 dark:border-slate-200/60 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-none backdrop-blur-md relative">
                 {campaignSuccess ? (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -2347,64 +2347,64 @@ export default function App() {
                       <Mail className="w-8 h-8" />
                     </div>
                     <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Engagement Initiated!</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xs mx-auto leading-relaxed">
+                    <p className="text-slate-600 text-sm max-w-xs mx-auto leading-relaxed">
                       Your proposal has been compiled. You are being redirected to WhatsApp to send this brief directly to Yudi...
                     </p>
-                    <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-2">Opening secure messenger link...</span>
+                    <span className="text-[10px] text-slate-400 font-mono mt-2">Opening secure messenger link...</span>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleCampaignSubmit} className="flex flex-col gap-4">
                     <div className="mb-2">
                       <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">Initiate Consultation</h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">Submit your details to receive an executive briefing & schedule a call.</p>
+                      <p className="text-slate-500 text-xs mt-1">Submit your details to receive an executive briefing & schedule a call.</p>
                     </div>
  
                     <div>
-                      <label htmlFor="camp-name" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Your Name</label>
+                      <label htmlFor="camp-name" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Your Name</label>
                       <input 
                         type="text" 
                         id="camp-name"
                         required
                         value={campaignForm.name}
                         onChange={e => setCampaignForm({...campaignForm, name: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all"
                         placeholder="Jane Doe"
                       />
                     </div>
  
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="camp-email" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Work Email</label>
+                        <label htmlFor="camp-email" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Work Email</label>
                         <input 
                           type="email" 
                           id="camp-email"
                           required
                           value={campaignForm.email}
                           onChange={e => setCampaignForm({...campaignForm, email: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all"
                           placeholder="jane@company.com"
                         />
                       </div>
                       <div>
-                        <label htmlFor="camp-company" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Company</label>
+                        <label htmlFor="camp-company" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Company</label>
                         <input 
                           type="text" 
                           id="camp-company"
                           value={campaignForm.company}
                           onChange={e => setCampaignForm({...campaignForm, company: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all"
                           placeholder="PT. Financial Corp"
                         />
                       </div>
                     </div>
  
                     <div>
-                      <label htmlFor="camp-role" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Collaboration Intent</label>
+                      <label htmlFor="camp-role" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Collaboration Intent</label>
                       <select 
                         id="camp-role"
                         value={campaignForm.role}
                         onChange={e => setCampaignForm({...campaignForm, role: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all cursor-pointer"
+                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all cursor-pointer"
                       >
                         <option value="Senior Solutions Architect (Full-Time)">Senior Solutions Architect (Full-Time)</option>
                         <option value="Enterprise Consulting Contract (Part-Time)">Enterprise Consulting Contract (Part-Time)</option>
@@ -2415,14 +2415,14 @@ export default function App() {
                     </div>
  
                     <div>
-                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Brief Project Scope</label>
+                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Brief Project Scope</label>
                       <textarea 
                         id="camp-msg"
                         required
                         rows={3}
                         value={campaignForm.message}
                         onChange={e => setCampaignForm({...campaignForm, message: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all resize-none"
+                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-50 transition-all resize-none"
                         placeholder="Detail your requirements or technical challenges here..."
                       />
                     </div>
@@ -2430,7 +2430,7 @@ export default function App() {
                     <button 
                       type="submit" 
                       disabled={isSubmittingCampaign}
-                      className="mt-2 w-full bg-primary dark:bg-primary hover:bg-primary-dark dark:hover:bg-primary-light text-on-primary dark:text-slate-950 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-white/5"
+                      className="mt-2 w-full bg-primary dark:bg-primary hover:bg-primary-dark dark:hover:bg-primary-light text-on-primary dark:text-slate-50 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-white/5"
                     >
                       {isSubmittingCampaign ? (
                         <>
@@ -2447,11 +2447,11 @@ export default function App() {
             </div>
           </div>
         </section>
-
+ 
         {/* Footer */}
-        <footer className="mt-auto border-t border-outline-variant/60 bg-white py-8 px-6 md:px-12 w-full">
+        <footer className="mt-auto border-t border-slate-200/80 dark:border-slate-200/40 bg-white dark:bg-slate-50 py-8 px-6 md:px-12 w-full">
           <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[11px] font-bold tracking-widest uppercase text-on-surface-variant text-center md:text-left">
+            <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 text-center md:text-left">
               © {new Date().getFullYear()} Yudi Karma. Built with Modern Corporate Minimalism.
             </p>
             <div className="flex gap-6 text-sm text-primary font-medium">

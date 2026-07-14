@@ -1393,23 +1393,19 @@ export default function App() {
                 I am an experienced Android Developer specializing in high-performance applications, security SDK integrations, and technical consultation for enterprise-grade financial systems. Bridging the gap between robust engineering and modern product development.
               </p>
 
-              {/* Professional Engineering Key Metrics Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 p-6 bg-slate-50 border border-outline-variant/40 rounded-2xl">
+              {/* Professional Engineering Key Highlights Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 p-6 bg-slate-50 border border-outline-variant/40 rounded-2xl">
                 <div>
                   <div className="font-display text-2xl md:text-3xl font-black text-primary">8+ Years</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Mobile Engineering</div>
                 </div>
                 <div>
-                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">20+ Apps</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Shipped & Maintained</div>
+                  <div className="font-display text-base md:text-lg font-black text-on-surface">Tier-1 Bank Trusted</div>
+                  <div className="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Delivered critical mobile solutions for top institutions like BCA, BNI, and Panin</div>
                 </div>
                 <div>
-                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">99.9%</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Crash-Free Rate</div>
-                </div>
-                <div>
-                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">30M+</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Secure Users Served</div>
+                  <div className="font-display text-base md:text-lg font-black text-on-surface">Seamless Omnichannel</div>
+                  <div className="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Successfully integrated Avaya WebRTC and Tetherfi for real-time customer support</div>
                 </div>
               </div>
               

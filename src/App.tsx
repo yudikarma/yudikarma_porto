@@ -2392,7 +2392,7 @@ export default function App() {
                           id="camp-company"
                           value={campaignForm.company}
                           onChange={e => setCampaignForm({...campaignForm, company: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-955/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
+                          className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-white focus:dark:bg-slate-950 transition-all"
                           placeholder="PT. Financial Corp"
                         />
                       </div>
@@ -2430,7 +2430,7 @@ export default function App() {
                     <button 
                       type="submit" 
                       disabled={isSubmittingCampaign}
-                      className="mt-2 w-full bg-primary dark:bg-primary hover:bg-primary-dark dark:hover:bg-primary-light text-on-primary dark:text-slate-955 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-white/5"
+                      className="mt-2 w-full bg-primary dark:bg-primary hover:bg-primary-dark dark:hover:bg-primary-light text-on-primary dark:text-slate-950 py-3 rounded-lg font-bold text-xs uppercase tracking-wider hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border border-primary/10 dark:border-white/5"
                     >
                       {isSubmittingCampaign ? (
                         <>

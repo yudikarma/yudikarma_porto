@@ -1337,15 +1337,23 @@ export default function App() {
           {/* Hero / Overview */}
           <motion.section 
             id="overview" 
-            className="relative overflow-hidden py-12 md:py-16 px-8 md:px-12 rounded-3xl bg-white border border-outline-variant/60 shadow-md shadow-slate-100/50 scroll-mt-24"
+            className="relative overflow-hidden py-12 md:py-16 px-8 md:px-12 rounded-3xl bg-white dark:bg-slate-100/40 border border-outline-variant/60 dark:border-white/10 shadow-md dark:shadow-none scroll-mt-24"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Soft Ambient Glows */}
-            <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
+            {/* Futuristic Dotted Grid Background */}
+            <div 
+              className="absolute inset-0 pointer-events-none opacity-40 dark:opacity-60" 
+              style={{
+                backgroundImage: 'radial-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px)',
+                backgroundSize: '24px 24px'
+              }}
+            />
+            {/* Futuristic Mesh Ambient Glows */}
+            <div className="absolute -right-20 -top-20 w-96 h-96 bg-gradient-to-br from-cyan-400 to-indigo-600 rounded-full blur-3xl opacity-15 dark:opacity-25 pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
+            <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-gradient-to-tr from-emerald-400 to-teal-600 rounded-full blur-3xl opacity-10 dark:opacity-15 pointer-events-none animate-pulse" style={{ animationDuration: '12s' }} />
 
             <div className="relative z-10 flex flex-col">
               <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -1393,23 +1401,45 @@ export default function App() {
                 I am an experienced Android Developer specializing in high-performance applications, security SDK integrations, and technical consultation for enterprise-grade financial systems. Bridging the gap between robust engineering and modern product development.
               </p>
 
-              {/* Professional Engineering Key Highlights Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 p-6 bg-slate-50 border border-outline-variant/40 rounded-2xl">
+              {/* Professional Engineering Key Metrics Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 p-6 bg-slate-50/50 dark:bg-slate-950/40 border border-outline-variant/40 dark:border-white/10 rounded-2xl backdrop-blur-md relative z-10">
                 <div>
-                  <div className="font-display text-2xl md:text-3xl font-black text-primary">8+ Years</div>
+                  <div className="font-display text-2xl md:text-3xl font-black text-primary dark:text-cyan-400">8+ Years</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Mobile Engineering</div>
                 </div>
                 <div>
-                  <div className="font-display text-base md:text-lg font-black text-on-surface">Tier-1 Bank Trusted</div>
-                  <div className="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Delivered critical mobile solutions for top institutions like BCA, BNI, and Panin</div>
+                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">20+ Apps</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Shipped & Maintained</div>
                 </div>
                 <div>
-                  <div className="font-display text-base md:text-lg font-black text-on-surface">Seamless Omnichannel</div>
-                  <div className="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Successfully integrated Avaya WebRTC and Tetherfi for real-time customer support</div>
+                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">99.9%</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Crash-Free Rate</div>
+                </div>
+                <div>
+                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">30M+</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Secure Users Served</div>
+                </div>
+              </div>
+
+              {/* Trust & Integration Highlights */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 pb-6 border-b border-outline-variant/30 relative z-10 text-[11px] leading-relaxed">
+                <div className="flex gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 mt-1.5 shrink-0" />
+                  <div>
+                    <strong className="text-on-surface font-bold">Tier-1 Bank Trusted:</strong>
+                    <span className="text-on-surface-variant ml-1">Delivered critical mobile solutions for top institutions like BCA, BNI, and Panin.</span>
+                  </div>
+                </div>
+                <div className="flex gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 mt-1.5 shrink-0" />
+                  <div>
+                    <strong className="text-on-surface font-bold">Seamless Omnichannel:</strong>
+                    <span className="text-on-surface-variant ml-1">Successfully integrated Avaya WebRTC and Tetherfi for real-time customer support.</span>
+                  </div>
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline-variant/30 pt-8 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                 {/* 1. Experience Widget */}
                 <div 
                   className="flex items-center gap-4 p-3.5 bg-white border border-outline-variant/60 shadow-sm rounded-2xl cursor-pointer hover:shadow-md hover:border-primary/50 transition-all duration-300 group"

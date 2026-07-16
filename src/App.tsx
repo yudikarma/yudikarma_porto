@@ -1115,12 +1115,9 @@ export default function App() {
           <nav className="hidden lg:flex items-center gap-1 border border-slate-200/60 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-900/50 backdrop-blur-md rounded-full p-1 transition-all duration-300">
             {[
               { id: 'overview', label: 'Overview' },
-              { id: 'credentials', label: 'Certifications' },
-              { id: 'stack', label: 'Tech Stack' },
               { id: 'experience', label: 'Experience' },
               { id: 'gallery', label: 'Projects' },
-              { id: 'endorsements', label: 'References' },
-              { id: 'education', label: 'Education' }
+              { id: 'endorsements', label: 'References' }
             ].map((item) => (
               <button 
                 key={item.id}
@@ -1212,27 +1209,7 @@ export default function App() {
                 : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
             }`}
           >
-            Project Gallery <Grid className="w-5 h-5 text-on-surface-variant" />
-          </button>
-          <button 
-            onClick={() => { scrollToSection('credentials'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
-              activeSection === 'credentials' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
-            }`}
-          >
-            Certifications <Award className="w-5 h-5 text-on-surface-variant" />
-          </button>
-          <button 
-            onClick={() => { scrollToSection('stack'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
-              activeSection === 'stack' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
-            }`}
-          >
-            Tech Stack <Layers className="w-5 h-5 text-on-surface-variant" />
+            Projects <Grid className="w-5 h-5 text-on-surface-variant" />
           </button>
           <button 
             onClick={() => { scrollToSection('endorsements'); setMobileMenuOpen(false); }} 
@@ -1242,17 +1219,7 @@ export default function App() {
                 : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
             }`}
           >
-            Endorsements <MessageSquare className="w-5 h-5 text-on-surface-variant" />
-          </button>
-          <button 
-            onClick={() => { scrollToSection('education'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
-              activeSection === 'education' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
-            }`}
-          >
-            Education <Award className="w-5 h-5 text-on-surface-variant" />
+            References <MessageSquare className="w-5 h-5 text-on-surface-variant" />
           </button>
           <button onClick={() => { setIsRecruiterMode(true); setMobileMenuOpen(false); }} className="w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold text-slate-900 bg-emerald-50 border border-emerald-200 transition-all shadow-sm">
             Recruiter Mode 💼 <Award className="w-5 h-5 text-emerald-600" />

@@ -2702,24 +2702,14 @@ export default function App() {
                     </div>
 
                     <div className="flex flex-wrap gap-1 mt-2">
-                      {proj.tech.map((t, idx) => {
-                        const isTechMatch = isRecruiterMode && recruiterHighlightTech.some(highlight => 
-                          t.toLowerCase().includes(highlight.toLowerCase()) || 
-                          highlight.toLowerCase().includes(t.toLowerCase())
-                        );
-                        return (
-                          <span 
-                            key={idx} 
-                            className={`border text-[6.5px] px-1 rounded font-mono ${
-                              isTechMatch 
-                                ? 'bg-emerald-500/10 border-emerald-400 text-emerald-800 font-bold' 
-                                : 'bg-white border-slate-200 text-slate-700'
-                            }`}
-                          >
-                            {t}
-                          </span>
-                        );
-                      })}
+                      {proj.tech.map((t, idx) => (
+                        <span 
+                          key={idx} 
+                          className="bg-white border border-slate-200 text-slate-700 text-[6.5px] px-1 rounded font-mono"
+                        >
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 );

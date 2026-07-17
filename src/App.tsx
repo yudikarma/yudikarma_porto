@@ -1737,7 +1737,7 @@ export default function App() {
           {/* Professional Experience */}
           <motion.section 
             id="experience" 
-            className="scroll-mt-24"
+            className="scroll-mt-24 min-h-[950px] md:min-h-[1100px]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}

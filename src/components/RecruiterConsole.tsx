@@ -56,45 +56,21 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
         {/* Quick Scenario Presets */}
         <div className="space-y-2 border-b border-slate-800 pb-3">
           <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-            0. Quick Scenario Presets
+            1. Role
           </div>
           <div className="flex flex-wrap gap-1.5">
             {[
               {
-                label: "🤖 Android Dev",
-                name: "Lead Android",
-                company: "Tech Corp",
-                tech: ["Kotlin", "Android SDK", "MVVM", "Clean Architecture", "Camera X"]
-              },
-              {
-                label: "📱 Mobile Dev",
-                name: "Mobile Lead",
+                label: "📱 Mobile Developer",
+                name: "Mobile Developer",
                 company: "App Agency",
-                tech: ["Flutter", "Dart", "Kotlin", "React Native"]
+                tech: ["Kotlin", "Java", "Android SDK", "Flutter", "Dart", "React Native", "MVVM", "Clean Architecture", "Camera X", "SQLite"]
               },
               {
-                label: "🌐 Fullstack Dev",
-                name: "Engineering Manager",
+                label: "🌐 Fullstack Developer",
+                name: "Fullstack Developer",
                 company: "Web Solutions",
-                tech: ["React", "TypeScript", "Tailwind CSS", "WebRTC", "Web Portal"]
-              },
-              {
-                label: "🔒 Fintech Security",
-                name: "Fintech Lead",
-                company: "Acme Bank",
-                tech: ["Kotlin", "DexGuard", "ONE SPAN Security", "mTLS"]
-              },
-              {
-                label: "📞 VOIP Telephony",
-                name: "Platform Director",
-                company: "Avaya Partner",
-                tech: ["Kotlin", "Java", "Avaya SDK", "WebRTC"]
-              },
-              {
-                label: "⚡ Performance Eng",
-                name: "Principal Architect",
-                company: "HighScale Corp",
-                tech: ["Kotlin", "Dynatrace APM", "Tetherfi SDK", "Flutter"]
+                tech: ['Kotlin', 'Java', 'Android SDK', 'Flutter', 'Dart', 'React Native', 'React', 'TypeScript', 'Tailwind CSS', 'MVVM', 'Clean Architecture', 'DexGuard', 'ONE SPAN Security', 'Avaya SDK', 'Tetherfi SDK', 'Dynatrace APM', 'WebRTC', 'mTLS', 'Camera X', 'SQLite']
               }
             ].map((preset) => (
               <button
@@ -116,18 +92,18 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
         {/* Dynamic greetings form */}
         <div className="space-y-3">
           <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-            1. Customize Profile Greetings
+            2. Customize Profile Greetings
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label htmlFor="recruiter-name" className="block text-[9px] text-slate-500 font-medium mb-1">Your Name</label>
+              <label htmlFor="recruiter-name" className="block text-[9px] text-slate-500 font-medium mb-1">Position</label>
               <input 
                 type="text"
                 id="recruiter-name"
                 name="recruiter-name"
                 value={recruiterName}
                 onChange={(e) => setRecruiterName(e.target.value)}
-                placeholder="e.g. Sarah"
+                placeholder="e.g. Mobile Developer"
                 className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
@@ -150,7 +126,7 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
         <div className="space-y-2.5">
           <div className="flex justify-between items-center">
             <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-              2. Requirements / Skill-Matcher
+              3. Requirements / Skill-Matcher
             </div>
             {recruiterHighlightTech.length > 0 && (
               <button 
@@ -193,7 +169,7 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
         {/* Direct print action */}
         <div className="space-y-2 border-t border-slate-800/80 pt-3">
           <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-            3. Executive Export
+            4. Executive Export
           </div>
           <p className="text-[10px] text-slate-500 leading-normal">
             Generates a crisp, double-column corporate resume tailored with your personalization headers. Built to pass ATS parsers flawlessly.

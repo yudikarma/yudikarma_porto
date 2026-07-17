@@ -2533,7 +2533,6 @@ export default function App() {
           <h1 className="text-2xl font-bold tracking-tight text-slate-950">YUDI KARMA</h1>
           <p className="text-xs font-bold text-primary uppercase tracking-wider mt-1">
             Software Engineer
-            {isRecruiterMode && recruiterCompany && <span className="text-slate-500 font-normal lowercase italic text-[11px]"> (Tailored for {recruiterCompany})</span>}
           </p>
         </div>
         <div className="text-right text-[10px] text-slate-700 space-y-0.5">
@@ -2677,16 +2676,11 @@ export default function App() {
                 return (
                   <div 
                     key={i} 
-                    className={`p-2.5 rounded-lg break-inside-avoid border transition-all flex flex-col justify-between ${
-                      isMatch 
-                        ? 'bg-emerald-50/40 border-emerald-400 ring-1 ring-emerald-400/20' 
-                        : 'bg-slate-50 border-slate-200/40'
-                    }`}
+                    className="p-2.5 rounded-lg break-inside-avoid border transition-all flex flex-col justify-between bg-slate-50 border-slate-200/40"
                   >
                     <div>
                       <div className="flex justify-between items-start gap-1">
                         <span className="font-bold text-[8.5px] text-slate-900 leading-tight flex items-center gap-1">
-                          {isMatch && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />}
                           {proj.name}
                         </span>
                         <span className="text-[6.5px] font-mono text-slate-400 font-bold uppercase shrink-0 px-1 bg-white border border-slate-200 rounded">{proj.projectType}</span>

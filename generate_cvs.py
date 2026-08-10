@@ -146,7 +146,7 @@ def create_mobile_cv(filename):
         "architecting native Android applications, mobile banking security hardening, and real-time VoIP communications. "
         "Extensive enterprise experience consulting for national financial institutions including Bank Central Asia (BCA), "
         "Bank Negara Indonesia (BNI), Bank Tabungan Negara (BTN), CIMB Niaga, Panin Bank, and Bank BJB. Expert in Kotlin, "
-        "Java, Jetpack Compose, MVVM/Clean Architecture, OneSpan Security, DexGuard RASP shielding, mTLS pin enforcement, "
+        "Java, Jetpack Compose, MVVM/Clean Architecture, OneSpan Mobile Security Suite, DexGuard RASP shielding, mTLS pin enforcement, "
         "Avaya WebRTC, and Tetherfi SDK integrations."
     )
     story.append(Paragraph(summary_text, body_style))
@@ -528,7 +528,7 @@ def create_fullstack_cv(filename):
     story.append(Paragraph("• <b>Zonapets Social Platform (Client: Hyrax Pet Network):</b> Built Zonapets social networking client featuring media compression pipelines and nested RecyclerView feed caching.", bullet_style))
     story.append(Spacer(1, 5))
 
-    # Detailed Featured Projects Section (Fullstack CV)
+    # Detailed Featured Projects Section (Fullstack CV - Web + Mobile Solutions)
     story.append(Paragraph("DETAILED PROJECTS & TECHNICAL SPECIFICATIONS", section_heading))
     
     # Project 1: FinTrack
@@ -549,7 +549,28 @@ def create_fullstack_cv(filename):
     story.append(Paragraph("Full-stack Laravel 12 multi-tenant coffee shop ordering platform featuring role-based access controls, encrypted QR table-ordering, and real-time sales reporting dashboards.", bullet_style))
     story.append(Spacer(1, 3))
 
-    # Project 4: LogamHub (Fullstack CV only)
+    # Project 4: KeyBCA (Mobile Architecture on Fullstack CV)
+    story.append(Paragraph("<b>KeyBCA (Individu & Bisnis) — Mobile Banking Soft Token</b>", job_title_style))
+    story.append(Paragraph("<i>Client App: KeyBCA | Client: Bank Central Asia (BCA) | Employer: PT. Phintraco Technology</i>", company_style))
+    story.append(Paragraph("<b>Tech Stack:</b> Kotlin, Android SDK, OneSpan Security Suite, DexGuard RASP, mTLS, Cryptography<br/>"
+                           "Developed and maintained banking soft token application to authenticate financial transactions. Implemented cryptographic token generation algorithms complying with strict banking regulatory standards. Integrated with internal BCA microservices over mTLS and enforced dynamic code obfuscation using DexGuard.", bullet_style))
+    story.append(Spacer(1, 3))
+
+    # Project 5: Halo BCA & Wondr BNI
+    story.append(Paragraph("<b>Halo BCA & Wondr BNI — Avaya WebRTC Integration</b>", job_title_style))
+    story.append(Paragraph("<i>Client Apps: Halo BCA (BCA) & Wondr BNI (BNI) | Employer: PT. Phintraco Technology</i>", company_style))
+    story.append(Paragraph("<b>Tech Stack:</b> Kotlin, Jetpack Compose, Avaya Elite WebRTC SDK, Oceana, SIP Signaling<br/>"
+                           "Technical consultant for Avaya Elite WebRTC SDK integrations. Engineered customized reference sample applications in Kotlin using Jetpack Compose UI demonstrating WebRTC audio/video calling and SIP signaling for Halo BCA and Wondr BNI mobile banking applications.", bullet_style))
+    story.append(Spacer(1, 3))
+
+    # Project 6: bale by BTN & OCTO Mobile
+    story.append(Paragraph("<b>bale by BTN & OCTO Mobile — Tetherfi Customer Engagement Integration</b>", job_title_style))
+    story.append(Paragraph("<i>Client Apps: bale by BTN (Bank BTN) & OCTO Mobile (CIMB Niaga) | Employer: PT. Phintraco Technology</i>", company_style))
+    story.append(Paragraph("<b>Tech Stack:</b> Kotlin, Jetpack Compose, Tetherfi SDK, WebSockets, In-App Customer Engagement<br/>"
+                           "Integrated Tetherfi customer engagement SDKs inside mobile banking platforms for Bank BTN (bale by BTN) and CIMB Niaga (OCTO Mobile). Delivered modular Kotlin and Jetpack Compose UI components for interactive real-time messaging and notification queues.", bullet_style))
+    story.append(Spacer(1, 3))
+
+    # Project 7: LogamHub
     story.append(Paragraph("<b>LogamHub (formerly Irvan Gold Roger) — Gold Inventory & Trading SaaS</b>", job_title_style))
     story.append(Paragraph("<i>Client App: LogamHub | Client: Private Client (Irvan Gold Roger) | Tech: Kotlin, Jetpack Compose, Supabase, Node.js</i>", company_style))
     story.append(Paragraph("Architected an offline-first Android application in Kotlin using Jetpack Compose (Material 3), MVVM, and Dagger Hilt. Implemented Room local caching, background sync using WorkManager, Supabase SDK (Auth, Realtime, Database), and custom Node.js backend.", bullet_style))

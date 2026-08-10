@@ -137,11 +137,11 @@ const EXPERIENCES: Experience[] = [
       },
 
       {
-        name: "Enterprise Chat - Tetherfi Integration",
-        tech: ["Kotlin", "Jetpack Compose", "Tetherfi SDK", "WebRTC", "Customer Engagement"],
-        desc: "Integrated Tetherfi customer engagement SDKs within secure mobile banking apps, delivering Kotlin and Jetpack Compose UI sample apps to enable banks to build custom engagement channels.",
-        collaborators: ["Phintraco Solutions Team", "Tetherfi Technical Support", "QA Engineers"],
-        technicalDoc: "Configured secure websocket session handoffs, interactive real-time messaging, custom notification queues, and customized Jetpack Compose UI styles to match banking brand guidelines.",
+        name: "bale by BTN & OCTO Mobile - Tetherfi SDK",
+        tech: ["Kotlin", "Jetpack Compose", "Tetherfi SDK", "WebSockets", "Customer Engagement"],
+        desc: "Integrated Tetherfi customer engagement SDKs for Bank BTN (bale by BTN) and CIMB Niaga (OCTO Mobile), delivering Kotlin and Jetpack Compose UI sample apps to enable banks to build custom engagement channels.",
+        collaborators: ["Phintraco Solutions Team", "BTN Mobile Team", "CIMB Dev Team", "Tetherfi Technical Support"],
+        technicalDoc: "Configured secure websocket session handoffs, interactive real-time messaging, custom notification queues, and customized Jetpack Compose UI styles to match banking brand guidelines for bale by BTN and OCTO Mobile.",
         thumbnail: "/assets/compressed/tetherfi/WhatsApp Image 2026-06-30 at 10.41.41.webp",
         category: "VoIP & Social",
         images: [

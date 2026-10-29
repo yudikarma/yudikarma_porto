@@ -6,3 +6,11 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Local documents & scripts
+Interview Form*
+Yudi Karma_*
+biodata.*
+*.py
+pdf_layout*.txt
+logo_*.png

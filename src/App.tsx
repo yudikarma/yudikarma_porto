@@ -150,6 +150,44 @@ const EXPERIENCES: Experience[] = [
           "/assets/compressed/tetherfi/Screenshot_2020-05-20-22-13-41-225_com.centratamagroup.bm.centratamagroup_bm_staff.webp"
         ],
         playStoreUrl: "https://play.google.com/store/apps/details?id=com.centratamagroup.bm.centratamagroup_bm_staff"
+      },
+      {
+        name: "Enterprise FIDO2 & WebAuthn Platform",
+        tech: ["Kotlin", "Jetpack Compose", "FIDO2 / WebAuthn", "Credential Manager API", "Java", "PostgreSQL", "Tailwind CSS"],
+        desc: "Engineered an end-to-end passwordless biometric authentication platform adhering to W3C WebAuthn & FIDO2 standards, featuring an Android native authenticator, a Java REST Relying Party backend, and an administrative management console.",
+        collaborators: ["Phintraco Security Team", "Backend Architects", "Cloud Infrastructure Engineers"],
+        technicalDoc: "Designed an open-standard FIDO2 client using Android Credential Manager API and Play Services Authenticator with hardware-backed secure element storage. Built a scalable Java WebAuthn Relying Party server with PostgreSQL, anti-replay token validation, and multi-tenant Digital Asset Links. Delivered a responsive web admin console for managing Relying Parties, challenge logs, and origin platform registrations.",
+        thumbnail: "/assets/projects/fido2/02_overview_dashboard.png",
+        category: "Fintech & Security",
+        images: [
+          "/assets/projects/fido2/02_overview_dashboard.png",
+          "/assets/projects/fido2/01_admin_login.png",
+          "/assets/projects/fido2/03_relying_parties.png",
+          "/assets/projects/fido2/07_registered_credentials.png",
+          "/assets/projects/fido2/08_challenges_and_logs.png",
+          "/assets/projects/fido2/12_web_user_registration.png",
+          "/assets/projects/fido2/16_modal_origin_platform_wizard.png",
+          "/assets/projects/fido2/17_modal_origin_android.png"
+        ]
+      },
+      {
+        name: "Phintraco SoftToken Suite & Banking Web Portal",
+        tech: ["Kotlin", "Jetpack Compose", "React 18", "TypeScript", "Vite", "Tailwind CSS", "Digipass Cryptography", "Cronto QR Signing"],
+        desc: "Comprehensive dual-channel banking security showcase linking a modern React 18 Internet Banking portal with a native Kotlin Android SoftToken app (KarmaMSS) for dynamic QR code transaction signing and offline activation.",
+        collaborators: ["Phintraco Solutions Team", "Banking Client Devs", "Security Specialists"],
+        technicalDoc: "Architected the KarmaMSS Android client using Jetpack Compose (Material 3) and Vasco Digipass cryptography for offline activation, secure biometric PIN entry, and Cronto QR transaction signing. Built a modern React 18 & TypeScript Internet Banking simulation portal that generates dynamic financial transaction QR payloads and validates cryptographically signed OTP tokens in real-time.",
+        thumbnail: "/assets/projects/softtoken/01_portal_transaction_studio.png",
+        category: "Fintech & Security",
+        images: [
+          "/assets/projects/softtoken/01_portal_transaction_studio.png",
+          "/assets/projects/softtoken/02_portal_cronto_qr_generator.png",
+          "/assets/projects/softtoken/03_portal_otp_verification.png",
+          "/assets/projects/softtoken/04_portal_audit_ledger.png",
+          "/assets/projects/softtoken/05_mobile_device_registration.jpeg",
+          "/assets/projects/softtoken/06_mobile_token_home.jpeg",
+          "/assets/projects/softtoken/07_mobile_qr_cronto_scanner.jpeg",
+          "/assets/projects/softtoken/08_mobile_transaction_signing.jpeg"
+        ]
       }
     ]
   },

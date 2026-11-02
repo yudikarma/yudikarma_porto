@@ -1130,17 +1130,17 @@ export default function App() {
         {/* Top Navigation */}
       <header className={`fixed top-0 inset-x-0 h-16 lg:h-20 z-40 flex items-center justify-center transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/85 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm shadow-slate-100/40 dark:shadow-none' 
-          : 'bg-white/45 dark:bg-slate-900/35 backdrop-blur-md border-b border-slate-100/60 dark:border-slate-900/20'
+          ? 'bg-surface/90 backdrop-blur-xl border-b border-outline-variant/80 shadow-xs dark:shadow-[0_4px_30px_rgba(0,0,0,0.6)]' 
+          : 'bg-surface/60 backdrop-blur-md border-b border-outline-variant/30'
       }`}>
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Logo & Name */}
           <div className="flex items-center gap-3 shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-primary font-display font-bold shadow-sm flex items-center justify-center hover:scale-105 hover:border-primary/50 hover:shadow-md transition-all duration-300">
+            <div className="w-10 h-10 rounded-xl bg-surface-container-low border border-outline-variant/70 text-primary font-display font-bold shadow-xs flex items-center justify-center hover:scale-105 hover:border-primary/50 hover:shadow-md transition-all duration-300">
               YK
             </div>
             <div>
-              <div className="font-display text-base font-extrabold text-slate-900 dark:text-white tracking-tight leading-none flex items-center gap-1.5">
+              <div className="font-display text-base font-extrabold text-on-surface tracking-tight leading-none flex items-center gap-1.5">
                 Yudi Karma
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Available for opportunities" />
               </div>
@@ -1151,7 +1151,7 @@ export default function App() {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1 border border-slate-200/60 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-900/50 backdrop-blur-md rounded-full p-1 transition-all duration-300">
+          <nav className="hidden lg:flex items-center gap-1 border border-outline-variant/60 bg-surface-container-low/70 backdrop-blur-md rounded-full p-1 transition-all duration-300 shadow-xs">
             {[
               { id: 'overview', label: 'Overview' },
               { id: 'experience', label: 'Experience' },
@@ -1163,8 +1163,8 @@ export default function App() {
                 onClick={() => scrollToSection(item.id)} 
                 className={`px-3.5 py-1.5 rounded-full text-[9px] uppercase tracking-wider font-bold transition-all duration-200 cursor-pointer ${
                   activeSection === item.id 
-                    ? 'bg-primary text-on-primary shadow-sm shadow-primary/20 scale-[1.02]' 
-                    : 'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary hover:bg-white/50 dark:hover:bg-slate-800/40'
+                    ? 'bg-primary text-on-primary shadow-xs shadow-primary/25 scale-[1.02]' 
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest/60'
                 }`}
               >
                 {item.label}
@@ -1176,19 +1176,19 @@ export default function App() {
           <div className="flex items-center gap-2 shrink-0">
             <button 
               onClick={() => setIsRecruiterMode(!isRecruiterMode)}
-              className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm active:scale-95 ${
+              className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 ${
                 isRecruiterMode 
-                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700 hover:bg-emerald-100/80 shadow-emerald-100/50 dark:bg-emerald-950/20 dark:border-emerald-800 dark:text-emerald-400' 
-                  : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800'
+                  ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/25' 
+                  : 'border-outline-variant/60 bg-surface-container-low hover:bg-surface-container-highest/60 text-on-surface hover:border-primary/40'
               }`}
               title="Toggle Recruiter Mode"
             >
-              <Award className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-emerald-600 dark:text-emerald-400 animate-pulse' : 'text-primary'}`} />
+              <Award className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-emerald-500 animate-pulse' : 'text-primary'}`} />
               <span>Recruiter Mode</span>
             </button>
             <button 
               onClick={handlePrint} 
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-700 shadow-sm transition-all cursor-pointer active:scale-95 group dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-outline-variant/60 bg-surface-container-low hover:bg-surface-container-highest/60 text-[10px] font-bold uppercase tracking-wider text-on-surface hover:border-primary/40 shadow-xs transition-all cursor-pointer active:scale-95 group"
               title="Export PDF Resume"
             >
               <Printer className="w-3.5 h-3.5 text-primary group-hover:scale-110 transition-transform" />
@@ -1196,19 +1196,19 @@ export default function App() {
             </button>
             <button 
               onClick={toggleTheme} 
-              className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-xl border border-outline-variant/60 bg-surface-container-low hover:bg-surface-container-highest/60 text-on-surface hover:border-primary/40 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-xs active:scale-95"
               title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               aria-label="Switch Theme Mode"
             >
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-400" />}
+              {theme === 'light' ? <Moon className="w-4 h-4 text-on-surface" /> : <Sun className="w-4 h-4 text-amber-400" />}
             </button>
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="lg:hidden w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm active:scale-95 z-50 relative"
+              className="lg:hidden w-10 h-10 rounded-xl border border-outline-variant/60 bg-surface-container-low hover:bg-surface-container-highest/60 text-on-surface hover:text-primary flex items-center justify-center transition-all duration-200 cursor-pointer shadow-xs active:scale-95 z-50 relative"
               title="Toggle Menu"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-on-surface" /> : <Menu className="w-5 h-5 text-on-surface" />}
             </button>
           </div>
         </div>
@@ -1216,54 +1216,54 @@ export default function App() {
 
       {/* Navigation Dropdown Overlay */}
       <div className={`
-        fixed inset-0 z-30 bg-white/98 backdrop-blur-md pt-24 pb-8 px-6 md:px-12 flex flex-col transform transition-all duration-300 ease-in-out
+        fixed inset-0 z-30 bg-surface/95 backdrop-blur-xl pt-24 pb-8 px-6 md:px-12 flex flex-col transform transition-all duration-300 ease-in-out
         ${mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
       `}>
         <nav className="flex flex-col gap-2 mt-8 max-w-md mx-auto w-full">
           <button 
             onClick={() => { scrollToSection('overview'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
+            className={`w-full flex items-center justify-between p-4 rounded-xl text-base font-bold transition-all border ${
               activeSection === 'overview' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
+                ? 'bg-surface-container-low border-outline-variant text-on-surface shadow-xs font-extrabold' 
+                : 'bg-transparent border-transparent text-on-surface-variant hover:bg-surface-container-low/60 hover:text-on-surface'
             }`}
           >
             Overview <LayoutDashboard className="w-5 h-5 text-on-surface-variant" />
           </button>
           <button 
             onClick={() => { scrollToSection('experience'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
+            className={`w-full flex items-center justify-between p-4 rounded-xl text-base font-bold transition-all border ${
               activeSection === 'experience' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
+                ? 'bg-surface-container-low border-outline-variant text-on-surface shadow-xs font-extrabold' 
+                : 'bg-transparent border-transparent text-on-surface-variant hover:bg-surface-container-low/60 hover:text-on-surface'
             }`}
           >
             Experience <History className="w-5 h-5 text-on-surface-variant" />
           </button>
           <button 
             onClick={() => { scrollToSection('gallery'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
+            className={`w-full flex items-center justify-between p-4 rounded-xl text-base font-bold transition-all border ${
               activeSection === 'gallery' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
+                ? 'bg-surface-container-low border-outline-variant text-on-surface shadow-xs font-extrabold' 
+                : 'bg-transparent border-transparent text-on-surface-variant hover:bg-surface-container-low/60 hover:text-on-surface'
             }`}
           >
             Projects <Grid className="w-5 h-5 text-on-surface-variant" />
           </button>
           <button 
             onClick={() => { scrollToSection('endorsements'); setMobileMenuOpen(false); }} 
-            className={`w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold transition-all border ${
+            className={`w-full flex items-center justify-between p-4 rounded-xl text-base font-bold transition-all border ${
               activeSection === 'endorsements' 
-                ? 'bg-slate-50 border-outline-variant/60 text-on-surface shadow-sm font-extrabold' 
-                : 'bg-transparent border-transparent text-on-surface hover:bg-slate-50 hover:border-outline-variant/30'
+                ? 'bg-surface-container-low border-outline-variant text-on-surface shadow-xs font-extrabold' 
+                : 'bg-transparent border-transparent text-on-surface-variant hover:bg-surface-container-low/60 hover:text-on-surface'
             }`}
           >
             References <MessageSquare className="w-5 h-5 text-on-surface-variant" />
           </button>
-          <button onClick={() => { setIsRecruiterMode(true); setMobileMenuOpen(false); }} className="w-full flex items-center justify-between p-4 rounded-xl text-lg font-bold text-slate-900 bg-emerald-50 border border-emerald-200 transition-all shadow-sm">
-            Recruiter Mode 💼 <Award className="w-5 h-5 text-emerald-600" />
+          <button onClick={() => { setIsRecruiterMode(true); setMobileMenuOpen(false); }} className="w-full flex items-center justify-between p-4 rounded-xl text-base font-bold text-on-surface bg-emerald-500/10 border border-emerald-500/30 transition-all shadow-xs">
+            Recruiter Mode 💼 <Award className="w-5 h-5 text-emerald-500" />
           </button>
-          <button onClick={() => { handlePrint(); setMobileMenuOpen(false); }} className="w-full flex items-center justify-between p-4 mt-2 rounded-xl text-lg font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 border border-outline-variant/50 transition-all shadow-sm">
+          <button onClick={() => { handlePrint(); setMobileMenuOpen(false); }} className="w-full flex items-center justify-between p-4 mt-2 rounded-xl text-base font-bold text-on-surface bg-surface-container-low hover:bg-surface-container-highest/70 border border-outline-variant/60 transition-all shadow-xs">
             Export PDF Resume <Printer className="w-5 h-5 text-primary" />
           </button>
         </nav>
@@ -2314,19 +2314,19 @@ export default function App() {
                 Open for Collaboration
               </span>
               
-              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black text-on-surface tracking-tight leading-tight">
                 Let's discuss your next <br className="hidden md:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-dark to-primary-light dark:from-primary dark:via-cyan-300 dark:to-primary-light">Android project.</span>
               </h2>
  
-              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light max-w-2xl">
+              <p className="text-on-surface-variant text-base md:text-lg leading-relaxed font-light max-w-2xl">
                 Whether you need a dedicated senior developer for a mobile product, technical assistance integrating security SDKs, or consultation on Android architecture, feel free to reach out.
               </p>
             </div>
  
             {/* Right Column: High-converting interactive proposal form */}
             <div className="lg:col-span-5">
-              <div className="bg-white dark:bg-slate-100/40 border border-slate-200/85 dark:border-cyan-500/30 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-[0_0_50px_rgba(6,182,212,0.05)] dark:hover:shadow-[0_0_50px_rgba(6,182,212,0.12)] hover:border-slate-350 dark:hover:border-cyan-500/50 backdrop-blur-md relative transition-all duration-300">
+              <div className="bg-surface-container-low border border-outline-variant/70 p-6 md:p-8 rounded-2xl shadow-xl dark:shadow-[0_0_50px_rgba(6,182,212,0.05)] dark:hover:shadow-[0_0_50px_rgba(6,182,212,0.12)] hover:border-primary/40 backdrop-blur-md relative transition-all duration-300">
                 {campaignSuccess ? (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -2336,17 +2336,17 @@ export default function App() {
                     <div className="w-16 h-16 bg-emerald-500/10 text-emerald-600 dark:text-cyan-400 rounded-full flex items-center justify-center border border-emerald-500/20">
                       <Mail className="w-8 h-8" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Message Ready!</h3>
-                    <p className="text-slate-600 text-sm max-w-xs mx-auto leading-relaxed">
+                    <h3 className="font-display text-2xl font-bold text-on-surface">Message Ready!</h3>
+                    <p className="text-on-surface-variant text-sm max-w-xs mx-auto leading-relaxed">
                       Redirecting you to WhatsApp to send your message directly to Yudi...
                     </p>
-                    <span className="text-[10px] text-slate-400 font-mono mt-2">Opening WhatsApp...</span>
+                    <span className="text-[10px] text-on-surface-variant font-mono mt-2">Opening WhatsApp...</span>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleCampaignSubmit} className="flex flex-col gap-4">
                     <div className="mb-2">
-                      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">Get in Touch</h3>
-                      <p className="text-slate-500 text-xs mt-1">Send a message to discuss your project requirements or opportunities.</p>
+                      <h3 className="font-display text-xl font-bold text-on-surface">Get in Touch</h3>
+                      <p className="text-on-surface-variant text-xs mt-1">Send a message to discuss your project requirements or opportunities.</p>
                     </div>
  
                     <div>
@@ -2357,44 +2357,44 @@ export default function App() {
                         required
                         value={campaignForm.name}
                         onChange={e => setCampaignForm({...campaignForm, name: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all"
+                        className="w-full bg-surface-container-low border border-outline-variant/70 rounded-lg px-4 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                         placeholder="Jane Doe"
                       />
                     </div>
  
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="camp-email" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Work Email</label>
+                        <label htmlFor="camp-email" className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Work Email</label>
                         <input 
                           type="email" 
                           id="camp-email"
                           required
                           value={campaignForm.email}
                           onChange={e => setCampaignForm({...campaignForm, email: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all"
+                          className="w-full bg-surface-container-low border border-outline-variant/70 rounded-lg px-4 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                           placeholder="jane@company.com"
                         />
                       </div>
                       <div>
-                        <label htmlFor="camp-company" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Company</label>
+                        <label htmlFor="camp-company" className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Company</label>
                         <input 
                           type="text" 
                           id="camp-company"
                           value={campaignForm.company}
                           onChange={e => setCampaignForm({...campaignForm, company: e.target.value})}
-                          className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all"
+                          className="w-full bg-surface-container-low border border-outline-variant/70 rounded-lg px-4 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                           placeholder="PT. Financial Corp"
                         />
                       </div>
                     </div>
  
                     <div>
-                      <label htmlFor="camp-role" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Collaboration Intent</label>
+                      <label htmlFor="camp-role" className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Collaboration Intent</label>
                       <select 
                         id="camp-role"
                         value={campaignForm.role}
                         onChange={e => setCampaignForm({...campaignForm, role: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all cursor-pointer"
+                        className="w-full bg-surface-container-low border border-outline-variant/70 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all cursor-pointer"
                       >
                         <option value="Senior Android Developer (Full-Time)">Senior Android Developer (Full-Time)</option>
                         <option value="Mobile Development / Consulting">Mobile Development / Consulting</option>
@@ -2405,14 +2405,14 @@ export default function App() {
                     </div>
  
                     <div>
-                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Message / Project Details</label>
+                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1.5">Message / Project Details</label>
                       <textarea 
                         id="camp-msg"
                         required
                         rows={3}
                         value={campaignForm.message}
                         onChange={e => setCampaignForm({...campaignForm, message: e.target.value})}
-                        className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all resize-none"
+                        className="w-full bg-surface-container-low border border-outline-variant/70 rounded-lg px-4 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
                         placeholder="Tell me about your project, timeline, or requirements..."
                       />
                     </div>

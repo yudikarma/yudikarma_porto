@@ -48,6 +48,7 @@ const ContactModal = React.lazy(() => import('./components/ContactModal'));
 const PrintModal = React.lazy(() => import('./components/PrintModal'));
 const ProjectDetailsModal = React.lazy(() => import('./components/ProjectDetailsModal'));
 const RecruiterConsole = React.lazy(() => import('./components/RecruiterConsole'));
+import { BentoShowcaseCard } from './components/BentoShowcaseCard';
 
 const EXPERIENCES: Experience[] = [
   {
@@ -1293,45 +1294,47 @@ export default function App() {
         <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-indigo-500/5 dark:bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
         {isRecruiterMode && (
           <div className="mx-auto w-full max-w-5xl px-6 md:px-12 mt-6">
-            <div className="bg-gradient-to-r from-emerald-500/10 to-primary/10 border border-emerald-500/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-xl pointer-events-none" />
+            <div className="bg-white border border-outline-variant/60 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm relative overflow-hidden transition-colors">
               <div className="flex items-center gap-3 relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-600">
-                  <Award className="w-5 h-5 animate-pulse" />
+                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xs text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                    Recruiter Suite Active 💼
+                  <h4 className="font-bold text-xs text-on-surface uppercase tracking-wider flex items-center gap-2">
+                    <span>Recruiter Suite Active</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   </h4>
-                  <p className="text-xs text-slate-600 mt-0.5">
+                  <p className="text-xs text-on-surface-variant mt-0.5">
                     {recruiterName || recruiterCompany ? (
                       <>
-                        Customized for <strong className="text-primary">{recruiterName || 'Guest'}</strong> {recruiterCompany && <>at <strong className="text-emerald-600">{recruiterCompany}</strong></>}
+                        Tailored for <strong className="text-primary font-bold">{recruiterName || 'Target Role'}</strong> {recruiterCompany && <>at <strong className="text-on-surface font-bold">{recruiterCompany}</strong></>}
                       </>
                     ) : (
-                      "Configure your requirements in the recruiter control panel to live-highlight matches."
+                      "Set target position and skills in the console to highlight matching experience across the portfolio."
                     )}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 relative z-10">
+              <div className="flex items-center gap-2 relative z-10 shrink-0">
                 <button 
+                  type="button"
                   onClick={handlePrint}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary text-white hover:bg-primary/95 text-xs font-bold transition-all shadow-sm active:scale-95 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary hover:bg-primary-dark text-on-primary text-xs font-bold transition-all shadow-sm active:scale-95 cursor-pointer"
                 >
                   <Printer className="w-3.5 h-3.5" />
-                  <span>Generate Customized PDF</span>
+                  <span>Export Tailored PDF</span>
                 </button>
                 <button 
+                  type="button"
                   onClick={() => {
                     setIsRecruiterMode(false);
                     setRecruiterName('');
                     setRecruiterCompany('');
                     setRecruiterHighlightTech([]);
                   }}
-                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold transition-all cursor-pointer"
+                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-on-surface-variant text-xs font-semibold transition-all cursor-pointer"
                 >
-                  Disable
+                  Close
                 </button>
               </div>
             </div>
@@ -1373,29 +1376,13 @@ export default function App() {
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1.5 rounded-full text-[10px] font-bold shadow-sm"
+                    className="inline-flex items-center gap-1.5 bg-primary/10 dark:bg-primary/20 border border-primary/20 text-primary dark:text-blue-400 px-3 py-1 rounded-full text-[10px] font-bold"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
-                    <span>TAILORED ENGAGEMENT ACTIVE</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                    <span>Focus: {recruiterName || 'Target Role'}{recruiterCompany ? ` @ ${recruiterCompany}` : ''}</span>
                   </motion.div>
                 )}
               </div>
-
-              {isRecruiterMode && (recruiterName || recruiterCompany) && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-emerald-50/70 border border-emerald-100 p-4 rounded-2xl mb-6 text-xs text-emerald-800 flex items-start gap-3 shadow-sm"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                    <Award className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="font-bold block text-slate-900 mb-0.5">Customized Executive Greeting:</span>
-                    Hi <strong className="font-bold text-primary">{recruiterName || 'Guest'}</strong>! This portfolio is dynamically customized to show how my 8+ years of secure Android expertise, enterprise SDK integrations, and mobile cryptography align with your mission at <strong className="font-bold text-emerald-700">{recruiterCompany || 'your team'}</strong>.
-                  </div>
-                </motion.div>
-              )}
               
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface mb-6 leading-[1.1] tracking-tight text-balance">
                 Building Resilient <br className="hidden md:block" />
@@ -1462,21 +1449,21 @@ export default function App() {
                         const tabId = tab.toLowerCase().split(' ')[0] as any;
                         const isCurrent = experienceTab === tabId;
                         return (
-                          <span 
+                          <button
+                            type="button"
                             key={tab}
                             onClick={(e) => {
-                              e.stopPropagation();
                               setExperienceTab(tabId);
                               scrollToSection('experience');
                             }}
-                            className={`px-2 py-0.5 rounded text-[8.5px] font-bold uppercase transition-all ${
+                            className={`px-2 py-0.5 rounded text-[8.5px] font-bold uppercase transition-all cursor-pointer ${
                               isCurrent 
                                 ? 'bg-primary text-on-primary shadow-sm' 
                                 : 'bg-white text-on-surface-variant hover:text-on-surface border border-outline-variant/60'
                             }`}
                           >
                             {tab.split(' ')[0]}
-                          </span>
+                          </button>
                         );
                       })}
                     </div>
@@ -1536,23 +1523,24 @@ export default function App() {
                   className="flex items-center gap-4 p-3.5 bg-white border border-outline-variant/60 shadow-sm rounded-2xl cursor-pointer hover:shadow-md hover:border-primary/50 transition-all duration-300 group"
                 >
                   <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <Award className={`w-5 h-5 ${isRecruiterMode ? 'animate-bounce text-emerald-500' : 'animate-pulse'}`} />
+                    <Award className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-[10px] font-bold text-on-surface uppercase tracking-wider">Recruiter Suite</div>
-                    <div className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                      {isRecruiterMode ? 'Tailored Profile ACTIVE ✨' : 'Live-match your requirements'}
+                    <div className="text-[10px] font-medium text-on-surface-variant mt-1 flex items-center gap-1.5">
+                      <span className={`w-1.5 h-1.5 rounded-full ${isRecruiterMode ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'} shrink-0`} />
+                      {isRecruiterMode ? 'Profile Customizer Active' : 'Filter skills & export resume'}
                     </div>
                   </div>
                   <button 
+                    type="button"
                     className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all duration-200 shrink-0 cursor-pointer active:scale-95 border ${
                       isRecruiterMode 
-                        ? 'bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500' 
+                        ? 'bg-primary hover:bg-primary-dark text-on-primary border-primary shadow-xs' 
                         : 'bg-white hover:bg-slate-50 text-on-surface border-outline-variant/60'
                     }`}
                   >
-                    {isRecruiterMode ? 'ACTIVE ✨' : 'CONFIGURE'}
+                    {isRecruiterMode ? 'ACTIVE' : 'CUSTOMIZE'}
                   </button>
                 </div>
               </div>
@@ -1775,7 +1763,7 @@ export default function App() {
           {/* Professional Experience */}
           <motion.section 
             id="experience" 
-            className="scroll-mt-24 min-h-[950px] md:min-h-[1100px]"
+            className="scroll-mt-24 min-h-[950px] md:min-h-[1100px] [overflow-anchor:none]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -1788,7 +1776,7 @@ export default function App() {
               </div>
               
               {/* Sliding Pill Tabs */}
-              <div className="flex bg-slate-100 p-1 rounded-xl border border-outline-variant/40 w-fit shrink-0 relative overflow-hidden">
+              <div className="flex bg-slate-100 p-1 rounded-xl border border-outline-variant/40 w-fit shrink-0 relative">
                 {[
                   { id: 'professional', label: 'Professional' },
                   { id: 'freelance', label: 'Freelance' },
@@ -1797,19 +1785,18 @@ export default function App() {
                   const isActive = experienceTab === tab.id;
                   return (
                     <button
+                      type="button"
                       key={tab.id}
-                      onClick={() => setExperienceTab(tab.id as any)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setExperienceTab(tab.id as any);
+                      }}
                       className={`relative px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer focus:outline-none ${
-                        isActive ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
+                        isActive 
+                          ? 'bg-white text-primary shadow-sm border border-outline-variant/30 font-extrabold' 
+                          : 'text-on-surface-variant hover:text-on-surface border border-transparent'
                       }`}
                     >
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeExperienceTabIndicator"
-                          className="absolute inset-0 bg-white rounded-lg shadow-sm border border-outline-variant/30 z-0"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
                       <span className="relative z-10">{tab.label}</span>
                     </button>
                   );
@@ -1817,8 +1804,15 @@ export default function App() {
               </div>
             </div>
             
-            <div className="relative border-l-2 border-outline-variant/60 ml-4 md:ml-6 pb-4">
-              {EXPERIENCES.filter(exp => {
+            <div className="relative border-l-2 border-outline-variant/60 ml-4 md:ml-6 pb-4 [overflow-anchor:none]">
+              <motion.div
+                key={experienceTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="w-full"
+              >
+                  {EXPERIENCES.filter(exp => {
                 if (experienceTab === 'professional') {
                   return exp.company !== 'Freelance Projects' && exp.company !== 'Personal Projects';
                 }
@@ -2005,26 +1999,26 @@ export default function App() {
                               whileInView={{ opacity: 1, y: 0 }}
                               viewport={{ once: true, margin: "-50px" }}
                               transition={{ duration: 0.4, delay: pIdx * 0.05 }}
-                              className="group flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg bg-slate-50 border border-outline-variant/30 hover:border-primary/40 hover:bg-slate-100/50 transition-all cursor-pointer gap-4"
+                              className="group flex flex-col xl:flex-row xl:items-center justify-between p-4 rounded-xl bg-slate-50/80 hover:bg-slate-100/70 border border-outline-variant/30 hover:border-primary/40 transition-all cursor-pointer gap-3.5"
                             >
-                              <div className="flex-1">
+                              <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
                                   <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
-                                  <h5 className="font-bold text-on-surface text-sm group-hover:text-primary transition-colors">{proj.name}</h5>
+                                  <h5 className="font-bold text-on-surface text-sm group-hover:text-primary transition-colors leading-snug">{proj.name}</h5>
                                 </div>
-                                <p className="text-on-surface-variant text-xs mt-1 leading-relaxed max-w-2xl">
+                                <p className="text-on-surface-variant text-xs mt-1.5 leading-relaxed">
                                   {proj.desc}
                                 </p>
                               </div>
-                              <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+                              <div className="flex flex-wrap items-center gap-2 xl:justify-end shrink-0 max-w-full xl:max-w-md pt-2 xl:pt-0 border-t xl:border-t-0 border-outline-variant/20">
                                 <div className="flex flex-wrap gap-1.5">
                                   {proj.tech.map((t, k) => (
-                                    <span key={k} className="font-mono text-[9px] bg-white border border-outline-variant/40 px-2 py-0.5 rounded text-on-surface-variant font-medium">
+                                    <span key={k} className="font-mono text-[9px] bg-white border border-outline-variant/40 px-2 py-0.5 rounded text-on-surface-variant font-medium whitespace-nowrap">
                                       {t}
                                     </span>
                                   ))}
                                 </div>
-                                <span className="text-[10px] font-bold text-primary bg-white dark:bg-slate-900/60 group-hover:bg-primary dark:group-hover:bg-primary group-hover:text-on-primary dark:group-hover:text-slate-950 border border-primary/25 dark:border-primary/30 group-hover:border-primary px-3 py-1.5 rounded-lg shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5 transition-all duration-200 shrink-0">
+                                <span className="text-[10px] font-bold text-primary bg-white dark:bg-slate-900/60 group-hover:bg-primary dark:group-hover:bg-primary group-hover:text-on-primary dark:group-hover:text-slate-950 border border-primary/25 dark:border-primary/30 group-hover:border-primary px-3 py-1.5 rounded-lg shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5 transition-all duration-200 shrink-0 ml-auto xl:ml-0">
                                   Specs →
                                 </span>
                               </div>
@@ -2038,6 +2032,7 @@ export default function App() {
                   </motion.div>
                 );
               })}
+                </motion.div>
             </div>
           </motion.section>
 
@@ -2167,32 +2162,34 @@ export default function App() {
                 return matchesScope && matchesCategory;
               });
               
-              const indieProjectNames = [
-                'Warkop Modern POS', 
-                'Wedly Finance (Editorial Wedding Management Platform)', 
-                'FinTrack'
+              const FLAGSHIP_NAMES = [
+                'Enterprise FIDO2 & WebAuthn Platform',
+                'Phintraco SoftToken Suite & Banking Web Portal'
               ];
-              const enterpriseProjects = filteredProjects.filter(p => !indieProjectNames.includes(p.name));
-              const independentProjects = filteredProjects.filter(p => indieProjectNames.includes(p.name));
+
+              const flagshipProjects = filteredProjects.filter(p => FLAGSHIP_NAMES.includes(p.name));
+              const nonFlagshipProjects = filteredProjects.filter(p => !FLAGSHIP_NAMES.includes(p.name));
 
               if (filteredProjects.length > 0) {
                 return (
                   <div className="space-y-12">
-                    {/* Enterprise Projects */}
-                    {enterpriseProjects.length > 0 && (
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-2 border-b border-outline-variant/30 pb-2">
-                          <span className="w-2 h-2 rounded-full bg-primary" />
-                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Enterprise & Core Systems</h4>
+                    {/* 1. Flagship Spotlight Bento Stage (Large 2-Col Device Mockups) */}
+                    {flagshipProjects.length > 0 && (
+                      <div className="space-y-5">
+                        <div className="flex items-center justify-between border-b border-outline-variant/40 pb-2.5">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface">
+                              Flagship Enterprise Showcases
+                            </h4>
+                          </div>
+                          <span className="text-[10px] font-mono text-slate-400 font-semibold hidden sm:inline">
+                            Hardware & Cryptographic Systems
+                          </span>
                         </div>
-                        <motion.div 
-                          key={`enterprise-${galleryScope}-${galleryFilter}`}
-                          variants={staggerContainerVariants}
-                          initial="hidden"
-                          animate="show"
-                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                        >
-                          {enterpriseProjects.map((proj) => {
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                          {flagshipProjects.map((proj) => {
                             const isProjectMatch = isRecruiterMode && recruiterHighlightTech.length > 0 && proj.tech.some(tech => 
                               recruiterHighlightTech.some(highlight => 
                                 tech.toLowerCase().includes(highlight.toLowerCase()) || 
@@ -2200,9 +2197,11 @@ export default function App() {
                               )
                             );
                             return (
-                              <ProjectCard
+                              <BentoShowcaseCard
                                 key={proj.name}
                                 proj={proj}
+                                featured={true}
+                                mockupType="browser"
                                 isProjectMatch={isProjectMatch}
                                 onSelect={(p, idx) => handleSelectProject(p, idx)}
                                 isRecruiterMode={isRecruiterMode}
@@ -2210,35 +2209,51 @@ export default function App() {
                               />
                             );
                           })}
-                        </motion.div>
+                        </div>
                       </div>
                     )}
 
-                    {/* Independent Projects */}
-                    {independentProjects.length > 0 && (
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-2 border-b border-outline-variant/30 pb-2">
-                          <span className="w-2 h-2 rounded-full bg-slate-400" />
-                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Independent Projects</h4>
+                    {/* 2. Specialized Portfolio Bento Grid (Web Apps, Mobile Clients & Utilities) */}
+                    {nonFlagshipProjects.length > 0 && (
+                      <div className="space-y-5">
+                        <div className="flex items-center justify-between border-b border-outline-variant/40 pb-2.5">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface">
+                              Production Applications & Modular Utilities
+                            </h4>
+                          </div>
+                          <span className="text-[10px] font-mono text-slate-400 font-semibold">
+                            {nonFlagshipProjects.length} Deliverables
+                          </span>
                         </div>
+
                         <motion.div 
-                          key={`independent-${galleryScope}-${galleryFilter}`}
+                          key={`bento-${galleryScope}-${galleryFilter}`}
                           variants={staggerContainerVariants}
                           initial="hidden"
                           animate="show"
                           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                         >
-                          {independentProjects.map((proj) => {
+                          {nonFlagshipProjects.map((proj) => {
                             const isProjectMatch = isRecruiterMode && recruiterHighlightTech.length > 0 && proj.tech.some(tech => 
                               recruiterHighlightTech.some(highlight => 
                                 tech.toLowerCase().includes(highlight.toLowerCase()) || 
                                 highlight.toLowerCase().includes(tech.toLowerCase())
                               )
                             );
+
+                            const isWebCategory = proj.category?.includes('Web') || 
+                              proj.name.includes('Warkop') || 
+                              proj.name.includes('Wedly') || 
+                              proj.name.includes('FinTrack');
+
                             return (
-                              <ProjectCard
+                              <BentoShowcaseCard
                                 key={proj.name}
                                 proj={proj}
+                                featured={false}
+                                mockupType={isWebCategory ? 'browser' : 'phone'}
                                 isProjectMatch={isProjectMatch}
                                 onSelect={(p, idx) => handleSelectProject(p, idx)}
                                 isRecruiterMode={isRecruiterMode}
@@ -2557,11 +2572,11 @@ export default function App() {
     </div>
     {/* Printable Resume Document - EXACT CORPORATE ATS-FRIENDLY RESUME FORMAT */}
     <div className="hidden print:block w-full bg-white text-slate-900 font-sans p-2">
-      {/* Dynamic Recruiter Header Add-on for PDF */}
+      {/* Dynamic Targeted Position Header for PDF */}
       {isRecruiterMode && (recruiterName || recruiterCompany) && (
-        <div className="mb-4 p-3 bg-slate-50 border border-slate-300 rounded-lg text-[9.5px] leading-relaxed text-slate-800">
-          <span className="font-bold text-slate-900 uppercase tracking-wider block mb-0.5 text-[8px] text-emerald-700">Customized Dossier Summary:</span>
-          Prepared specifically for <strong className="font-bold text-slate-950">{recruiterName || 'Guest Recruiter'}</strong> {recruiterCompany && <>at <strong className="font-bold text-slate-950">{recruiterCompany}</strong></>}. This profile dynamically highlights core mobile SDK engineering, high-security financial hardening (ONE SPAN, DexGuard), performance optimization (Dynatrace APM), and native VoIP systems (Avaya SDK) aligning with your technical roadmap.
+        <div className="mb-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-[9.5px] leading-relaxed text-slate-800">
+          <span className="font-bold text-slate-900 uppercase tracking-wider block mb-0.5 text-[8.5px] text-primary">Targeted Application:</span>
+          Prepared for <strong className="font-bold text-slate-950">{recruiterName || 'Software Engineer'}</strong> {recruiterCompany && <>at <strong className="font-bold text-slate-950">{recruiterCompany}</strong></>}. Demonstrating production mobile architecture, security hardening (ONE SPAN, DexGuard), and enterprise SDK integrations.
         </div>
       )}
 

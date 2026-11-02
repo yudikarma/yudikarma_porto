@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Award, X, Printer } from 'lucide-react';
+import { Award, X, Printer, RotateCcw, Check, Sparkles } from 'lucide-react';
 
 interface RecruiterConsoleProps {
   onClose: () => void;
@@ -12,6 +12,36 @@ interface RecruiterConsoleProps {
   setRecruiterHighlightTech: React.Dispatch<React.SetStateAction<string[]>>;
   onPrint: () => void;
 }
+
+const PRESET_ROLES = [
+  {
+    label: "📱 Senior Android",
+    role: "Senior Android Developer",
+    tech: ["Kotlin", "Java", "Jetpack Compose", "Android SDK", "MVVM", "Clean Architecture", "Coroutines", "Room DB"]
+  },
+  {
+    label: "🛡️ Mobile Security",
+    role: "Mobile Security Engineer",
+    tech: ["ONE SPAN Security", "DexGuard", "FIDO2 / WebAuthn", "Android Keystore", "BiometricPrompt", "mTLS"]
+  },
+  {
+    label: "📞 VoIP & Enterprise SDK",
+    role: "Enterprise Solutions Consultant",
+    tech: ["Avaya SDK", "WebRTC", "Tetherfi SDK", "Dynatrace APM"]
+  },
+  {
+    label: "⚡ Full-Stack & Mobile",
+    role: "Full-Stack Software Engineer",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Kotlin", "Supabase"]
+  }
+];
+
+const AVAILABLE_TECH = [
+  'Kotlin', 'Java', 'Android SDK', 'Jetpack Compose', 'Flutter', 'React Native', 
+  'React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MVVM', 'Clean Architecture', 
+  'DexGuard', 'ONE SPAN Security', 'FIDO2 / WebAuthn', 'Avaya SDK', 'Tetherfi SDK', 
+  'Dynatrace APM', 'WebRTC', 'mTLS', 'Supabase', 'Room DB'
+];
 
 export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
   onClose,
@@ -25,127 +55,144 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
 }) => {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      initial={{ opacity: 0, y: 40, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 50, scale: 0.95 }}
-      className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-96 z-50 bg-slate-950 border border-slate-800 shadow-2xl rounded-2xl overflow-hidden text-slate-100 flex flex-col"
+      exit={{ opacity: 0, y: 40, scale: 0.96 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-[420px] z-50 bg-white/95 backdrop-blur-xl border border-outline-variant/60 shadow-2xl rounded-2xl overflow-hidden text-on-surface flex flex-col transition-colors duration-200"
     >
       {/* Header */}
-      <div className="bg-slate-900 border-b border-slate-800 p-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-emerald-500/15 flex items-center justify-center text-emerald-400">
-            <Award className="w-3.5 h-3.5" />
+      <div className="bg-slate-100/80 border-b border-outline-variant/40 px-4 py-3.5 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 shadow-xs">
+            <Award className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white">Recruiter Suite Active</h3>
-            <span className="text-[9px] font-mono text-emerald-400 font-medium">Custom Resume Generator</span>
+            <div className="flex items-center gap-2">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-on-surface">Recruiter Suite</h3>
+              <span className="inline-flex items-center gap-1 text-[9px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.2 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Active
+              </span>
+            </div>
+            <p className="text-[10px] text-on-surface-variant font-medium mt-0.5">Resume Customizer & Skill Filter</p>
           </div>
         </div>
         <button 
+          type="button"
           onClick={onClose}
-          className="p-1 hover:bg-slate-800 rounded text-slate-400 hover:text-white transition-colors cursor-pointer"
-          title="Deactivate Recruiter Mode"
-          aria-label="Close Recruiter Console"
+          className="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-slate-200/60 transition-colors cursor-pointer"
+          title="Close Recruiter Suite"
+          aria-label="Close Recruiter Suite"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
-      {/* Content Body */}
-      <div className="p-4 flex flex-col gap-4 max-h-[350px] overflow-y-auto custom-scrollbar text-xs">
-        {/* Quick Scenario Presets */}
-        <div className="space-y-2 border-b border-slate-800 pb-3">
-          <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-            1. Role
+      {/* Scrollable Content Body */}
+      <div className="p-4 flex flex-col gap-4 max-h-[380px] overflow-y-auto custom-scrollbar text-xs">
+        {/* 1. Quick Role Presets */}
+        <div className="space-y-2 border-b border-outline-variant/30 pb-3.5">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold text-on-surface uppercase tracking-wider">
+              1. Quick Role Focus
+            </span>
+            <span className="text-[9px] text-on-surface-variant">Tap to pre-fill</span>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {[
-              {
-                label: "📱 Mobile Developer",
-                name: "Mobile Developer",
-                company: "App Agency",
-                tech: ["Kotlin", "Java", "Android SDK", "Flutter", "Dart", "React Native", "MVVM", "Clean Architecture", "Camera X", "SQLite"]
-              },
-              {
-                label: "🌐 Fullstack Developer",
-                name: "Fullstack Developer",
-                company: "Web Solutions",
-                tech: ['Kotlin', 'Java', 'Android SDK', 'Flutter', 'Dart', 'React Native', 'React', 'TypeScript', 'Tailwind CSS', 'MVVM', 'Clean Architecture', 'DexGuard', 'ONE SPAN Security', 'Avaya SDK', 'Tetherfi SDK', 'Dynatrace APM', 'WebRTC', 'mTLS', 'Camera X', 'SQLite']
-              }
-            ].map((preset) => (
-              <button
-                key={preset.label}
-                type="button"
-                onClick={() => {
-                  setRecruiterName(preset.name);
-                  setRecruiterCompany(preset.company);
-                  setRecruiterHighlightTech(preset.tech);
-                }}
-                className="px-2 py-1 rounded-lg text-[9px] bg-slate-900 hover:bg-emerald-500/15 border border-slate-800 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-400 transition-all cursor-pointer font-medium active:scale-95"
-              >
-                {preset.label}
-              </button>
-            ))}
+          <div className="grid grid-cols-2 gap-1.5">
+            {PRESET_ROLES.map((preset) => {
+              const isSelected = recruiterName === preset.role;
+              return (
+                <button
+                  key={preset.label}
+                  type="button"
+                  onClick={() => {
+                    setRecruiterName(preset.role);
+                    setRecruiterHighlightTech(preset.tech);
+                  }}
+                  className={`px-2.5 py-1.5 rounded-xl text-[10px] font-medium border text-left transition-all cursor-pointer flex items-center justify-between ${
+                    isSelected 
+                      ? 'bg-primary/10 border-primary text-primary font-bold shadow-xs' 
+                      : 'bg-slate-50 hover:bg-slate-100 border-outline-variant/40 text-on-surface-variant hover:text-on-surface'
+                  }`}
+                >
+                  <span className="truncate">{preset.label}</span>
+                  {isSelected && <Check className="w-3 h-3 text-primary shrink-0" />}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Dynamic greetings form */}
-        <div className="space-y-3">
-          <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-            2. Customize Profile Greetings
-          </div>
-          <div className="grid grid-cols-2 gap-3">
+        {/* 2. Target Role & Company Fields */}
+        <div className="space-y-2.5 border-b border-outline-variant/30 pb-3.5">
+          <span className="text-[10px] font-bold text-on-surface uppercase tracking-wider block">
+            2. Target Role & Organization
+          </span>
+          <div className="grid grid-cols-2 gap-2.5">
             <div>
-              <label htmlFor="recruiter-name" className="block text-[9px] text-slate-500 font-medium mb-1">Position</label>
+              <label htmlFor="recruiter-role" className="block text-[9px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                Position Title
+              </label>
               <input 
                 type="text"
-                id="recruiter-name"
-                name="recruiter-name"
+                id="recruiter-role"
                 value={recruiterName}
                 onChange={(e) => setRecruiterName(e.target.value)}
-                placeholder="e.g. Mobile Developer"
-                className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-emerald-500 transition-colors"
+                placeholder="e.g. Senior Android Engineer"
+                className="w-full bg-slate-50 border border-outline-variant/60 rounded-xl px-2.5 py-1.5 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:bg-white transition-all"
               />
             </div>
             <div>
-              <label htmlFor="recruiter-company" className="block text-[9px] text-slate-500 font-medium mb-1">Target Company</label>
+              <label htmlFor="recruiter-company" className="block text-[9px] font-semibold text-on-surface-variant mb-1 uppercase tracking-wider">
+                Target Company
+              </label>
               <input 
                 type="text"
                 id="recruiter-company"
-                name="recruiter-company"
                 value={recruiterCompany}
                 onChange={(e) => setRecruiterCompany(e.target.value)}
-                placeholder="e.g. Google"
-                className="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white placeholder-slate-700 focus:outline-none focus:border-emerald-500 transition-colors"
+                placeholder="e.g. BCA, GoTo, Bank Mandiri"
+                className="w-full bg-slate-50 border border-outline-variant/60 rounded-xl px-2.5 py-1.5 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:bg-white transition-all"
               />
             </div>
           </div>
         </div>
 
-        {/* Skill highlights switcher */}
-        <div className="space-y-2.5">
+        {/* 3. Skill Matcher / Highlight Tech */}
+        <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-              3. Requirements / Skill-Matcher
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] font-bold text-on-surface uppercase tracking-wider">
+                3. Spotlight Key Skills
+              </span>
+              {recruiterHighlightTech.length > 0 && (
+                <span className="text-[9px] font-mono font-bold bg-primary/10 text-primary px-1.5 py-0.2 rounded-full">
+                  {recruiterHighlightTech.length}
+                </span>
+              )}
             </div>
             {recruiterHighlightTech.length > 0 && (
               <button 
+                type="button"
                 onClick={() => setRecruiterHighlightTech([])}
-                className="text-[9px] text-slate-500 hover:text-emerald-400 font-medium cursor-pointer"
+                className="text-[9px] text-on-surface-variant hover:text-primary font-semibold flex items-center gap-1 cursor-pointer transition-colors"
               >
-                Clear
+                <RotateCcw className="w-2.5 h-2.5" />
+                Reset
               </button>
             )}
           </div>
-          <p className="text-[10px] text-slate-500 leading-normal">
-            Toggle key technologies. Relevant experience and matching client production apps will dynamically highlight and pulse on screen.
+          <p className="text-[10.5px] text-on-surface-variant leading-relaxed">
+            Toggle skills below. Matching timeline experience and production applications will automatically highlight across the page.
           </p>
-          <div className="flex flex-wrap gap-1 pt-1">
-            {['Kotlin', 'Java', 'Android SDK', 'Flutter', 'Dart', 'React Native', 'React', 'TypeScript', 'Tailwind CSS', 'MVVM', 'Clean Architecture', 'DexGuard', 'ONE SPAN Security', 'Avaya SDK', 'Tetherfi SDK', 'Dynatrace APM', 'WebRTC', 'mTLS', 'Camera X', 'SQLite'].map((tech) => {
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {AVAILABLE_TECH.map((tech) => {
               const isSelected = recruiterHighlightTech.includes(tech);
               return (
                 <button
                   key={tech}
+                  type="button"
                   onClick={() => {
                     if (isSelected) {
                       setRecruiterHighlightTech(recruiterHighlightTech.filter(t => t !== tech));
@@ -153,10 +200,10 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
                       setRecruiterHighlightTech([...recruiterHighlightTech, tech]);
                     }
                   }}
-                  className={`px-2.5 py-1 rounded text-[10px] font-mono border transition-all cursor-pointer ${
+                  className={`px-2.5 py-1 rounded-lg text-[10px] font-mono border transition-all cursor-pointer ${
                     isSelected 
-                      ? 'bg-emerald-500/20 border-emerald-500/60 text-emerald-300 font-semibold shadow-[0_0_8px_rgba(16,185,129,0.2)]' 
-                      : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300'
+                      ? 'bg-primary border-primary text-on-primary font-semibold shadow-xs' 
+                      : 'bg-slate-50 border-outline-variant/40 text-on-surface-variant hover:border-primary/40 hover:text-on-surface'
                   }`}
                 >
                   {tech}
@@ -166,31 +213,23 @@ export const RecruiterConsole: React.FC<RecruiterConsoleProps> = ({
           </div>
         </div>
 
-        {/* Direct print action */}
-        <div className="space-y-2 border-t border-slate-800/80 pt-3">
-          <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider font-semibold">
-            4. Executive Export
-          </div>
-          <p className="text-[10px] text-slate-500 leading-normal">
-            Generates a crisp, double-column corporate resume tailored with your personalization headers. Built to pass ATS parsers flawlessly.
-          </p>
+        {/* 4. Action: Direct PDF Export */}
+        <div className="pt-2">
           <button
+            type="button"
             onClick={onPrint}
-            className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 px-3 rounded text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 shadow transition-all active:scale-[0.98] cursor-pointer"
+            className="w-full bg-primary hover:bg-primary-dark text-on-primary font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm hover:shadow active:scale-[0.98] transition-all cursor-pointer"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print Tailored PDF Resume</span>
+            <Printer className="w-4 h-4" />
+            <span>Export Tailored PDF Resume</span>
           </button>
         </div>
       </div>
 
-      {/* Footer status bar */}
-      <div className="bg-slate-900 border-t border-slate-800 px-4 py-2 flex justify-between items-center text-[9px] text-slate-500">
-        <span className="flex items-center gap-1.5 font-mono">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          Live Matching System
-        </span>
-        <span>v1.2.0 (Executive)</span>
+      {/* Footer */}
+      <div className="bg-slate-100/80 border-t border-outline-variant/40 px-4 py-2 flex items-center justify-between text-[9px] text-on-surface-variant">
+        <span>Portfolio & Resume Customizer</span>
+        <span className="font-mono text-[9px]">ATS-Optimized Export</span>
       </div>
     </motion.div>
   );

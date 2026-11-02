@@ -127,13 +127,30 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
     }
   };
 
+  // Keyboard navigation listener (Left, Right, Escape)
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (e.key === 'ArrowLeft' && selectedProject.images && selectedProject.images.length > 1) {
+        const newIdx = (activeImageIdx - 1 + selectedProject.images.length) % selectedProject.images.length;
+        navigateCarousel(newIdx, -1);
+      } else if (e.key === 'ArrowRight' && selectedProject.images && selectedProject.images.length > 1) {
+        const newIdx = (activeImageIdx + 1) % selectedProject.images.length;
+        navigateCarousel(newIdx, 1);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeImageIdx, selectedProject.images, onClose]);
+
   return (
     <motion.div 
       variants={modalBackdropVariants}
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-3 md:p-6 bg-slate-950/60 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div 
@@ -141,14 +158,19 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-slate-100"
         onClick={e => e.stopPropagation()}
       >
         <div className="sticky top-0 bg-white border-b border-outline-variant/40 px-6 md:px-8 py-4 flex justify-between items-center z-10">
-          <h2 className="font-display text-2xl font-bold text-on-surface">{selectedProject.name}</h2>
+          <div>
+            <h2 className="font-display text-2xl font-bold text-on-surface">{selectedProject.name}</h2>
+            <p className="text-[11px] font-mono text-slate-400 mt-0.5 hidden sm:block">
+              Navigate with <kbd className="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-600 font-semibold">←</kbd> <kbd className="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-600 font-semibold">→</kbd> or <kbd className="px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200 text-slate-600 font-semibold">ESC</kbd> to close
+            </p>
+          </div>
           <button 
             onClick={onClose} 
-            className="p-2 text-on-surface-variant hover:bg-slate-100 rounded-full transition-colors shrink-0"
+            className="p-2 text-on-surface-variant hover:bg-slate-100 rounded-full transition-colors shrink-0 cursor-pointer"
             aria-label="Close Details Modal"
           >
             <X className="w-5 h-5" />

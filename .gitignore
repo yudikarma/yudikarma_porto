@@ -12,5 +12,9 @@ Interview Form*
 Yudi Karma_*
 biodata.*
 *.py
+__pycache__/
 pdf_layout*.txt
 logo_*.png
+
+# Contentsquare wizard
+.cs-wizard/

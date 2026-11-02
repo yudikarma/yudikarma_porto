@@ -66,7 +66,7 @@ export const ImageWithPlaceholder: React.FC<ImageWithPlaceholderProps> = ({
           }
         }
         .animate-custom-shimmer {
-          background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+          background: linear-gradient(90deg, rgba(148, 163, 184, 0.08) 25%, rgba(148, 163, 184, 0.18) 50%, rgba(148, 163, 184, 0.08) 75%);
           background-size: 200% 100%;
           animation: custom-shimmer 1.8s infinite linear;
         }
@@ -75,16 +75,16 @@ export const ImageWithPlaceholder: React.FC<ImageWithPlaceholderProps> = ({
       {/* 1. Shimmer Skeleton Screen / Placeholder State */}
       {!isLoaded && !hasError && (
         <div 
-          className="absolute inset-0 flex flex-col items-center justify-center animate-custom-shimmer z-10"
+          className="absolute inset-0 flex flex-col items-center justify-center animate-custom-shimmer z-10 bg-slate-100"
           id="skeleton-shimmer"
         >
           {/* Centered category icon or general icon with beautiful soft fade pulse */}
           <div className="flex flex-col items-center gap-2.5 animate-pulse duration-1000">
-            <div className="p-3 bg-white/60 rounded-full border border-slate-200/50 shadow-sm">
+            <div className="p-3 bg-white/70 rounded-full border border-outline-variant/40 shadow-sm text-on-surface-variant">
               {getCategoryIcon()}
             </div>
             {!isThumbnail && (
-              <span className="text-[10px] font-mono tracking-widest text-slate-400 font-bold uppercase">
+              <span className="text-[10px] font-mono tracking-widest text-on-surface-variant font-bold uppercase">
                 Loading Preview...
               </span>
             )}

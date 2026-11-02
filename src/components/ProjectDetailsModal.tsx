@@ -158,7 +158,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-slate-100"
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[92vh] overflow-y-auto border border-slate-100"
         onClick={e => e.stopPropagation()}
       >
         <div className="sticky top-0 bg-white border-b border-outline-variant/40 px-6 md:px-8 py-4 flex justify-between items-center z-10">
@@ -337,7 +337,7 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({
                   href={selectedProject.playStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-slate-900 text-white text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-lg hover:bg-slate-800 hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-on-surface border border-outline-variant/60 text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-lg hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
                 >
                   <Smartphone className="w-3.5 h-3.5" />
                   View Google Play Store

@@ -25,8 +25,8 @@ const PRESET_ROLES = [
     tech: ["ONE SPAN Security", "DexGuard", "FIDO2 / WebAuthn", "Android Keystore", "BiometricPrompt", "mTLS"]
   },
   {
-    label: "📞 VoIP & Enterprise SDK",
-    role: "Enterprise Solutions Consultant",
+    label: "📞 VoIP & SDK",
+    role: "VoIP & SDK Integration Specialist",
     tech: ["Avaya SDK", "WebRTC", "Tetherfi SDK", "Dynatrace APM"]
   },
   {

@@ -70,7 +70,7 @@ export const PrintModal: React.FC<PrintModalProps> = ({ onClose }) => {
                   Once the app opens in its own tab, click the <strong className="text-primary">"Export PDF Resume"</strong> (or customized print button in Hire Mode) again.
                 </li>
                 <li>
-                  Your browser's standard print dialogue will open perfectly, allowing you to save as a flawless, ATS-parsed PDF!
+                  Your browser's standard print dialogue will open, allowing you to save a clean, ATS-friendly PDF resume.
                 </li>
               </ol>
             </div>

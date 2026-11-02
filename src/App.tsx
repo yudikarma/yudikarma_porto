@@ -1133,7 +1133,7 @@ export default function App() {
           ? 'bg-white/85 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm shadow-slate-100/40 dark:shadow-none' 
           : 'bg-white/45 dark:bg-slate-900/35 backdrop-blur-md border-b border-slate-100/60 dark:border-slate-900/20'
       }`}>
-        <div className="w-full max-w-5xl px-6 md:px-12 flex items-center justify-between gap-4">
+        <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Logo & Name */}
           <div className="flex items-center gap-3 shrink-0">
             <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-primary font-display font-bold shadow-sm flex items-center justify-center hover:scale-105 hover:border-primary/50 hover:shadow-md transition-all duration-300">
@@ -1293,7 +1293,7 @@ export default function App() {
         <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-teal-500/5 dark:bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-indigo-500/5 dark:bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
         {isRecruiterMode && (
-          <div className="mx-auto w-full max-w-5xl px-6 md:px-12 mt-6">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
             <div className="bg-white border border-outline-variant/60 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm relative overflow-hidden transition-colors">
               <div className="flex items-center gap-3 relative z-10">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
@@ -1340,12 +1340,12 @@ export default function App() {
             </div>
           </div>
         )}
-        <div className="flex-1 p-6 md:p-12 lg:p-16 max-w-5xl mx-auto w-full flex flex-col gap-24">
+        <div className="flex-1 px-4 sm:px-6 lg:px-8 py-10 md:py-16 max-w-7xl mx-auto w-full flex flex-col gap-20 md:gap-28">
           
           {/* Hero / Overview */}
           <motion.section 
             id="overview" 
-            className="relative overflow-hidden py-12 md:py-16 px-8 md:px-12 rounded-3xl bg-white dark:bg-slate-100/40 border border-outline-variant/60 dark:border-white/10 shadow-md dark:shadow-none scroll-mt-24"
+            className="relative overflow-hidden py-12 md:py-16 lg:py-20 px-6 sm:px-10 lg:px-14 rounded-3xl bg-white dark:bg-slate-100/40 border border-outline-variant/60 dark:border-white/10 shadow-md dark:shadow-none scroll-mt-24"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -1363,8 +1363,9 @@ export default function App() {
             <div className="absolute -right-20 -top-20 w-96 h-96 bg-gradient-to-br from-cyan-400 to-indigo-600 rounded-full blur-3xl opacity-15 dark:opacity-25 pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
             <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-gradient-to-tr from-emerald-400 to-teal-600 rounded-full blur-3xl opacity-10 dark:opacity-15 pointer-events-none animate-pulse" style={{ animationDuration: '12s' }} />
 
-            <div className="relative z-10 flex flex-col">
-              <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="relative z-10 flex flex-col gap-10">
+              {/* Top Row: Availability Pill + Focus Badge */}
+              <div className="flex flex-wrap items-center gap-3">
                 <div className="inline-flex items-center gap-2.5 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-800/30 px-3.5 py-1.5 rounded-full shadow-sm w-fit text-emerald-800 dark:text-emerald-400">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -1383,51 +1384,104 @@ export default function App() {
                   </motion.div>
                 )}
               </div>
-              
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface mb-6 leading-[1.1] tracking-tight text-balance">
-                Building Resilient <br className="hidden md:block" />
-                Mobile Architecture.
-              </h1>
-              
-              <p className="text-base md:text-lg text-on-surface-variant max-w-2xl leading-relaxed mb-10 text-balance">
-                I am an experienced Android Developer specializing in high-performance applications, security SDK integrations, and technical consultation for enterprise-grade financial systems. Bridging the gap between robust engineering and modern product development.
-              </p>
 
-              {/* Professional Engineering Key Metrics Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 p-6 bg-slate-50/50 dark:bg-slate-950/40 border border-outline-variant/40 dark:border-white/10 rounded-2xl backdrop-blur-md relative z-10">
+              {/* Main Executive Showcase: Text Content (Left) + Profile Picture Stage (Right) */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                
+                {/* Left 7 Cols: Value Proposition & Headlines */}
+                <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
+                  <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-on-surface mb-6 leading-[1.08] tracking-tight text-balance">
+                    Building Resilient <br className="hidden sm:inline" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-dark to-primary-light dark:from-primary dark:via-cyan-300 dark:to-primary-light">Mobile Architecture.</span>
+                  </h1>
+                  
+                  <p className="text-base sm:text-lg text-on-surface-variant leading-relaxed mb-8 max-w-2xl text-balance">
+                    Android developer with 8+ years of experience building secure mobile banking applications, integrating vendor SDKs, and delivering reliable real-time communication features. Focused on clean architecture, app security, and stable production releases.
+                  </p>
+
+                  {/* Professional Focus Highlights */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2 text-[11px] leading-relaxed">
+                    <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50/70 border border-outline-variant/30">
+                      <span className="w-2 h-2 rounded-full bg-primary mt-1 shrink-0 shadow-xs" />
+                      <div>
+                        <strong className="text-on-surface font-bold block">Banking & Financial Clients</strong>
+                        <span className="text-on-surface-variant text-[10.5px]">Contributed to production mobile solutions for institutions including BCA, BNI, and Panin Bank.</span>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50/70 border border-outline-variant/30">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 mt-1 shrink-0 shadow-xs" />
+                      <div>
+                        <strong className="text-on-surface font-bold block">VoIP & Real-time Integrations</strong>
+                        <span className="text-on-surface-variant text-[10.5px]">Production experience with Avaya, Tetherfi, and WebRTC for live customer communications.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right 5 Cols: Executive Portrait Card */}
+                <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end">
+                  <div className="relative group">
+                    {/* Ambient Glow behind portrait */}
+                    <div className="absolute -inset-2 bg-gradient-to-tr from-primary/30 via-sky-400/20 to-emerald-400/30 rounded-3xl blur-xl opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
+
+                    {/* Outer Frame with Glass Effect */}
+                    <div className="relative p-2.5 sm:p-3 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-outline-variant/60 shadow-xl backdrop-blur-md">
+                      {/* Photo Container */}
+                      <div className="relative w-64 sm:w-72 aspect-square rounded-2xl overflow-hidden bg-slate-100 border border-outline-variant/40 shadow-inner">
+                        <img 
+                          src="https://media.licdn.com/dms/image/v2/C5603AQE5HJLM4p_doQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1592554901828?e=1795046400&v=beta&t=6XfUUK02H8fuMlGf2myh-1B8mMgEGjYZepy86b0SwZc"
+                          alt="Yudi Karma - Senior Android Engineer"
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                          referrerPolicy="no-referrer"
+                          loading="eager"
+                        />
+                        {/* Subtle overlay gradient at the bottom */}
+                        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent pointer-events-none" />
+
+                        {/* Name & Title Overlay */}
+                        <div className="absolute bottom-3 inset-x-3 text-white pointer-events-none">
+                          <div className="font-display font-extrabold text-sm sm:text-base leading-tight drop-shadow-md">
+                            Yudi Karma
+                          </div>
+                          <div className="text-[10px] font-mono text-cyan-300 font-semibold uppercase tracking-wider drop-shadow-sm">
+                            Senior Android Developer
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Floating Experience Badge */}
+                      <div className="absolute -bottom-3 -left-3 bg-white dark:bg-slate-800 border border-outline-variant/60 shadow-lg rounded-xl px-3 py-1.5 flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-black text-xs font-mono">
+                          8+
+                        </div>
+                        <div className="leading-none pr-1">
+                          <span className="block text-[8.5px] font-bold text-on-surface uppercase tracking-wider">Years Experience</span>
+                          <span className="text-[9px] text-on-surface-variant font-medium">Android Engineering</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Key Metrics Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 bg-slate-50/50 dark:bg-slate-950/40 border border-outline-variant/40 dark:border-white/10 rounded-2xl backdrop-blur-md relative z-10">
                 <div>
                   <div className="font-display text-2xl md:text-3xl font-black text-primary dark:text-cyan-400">8+ Years</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Mobile Engineering</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Professional Experience</div>
                 </div>
                 <div>
                   <div className="font-display text-2xl md:text-3xl font-black text-on-surface">20+ Apps</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Shipped & Maintained</div>
                 </div>
                 <div>
-                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">99.9%</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Crash-Free Rate</div>
+                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">Fintech</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Security & Core SDKs</div>
                 </div>
                 <div>
-                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">30M+</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Secure Users Served</div>
-                </div>
-              </div>
-
-              {/* Trust & Integration Highlights */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 pb-6 border-b border-outline-variant/30 relative z-10 text-[11px] leading-relaxed">
-                <div className="flex gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 mt-1.5 shrink-0" />
-                  <div>
-                    <strong className="text-on-surface font-bold">Tier-1 Bank Trusted:</strong>
-                    <span className="text-on-surface-variant ml-1">Delivered critical mobile solutions for top institutions like BCA, BNI, and Panin.</span>
-                  </div>
-                </div>
-                <div className="flex gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 mt-1.5 shrink-0" />
-                  <div>
-                    <strong className="text-on-surface font-bold">Seamless Omnichannel:</strong>
-                    <span className="text-on-surface-variant ml-1">Successfully integrated Avaya WebRTC and Tetherfi for real-time customer support.</span>
-                  </div>
+                  <div className="font-display text-2xl md:text-3xl font-black text-on-surface">VoIP</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-1">Real-time Audio & Chat</div>
                 </div>
               </div>
             </div>
@@ -1443,8 +1497,8 @@ export default function App() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="mb-10 border-b border-outline-variant/50 pb-4">
-              <h2 className="font-display text-2xl font-bold text-on-surface">Elite Certifications</h2>
-              <p className="text-on-surface-variant text-sm mt-1">Industry-standard credentials verifying my cloud architecture and system observability expertise.</p>
+              <h2 className="font-display text-2xl font-bold text-on-surface">Professional Certifications</h2>
+              <p className="text-on-surface-variant text-sm mt-1">Verified credentials in cloud infrastructure and observability.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1612,7 +1666,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="mb-8 border-b border-outline-variant/50 pb-3 flex items-center justify-between">
-              <h2 className="font-display text-2xl font-bold text-on-surface">Core Expertise</h2>
+              <h2 className="font-display text-2xl font-bold text-on-surface">Technical Skills</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1976,7 +2030,7 @@ export default function App() {
                           <span className="text-[11px] font-semibold text-on-surface/90 truncate w-32 shrink-0">{stat.name}</span>
                           <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
                             <div 
-                              className="h-full bg-slate-900 rounded-full" 
+                              className="h-full bg-primary rounded-full transition-all duration-500" 
                               style={{ width: `${stat.pct}%` }}
                             />
                           </div>
@@ -2005,8 +2059,8 @@ export default function App() {
                         onClick={() => setGalleryScope(scope.id)}
                         className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                           galleryScope === scope.id 
-                            ? 'bg-primary border-primary text-white shadow-sm' 
-                            : 'bg-white border-outline-variant/60 text-on-surface-variant hover:text-primary hover:border-primary/50'
+                            ? 'bg-primary border-primary text-on-primary shadow-sm' 
+                            : 'bg-white border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-primary/50'
                         }`}
                       >
                         {scope.label}
@@ -2028,8 +2082,8 @@ export default function App() {
                         onClick={() => setGalleryFilter(cat)}
                         className={`px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                           galleryFilter === cat 
-                            ? 'bg-slate-900 border-slate-900 text-white shadow-sm' 
-                            : 'bg-white border-outline-variant/60 text-on-surface-variant hover:text-slate-900 hover:border-slate-900/50'
+                            ? 'bg-primary border-primary text-on-primary shadow-sm' 
+                            : 'bg-white border-outline-variant/60 text-on-surface-variant hover:text-on-surface hover:border-primary/50'
                         }`}
                       >
                         {cat === 'All' ? 'All Tech Categories' : cat}
@@ -2066,11 +2120,11 @@ export default function App() {
                           <div className="flex items-center gap-2">
                             <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
                             <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface">
-                              Flagship Enterprise Showcases
+                              Featured Production Highlights
                             </h4>
                           </div>
                           <span className="text-[10px] font-mono text-slate-400 font-semibold hidden sm:inline">
-                            Hardware & Cryptographic Systems
+                            Security & Real-time Integrations
                           </span>
                         </div>
 
@@ -2110,7 +2164,7 @@ export default function App() {
                             </h4>
                           </div>
                           <span className="text-[10px] font-mono text-slate-400 font-semibold">
-                            {nonFlagshipProjects.length} Deliverables
+                            {nonFlagshipProjects.length} Applications
                           </span>
                         </div>
 
@@ -2247,26 +2301,26 @@ export default function App() {
         </div>
 
         {/* Dynamic Hiring Campaign & Interactive Contact Form */}
-        <section id="hire-me" className="w-full bg-gradient-to-b from-white via-slate-50/50 to-slate-100/40 dark:from-slate-50 dark:via-slate-50/80 dark:to-slate-100 text-slate-900 border-t border-slate-200/80 dark:border-slate-200/40 py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
+        <section id="hire-me" className="w-full bg-gradient-to-b from-white via-slate-50/50 to-slate-100/40 dark:from-slate-50 dark:via-slate-50/80 dark:to-slate-100 text-slate-900 border-t border-slate-200/80 dark:border-slate-200/40 py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
           {/* Subtle background abstract decorative elements to match corporate minimalism */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
  
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-            {/* Left Column: Bold Campaign Copywriting */}
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            {/* Left Column: Direct & Honest Contact Copywriting */}
             <div className="lg:col-span-7 flex flex-col gap-6">
               <span className="text-xs font-bold tracking-[0.25em] text-emerald-600 dark:text-cyan-400 uppercase flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-cyan-400 animate-pulse" />
-                Now Open to Q3/Q4 Engagements
+                Open for Collaboration
               </span>
               
-              <h2 className="font-display text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                Secure your core <br className="hidden md:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-600 to-emerald-500 dark:from-primary-light dark:via-emerald-400 dark:to-primary">mobile infrastructure.</span>
+              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                Let's discuss your next <br className="hidden md:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-dark to-primary-light dark:from-primary dark:via-cyan-300 dark:to-primary-light">Android project.</span>
               </h2>
  
-              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light">
-                You aren't just looking for an Android developer. You are looking for an engineering partner to protect your transactions and power your digital customer relationships.
+              <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light max-w-2xl">
+                Whether you need a dedicated senior developer for a mobile product, technical assistance integrating security SDKs, or consultation on Android architecture, feel free to reach out.
               </p>
             </div>
  
@@ -2282,17 +2336,17 @@ export default function App() {
                     <div className="w-16 h-16 bg-emerald-500/10 text-emerald-600 dark:text-cyan-400 rounded-full flex items-center justify-center border border-emerald-500/20">
                       <Mail className="w-8 h-8" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Engagement Initiated!</h3>
+                    <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Message Ready!</h3>
                     <p className="text-slate-600 text-sm max-w-xs mx-auto leading-relaxed">
-                      Your proposal has been compiled. You are being redirected to WhatsApp to send this brief directly to Yudi...
+                      Redirecting you to WhatsApp to send your message directly to Yudi...
                     </p>
-                    <span className="text-[10px] text-slate-400 font-mono mt-2">Opening secure messenger link...</span>
+                    <span className="text-[10px] text-slate-400 font-mono mt-2">Opening WhatsApp...</span>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleCampaignSubmit} className="flex flex-col gap-4">
                     <div className="mb-2">
-                      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">Initiate Consultation</h3>
-                      <p className="text-slate-500 text-xs mt-1">Submit your details to receive an executive briefing & schedule a call.</p>
+                      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">Get in Touch</h3>
+                      <p className="text-slate-500 text-xs mt-1">Send a message to discuss your project requirements or opportunities.</p>
                     </div>
  
                     <div>
@@ -2342,16 +2396,16 @@ export default function App() {
                         onChange={e => setCampaignForm({...campaignForm, role: e.target.value})}
                         className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all cursor-pointer"
                       >
-                        <option value="Senior Solutions Architect (Full-Time)">Senior Solutions Architect (Full-Time)</option>
-                        <option value="Enterprise Consulting Contract (Part-Time)">Enterprise Consulting Contract (Part-Time)</option>
+                        <option value="Senior Android Developer (Full-Time)">Senior Android Developer (Full-Time)</option>
+                        <option value="Mobile Development / Consulting">Mobile Development / Consulting</option>
                         <option value="Custom Vendor SDK Integration Project">Custom Vendor SDK Integration Project</option>
-                        <option value="Mobile Security & RASP / Hardening Audit">Mobile Security & RASP / Hardening Audit</option>
-                        <option value="VoIP WebRTC & Chat Implementation">VoIP WebRTC & Chat Implementation</option>
+                        <option value="Mobile Security Hardening">Mobile Security Hardening</option>
+                        <option value="VoIP / WebRTC & Chat Implementation">VoIP / WebRTC & Chat Implementation</option>
                       </select>
                     </div>
  
                     <div>
-                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Brief Project Scope</label>
+                      <label htmlFor="camp-msg" className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Message / Project Details</label>
                       <textarea 
                         id="camp-msg"
                         required
@@ -2359,7 +2413,7 @@ export default function App() {
                         value={campaignForm.message}
                         onChange={e => setCampaignForm({...campaignForm, message: e.target.value})}
                         className="w-full bg-slate-50 dark:bg-slate-50/60 border border-slate-200 dark:border-slate-200/60 rounded-lg px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-300 focus:outline-none focus:border-primary dark:focus:border-cyan-400 focus:ring-1 focus:ring-primary dark:focus:ring-cyan-400/50 focus:bg-white focus:dark:bg-slate-50 transition-all resize-none"
-                        placeholder="Detail your requirements or technical challenges here..."
+                        placeholder="Tell me about your project, timeline, or requirements..."
                       />
                     </div>
  
@@ -2371,10 +2425,10 @@ export default function App() {
                       {isSubmittingCampaign ? (
                         <>
                           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                          Compiling Brief...
+                          Preparing Message...
                         </>
                       ) : (
-                        'Secure Architect Briefing'
+                        'Send Message via WhatsApp'
                       )}
                     </button>
                   </form>
@@ -2385,8 +2439,8 @@ export default function App() {
         </section>
  
         {/* Footer */}
-        <footer className="mt-auto border-t border-slate-200/80 dark:border-slate-200/40 bg-white dark:bg-slate-50 py-8 px-6 md:px-12 w-full">
-          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <footer className="mt-auto border-t border-slate-200/80 dark:border-slate-200/40 bg-white dark:bg-slate-50 py-8 px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[11px] font-bold tracking-widest uppercase text-slate-500 text-center md:text-left">
               © {new Date().getFullYear()} Yudi Karma. Built with Modern Corporate Minimalism.
             </p>
@@ -2462,7 +2516,7 @@ export default function App() {
       {isRecruiterMode && (recruiterName || recruiterCompany) && (
         <div className="mb-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-[9.5px] leading-relaxed text-slate-800">
           <span className="font-bold text-slate-900 uppercase tracking-wider block mb-0.5 text-[8.5px] text-primary">Targeted Application:</span>
-          Prepared for <strong className="font-bold text-slate-950">{recruiterName || 'Software Engineer'}</strong> {recruiterCompany && <>at <strong className="font-bold text-slate-950">{recruiterCompany}</strong></>}. Demonstrating production mobile architecture, security hardening (ONE SPAN, DexGuard), and enterprise SDK integrations.
+          Prepared for <strong className="font-bold text-slate-950">{recruiterName || 'Senior Android Developer'}</strong> {recruiterCompany && <>at <strong className="font-bold text-slate-950">{recruiterCompany}</strong></>}. Highlights production Android development, security integrations (OneSpan, DexGuard), and vendor SDK implementations.
         </div>
       )}
 
@@ -2490,7 +2544,7 @@ export default function App() {
           
           {/* Core Skills */}
           <div>
-            <h2 className="text-[10px] font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2">Core Expertise</h2>
+            <h2 className="text-[10px] font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2">Technical Skills</h2>
             <div className="space-y-2.5">
               {SKILLS.map((grp, i) => (
                 <div key={i} className="break-inside-avoid">
@@ -2564,7 +2618,7 @@ export default function App() {
           <div>
             <h2 className="text-[10px] font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2">Professional Summary</h2>
             <p className="text-[9px] text-slate-700 leading-relaxed">
-              Experienced and certified Software Engineer with over 8 years in the mobile engineering space. Specializes in building high-performance, secure mobile banking platforms, custom SDK developments, and robust VOIP/WebRTC communication implementations. Proven track record of consulting and shipping bulletproof solutions for tier-1 national banks and enterprise organizations.
+              Software Engineer with 8+ years of experience in Android development. Specializes in building secure mobile banking applications, custom SDKs, and VoIP/WebRTC communication integrations. Experienced in delivering production mobile solutions for financial institutions and enterprise clients.
             </p>
           </div>
 

@@ -75,13 +75,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   {[
                     { 
                       label: "🤝 Hire / Interview", 
-                      text: "Hi Yudi, I am interested in scheduling a technical interview with you regarding a Senior Android Engineer opportunity!",
-                      themeClass: "bg-blue-50/40 dark:bg-blue-950/15 border-blue-200/60 dark:border-blue-900/30 text-blue-955 dark:text-blue-100 border-l-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:border-blue-300 dark:hover:border-blue-700"
+                      text: "Hi Yudi, I am interested in scheduling a technical interview with you regarding a Senior Android Developer opportunity!",
+                      themeClass: "bg-blue-50/40 dark:bg-blue-950/15 border-blue-200/60 dark:border-blue-900/30 text-blue-950 dark:text-blue-100 border-l-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:border-blue-300 dark:hover:border-blue-700"
                     },
                     { 
                       label: "🛡️ SDK Consultation", 
-                      text: "Hi Yudi, we are looking for architectural consultation on secure mobile SDK integrations (biometrics/cryptography).",
-                      themeClass: "bg-indigo-50/40 dark:bg-indigo-950/15 border-indigo-200/60 dark:border-indigo-900/30 text-indigo-955 dark:text-indigo-100 border-l-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 hover:border-indigo-300 dark:hover:border-indigo-700"
+                      text: "Hi Yudi, we are looking for technical assistance on mobile SDK integrations (biometrics/cryptography).",
+                      themeClass: "bg-indigo-50/40 dark:bg-indigo-950/15 border-indigo-200/60 dark:border-indigo-900/30 text-indigo-950 dark:text-indigo-100 border-l-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 hover:border-indigo-300 dark:hover:border-indigo-700"
                     },
                     { 
                       label: "📱 Secure App Dev", 
